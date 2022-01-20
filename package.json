@@ -21,5 +21,8 @@
   "bugs": {
     "url": "https://github.com/chaitra-srinivas/Social-Stories/issues"
   },
-  "homepage": "https://github.com/chaitra-srinivas/Social-Stories#readme"
+  "homepage": "https://github.com/chaitra-srinivas/Social-Stories#readme",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }
