@@ -9,9 +9,9 @@ import {
 
 import Home from "./components/pages/Home";
 import ArticleList from "./components/articles/ArticleList";
-import ArticleInfo from "./components/articles/ArticleInfo";
+/* import ArticleInfo from "./components/articles/ArticleInfo";
 import ArticleAdd from "./components/articles/ArticleAdd";
-import ArticleEdit from "./components/articles/ArticleEdit";
+import ArticleEdit from "./components/articles/ArticleEdit"; */
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -37,7 +37,7 @@ function Navigation() {
       <div className='container'>
         <ul className='navbar-nav mr-auto'>
           <li className='nav-item'>
-            <NavLink exact className='nav-link' activeClassName='active' to='/'>
+            <NavLink exact className='nav-link' activeclassname='active' to='/'>
               Home
             </NavLink>
           </li>
@@ -45,7 +45,7 @@ function Navigation() {
             <NavLink
               exact
               className='nav-link'
-              activeClassName='active'
+              activeclassname='active'
               to='/articles'>
               Articles
             </NavLink>
@@ -59,11 +59,11 @@ function Navigation() {
 function Main() {
   return (
     <Routes>
-      <Route exact path='/' component={Home} />
-      <Route exact path='/articles' component={ArticleList} />
-      <Route exact path='/articles/new' component={ArticleAdd} />
+      <Route exact path='/' element={<Home/>} />
+      <Route exact path='/articles' element={<ArticleList/>} />
+      {/*  <Route exact path='/articles/new' component={ArticleAdd} />
       <Route exact path='/articles/:_id' component={ArticleInfo} />
-      <Route exact path='/articles/:_id/edit' component={ArticleEdit} />
+      <Route exact path='/articles/:_id/edit' component={ArticleEdit} /> */}
     </Routes>
   );
 }

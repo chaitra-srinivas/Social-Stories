@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/chaitra-srinivas/Social-Stories#readme",
   "dependencies": {
+    "concurrently": "^7.0.0",
     "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "web-vitals": "^2.1.3"
   }
 }
