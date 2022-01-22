@@ -1,31 +1,36 @@
 const Article = require("../models/Article");
+const Stories = require("../models/Stories");
 
 const resolvers = {
+
   Query: {
-    articles: async function () {
-      return await Article.find({});
+    stories: async function () {
+      return await Stories.find({});
     },
 
-    article: async function (parent, args) {
-      return await Article.findById(args.id);
-    }
+    story: async function (parent, args) {
+      return await Stories.findById(args.id);
+    }, 
+  
   },
 
   Mutation: {
-    createArticle: function (parent, args) {
-      const article = new Article(args.articleInput);
-      return article.save();
+    createStory: function (parent, args) {
+      const story = new Stories(args.storyInput);
+      return story.save();
     },
 
-    deleteArticle: async function (parent, args) {
-      return await Article.findByIdAndRemove(args.id);
+    deleteStory: async function (parent, args) {
+      return await Stories.findByIdAndRemove(args.id);
     },
 
-    updateArticle: async function (parent, args) {
-      return await Article.findByIdAndUpdate(args.id, args.articleInput, {
+    updateStory: async function (parent, args) {
+      return await Stories.findByIdAndUpdate(args.id, args.storyInput, {
         new: true,
       });
-    }
+    },
+  
+   
   }
 };
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGODB_URI = "mongodb://localhost/testDB";   
+const MONGODB_URI = "mongodb://localhost/social_stories";   
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 

@@ -8,10 +8,10 @@ import {
 } from "react-router-dom";
 
 import Home from "./components/pages/Home";
-import ArticleList from "./components/articles/ArticleList";
-/* import ArticleInfo from "./components/articles/ArticleInfo";
-import ArticleAdd from "./components/articles/ArticleAdd";
-import ArticleEdit from "./components/articles/ArticleEdit"; */
+import StoryList from "./components/stories/StoryList";
+import StoryAdd from "./components/stories/StoryAdd";
+import StoryInfo from "./components/stories/StoryInfo";
+import StoryEdit from "./components/stories/StoryEdit";
 
 const client = new ApolloClient({
   uri: "/graphql",
@@ -46,8 +46,8 @@ function Navigation() {
               exact
               className='nav-link'
               activeclassname='active'
-              to='/articles'>
-              Articles
+              to='/stories'>
+              Social Stories
             </NavLink>
           </li>
         </ul>
@@ -60,10 +60,10 @@ function Main() {
   return (
     <Routes>
       <Route exact path='/' element={<Home/>} />
-      <Route exact path='/articles' element={<ArticleList/>} />
-      {/*  <Route exact path='/articles/new' component={ArticleAdd} />
-      <Route exact path='/articles/:_id' component={ArticleInfo} />
-      <Route exact path='/articles/:_id/edit' component={ArticleEdit} /> */}
+      <Route exact path='/stories' element={<StoryList/>} />
+      <Route exact path='/stories/new' element={<StoryAdd/>} />
+      <Route exact path='/stories/:id' element={<StoryInfo/>} />
+      <Route exact path='/stories/:id/edit' element={<StoryEdit/>} /> 
     </Routes>
   );
 }
