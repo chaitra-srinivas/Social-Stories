@@ -1,6 +1,5 @@
 import { React } from "react";
 import { Link, useParams } from "react-router-dom";
-//import { Mutation } from "react-apollo";
 import {  useMutation } from "@apollo/client";
 import { CREATE_STORY } from "../../utils/mutations";
 import { GET_STORIES } from "../../utils/queries";

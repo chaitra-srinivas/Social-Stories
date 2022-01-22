@@ -1,4 +1,3 @@
-const Article = require("../models/Article");
 const Stories = require("../models/Stories");
 
 const resolvers = {
