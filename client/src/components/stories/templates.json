@@ -14,13 +14,13 @@
             "id": "v001",
             "name": "{StudentName}",
             "description": "Student's name here",
-            "value": "1"
+            "default-value": ""
           },
           {
             "id": "v002",
             "name": "{StudentGrade}",
             "description": "Student's grade here",
-            "value": "2"
+            "default-value": ""
           }
         ]
       },
@@ -34,13 +34,48 @@
             "id": "v001",
             "name": "{CurTeacherName}",
             "description": "Current teacher's name here",
-            "value": "3"
+            "default-value": ""
           },
           {
             "id": "v002",
             "name": "{NextTeacherName}",
             "description": "Next year's teacher's name here",
-            "value": "4"
+            "default-value": ""
+          }
+        ]
+      },
+      {
+        "id": "p003",
+        "title": "My current classroom",
+        "description": "Introduction to student's new class",
+        "content": "My class this year is  {CurClassRoom}. Next year, my class will be {NextClassRoom}.",
+        "variables": [
+          {
+            "id": "v001",
+            "name": "{CurClassRoom}",
+            "description": "Current class room name/description",
+            "default-value": ""
+          },
+          {
+            "id": "v002",
+            "name": "{NextClassRoom}",
+            "description": "Current class room name/description",
+            "default-value": ""
+          }
+         
+        ]
+      },
+      {
+        "id": "p004",
+        "title": "Additional details",
+        "description": "Add any other relevant details here",
+        "content": "{AddDetails}",
+        "variables": [
+          {
+            "id": "v001",
+            "name": "{AddDetails}",
+            "description": "More about next year",
+            "default-value": ""
           }
         ]
       }
