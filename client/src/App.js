@@ -37,16 +37,19 @@ function Navigation() {
       <div className='container'>
         <ul className='navbar-nav mr-auto'>
           <li className='nav-item'>
-            <NavLink exact className='nav-link' activeclassname='active' to='/'>
+            <NavLink 
+            //exact
+             className='nav-link' activeclassname='active' to='/'>
               Home
             </NavLink>
           </li>
           <li className='nav-item'>
             <NavLink
-              exact
+            //  exact
+              to='/stories'
               className='nav-link'
               activeclassname='active'
-              to='/stories'>
+              >
               Social Stories
             </NavLink>
           </li>
@@ -59,11 +62,15 @@ function Navigation() {
 function Main() {
   return (
     <Routes>
-      <Route exact path='/' element={<Home/>} />
-      <Route exact path='/stories' element={<StoryList/>} />
-      <Route exact path='/stories/new' element={<StoryAdd/>} />
-      <Route exact path='/stories/:id' element={<StoryInfo/>} />
-      <Route exact path='/stories/:id/edit' element={<StoryEdit/>} /> 
+      {/*   <Route exact path='/' element={<Home/>} /> */}
+      <Route exact path='/' element={<Home />} />
+      <Route exact path='/stories' element={<StoryList />} />
+
+      <Route exact path='/stories/new' element={<StoryAdd />} />
+
+      <Route exact path='/stories/:id' element={<StoryInfo />} />
+
+      <Route exact path='/stories/:id/edit' element={<StoryEdit />} />
     </Routes>
   );
 }

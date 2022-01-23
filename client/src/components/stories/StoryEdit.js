@@ -2,16 +2,18 @@ import React from "react";
 import { Mutation } from "@apollo/client/react/components";
 import { GET_STORY } from "../../utils/queries";
 import { UPDATE_STORY } from "../../utils/mutations";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 function StoryEdit(props) {
     
   let {id}= useParams();
 
+  const navigate = useNavigate();
+
  let title, content; 
   function handleCancel(id) {
-    props.history.push(`/stories/${id}`);
+    navigate(`/stories/${id}`);
   }
 
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
@@ -36,7 +38,7 @@ function StoryEdit(props) {
                       content: content.value, 
                     },
                   });
-                  props.history.push(`/stories/${singleStory.id}`);
+                  navigate(`/stories/${singleStory.id}`);
                 }}>
                 <div className='form-group'>
                   <label>Title</label>
