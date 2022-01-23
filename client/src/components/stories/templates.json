@@ -1,0 +1,49 @@
+[
+  {
+    "id": "t001",
+    "title": "Transition template",
+    "description": "Use this for transition",
+    "pages": [
+      {
+        "id": "p001",
+        "title": "Introduction",
+        "description": "Introduction to student",
+        "content": "Hello my name is {StudentName}. I am in grade {StudentGrade} this year.",
+        "variables": [
+          {
+            "id": "v001",
+            "name": "{StudentName}",
+            "description": "Student's name here",
+            "value": "1"
+          },
+          {
+            "id": "v002",
+            "name": "{StudentGrade}",
+            "description": "Student's grade here",
+            "value": "2"
+          }
+        ]
+      },
+      {
+        "id": "p002",
+        "title": "My current teacher",
+        "description": "Introduction to student's teacher",
+        "content": "My teacher this year is  {CurTeacherName}. Next year my teacher will be {NextTeacherName}.",
+        "variables": [
+          {
+            "id": "v001",
+            "name": "{CurTeacherName}",
+            "description": "Current teacher's name here",
+            "value": "3"
+          },
+          {
+            "id": "v002",
+            "name": "{NextTeacherName}",
+            "description": "Next year's teacher's name here",
+            "value": "4"
+          }
+        ]
+      }
+    ]
+  }
+]
