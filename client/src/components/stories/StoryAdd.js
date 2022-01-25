@@ -3,16 +3,29 @@ import { Link, useParams } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATE_STORY } from "../../utils/mutations";
 import { GET_STORIES } from "../../utils/queries";
+import StoryPages from "./StoryPages";
+import StoryInput from "./StoryInput";
+import StoryContent from "./StoryContent";
+
 const templates = require("./templates.json");
 
-function StoryAdd(props) {
+
+function StoryAdd() {
   let { title, content } = useParams;
+
   let selectedTemplate = templates[0];
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
   const [dynamicContent, setDynamicContent] = useState("");
 
-  function prepareDynamicContent() {
+ // console.log(selectedTemplate);
+  let pageVariables = selectedTemplate.pages.flatMap((page) =>
+    page.variables.map((v) => ({ id: page.id + "-" + v.id, value: v.description }))
+  );
+  const [variableValues, setVariableValues] = useState(pageVariables);
+  //console.log(variableValues);
+
+ function prepareDynamicContent() {
     let content = selectedPage.content;
     selectedPage.variables.forEach((variable) => {
       content = content.replace(
@@ -22,39 +35,11 @@ function StoryAdd(props) {
       );
     });
     setDynamicContent(content);
-  }
+  }  
 
-  console.log(selectedTemplate);
-  let pageVariables = selectedTemplate.pages.flatMap((page) =>
-    page.variables.map((v) => ({ id: page.id + "-" + v.id, value: "1" }))
-  );
-  const [variableValues, setVariableValues] = useState(pageVariables);
-  console.log(variableValues);
+ // Dynamically changes the values of the text input fields based on the selected page
 
-  const [createStory, { data, loading, error }] = useMutation(CREATE_STORY);
-
-  if (loading) return "Loading...";
-  if (error) return `Submission error! ${error.message}`;
-
-  let pages = selectedTemplate.pages.map((page) => {
-    return (
-      <div key={page.id}>
-        <a
-          href='#'
-          onClick={(e) => {
-            e.preventDefault();
-            setSelectedPage(page);
-            prepareDynamicContent();
-          }}>
-          {page.title}
-        </a>{" "}
-        <br />
-        <span>{page.description}</span> <br />
-      </div>
-    );
-  });
-
-  let variables = selectedPage.variables.map((variable) => {
+  let pages =selectedPage.variables.map((variable) => {
     return (
       <div key={variable.id}>
         <input
@@ -76,15 +61,31 @@ function StoryAdd(props) {
                 }
               })
             );
-            prepareDynamicContent();
+        //    prepareDynamicContent();
           }}
           placeholder={variable.description}></input>
       </div>
     );
   });
+
+  let variables = selectedTemplate.pages
+  
+
+
+  // StoryAdd
+
+  const [createStory, {  loading, error }] = useMutation(CREATE_STORY);
+
+  if (loading) return "Loading...";
+  if (error) return `Submission error! ${error.message}`;
+
   return (
     <div>
+      <div style={{ float: "left", width: "300px" }}>
+     <StoryPages pageLinks={variables}/>
+      </div>
       <form
+        style={{ float: "right", width: "700px" }}
         onSubmit={(e) => {
           e.preventDefault();
           createStory({
@@ -111,12 +112,13 @@ function StoryAdd(props) {
               return (content = node);
             }}
           />
-          {selectedPage.title}
-          {pages}
-          {variables}
-          {dynamicContent}
+        </div>
+        <div className="form-group">
+        {/*   <StoryContent /> */}
+        <StoryInput />
         </div>
 
+        <div>
         <p className='btn-group'>
           <button type='submit' className='btn btn-primary'>
             Submit
@@ -125,6 +127,9 @@ function StoryAdd(props) {
             Cancel
           </Link>
         </p>
+        </div>
+        
+        
       </form>
     </div>
   );

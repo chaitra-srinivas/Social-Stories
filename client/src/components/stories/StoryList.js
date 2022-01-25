@@ -4,10 +4,10 @@ import { useQuery } from "@apollo/client";
 import { GET_STORIES } from "../../utils/queries";
 
 function StoryList() {
-  const { loading, data } = useQuery(GET_STORIES, { fetchPolicy: "no-cache" });
-  console.log(data + " From data");
+  const { loading, data } = useQuery(GET_STORIES);
+
   const storyList = data?.stories || [];
-  console.log(storyList + "From story list");
+
   return (
     <div>
       <h2>
