@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 
-function StoryPages1(props) {
+function StoryPages(props) {
   const { pageLinks } = props;
   const [selectedPage, setSelectedPage] = useState(pageLinks[0]);
 
@@ -32,4 +32,4 @@ function StoryPages1(props) {
 
   
 }
-export default StoryPages1;
+export default StoryPages;

@@ -2,48 +2,37 @@ import { React, useState } from "react";
 
 const templates = require("./templates.json");
 
-function StoryInput() {
+function StoryInput(props) {
   let selectedTemplate = templates[0];
 
-  const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
-  const [dynamicContent, setDynamicContent] = useState("");
+  const {pageInput} = props;
 
- // console.log(selectedTemplate);
   let pageVariables = selectedTemplate.pages.flatMap((page) =>
     page.variables.map((v) => ({ id: page.id + "-" + v.id, value: v.description }))
   );
   const [variableValues, setVariableValues] = useState(pageVariables);
-  //console.log(variableValues);
 
- function prepareDynamicContent() {
-    let content = selectedPage.content;
-    selectedPage.variables.forEach((variable) => {
-      content = content.replace(
-        variable.name,
-        variableValues.find((f) => f.id === selectedPage.id + "-" + variable.id)
-          .value
-      );
-    });
-    setDynamicContent(content);
-  }  
 
  // Dynamically changes the values of the text input fields based on the selected page
 
-  let pages =selectedPage.variables.map((variable) => {
+  let pages = pageInput.map((variable) => {
     return (
-      <div key={variable.id}>
+      <div key={variable.id} className='form-group'>
+        <label>{variable.description}:</label>
         <input
+        type='text'
+        className='form-control'
           value={
             variableValues.find(
-              (f) => f.id === selectedPage.id + "-" + variable.id
-            ).value
+              (f) => f.id === pageInput.id + "-" + variable.id
+            )
           }
           onChange={(e) => {
             setVariableValues(
               [...variableValues].map((m) => {
-                if (m.id === selectedPage.id + "-" + variable.id) {
+                if (m.id === pageInput.id + "-" + variable.id) {
                   return {
-                    id: selectedPage.id + "-" + variable.id,
+                    id: pageInput.id + "-" + variable.id,
                     value: e.target.value,
                   };
                 } else {
@@ -51,37 +40,15 @@ function StoryInput() {
                 }
               })
             );
-        //    prepareDynamicContent();
           }}
           placeholder={variable.description}></input>
       </div>
     );
   });
 
-  let variables = selectedTemplate.pages.map((page) => {
-    return (
-      <div key={page.id}>
-        <a
-          href='#'
-          onClick={(e) => {
-            e.preventDefault();
-            setSelectedPage(page);
-           //prepareDynamicContent();
-          }}>
-          {page.title}
-        </a>
-        <br />
-        <span>{page.description}</span> <br />
-      </div>
-    );
-  });  
-
   return (
-    <div>
-       {pages} 
-       {/*  {variables} */}
- {/*   {dynamicContent}  */}
-      
+    <div className='form-group'> 
+       {pages}  
     </div>
   );
 }
