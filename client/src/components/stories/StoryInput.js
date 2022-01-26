@@ -6,6 +6,19 @@ function StoryInput(props) {
   const varModel = props.variablesModel;
 
   const [variablesModel, setVariablesModel] = useState(varModel);
+  const [dynamicContent, setDynamicContent] = useState(getDynamicContent());
+
+  useEffect(()=>{
+    setDynamicContent(getDynamicContent());
+  })
+
+  function getDynamicContent(){
+    let dynContent = selectedPage.content;  
+    selectedPage.variables.forEach(variable => {
+      dynContent = dynContent.replace(variable.name, getVarValue(selectedPage.id, variable.id));
+      });
+      return dynContent;
+  }
 
   function getVarValue(pageId, varId) {
     return variablesModel.find((f) => f.pageId === pageId && f.varId === varId).value;
@@ -36,6 +49,7 @@ function StoryInput(props) {
             setVariablesModel(
               getUpdatedVarModel(selectedPage.id, variable.id, e.target.value)
             );
+           // setDynamicContent(getDynamicContent());
             varUpdated(variablesModel);
           }}
           placeholder={variable.description}></input>
@@ -43,7 +57,11 @@ function StoryInput(props) {
     );
   });
 
-  return <div className='form-group'>{variables}</div>;
+  return <div >
+    <div dangerouslySetInnerHTML={{ __html: dynamicContent }}></div>
+    <div className='form-group'>{variables}</div>
+    
+    </div>;
 }
 
 export default StoryInput;

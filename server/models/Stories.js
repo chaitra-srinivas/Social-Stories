@@ -15,9 +15,9 @@ const storySchema = new Schema({
     pages:{
         type: Array,
         /* {
-            id:{},
-            variables:{},
-            content:{},
+            pageId:{}, // create just id
+            variables:{}, // var id, value
+            content:{}, // content string
             title:{},
         },    */
     },

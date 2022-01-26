@@ -6,7 +6,9 @@ import { GET_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 import StoryContent from "./StoryContent";
+const images = require('../../images/school.jpg');
 
+console.log(images);
 const templates = require("./templates.json");
 
 function StoryAdd() {
@@ -26,7 +28,7 @@ function StoryAdd() {
       pageId: page.id,
       varId: variable.id,
       varDescription: variable.description,
-      value: variable.description,
+      value: variable.defaultValue,
     }))
   );
   }

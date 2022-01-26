@@ -8,19 +8,20 @@
         "id": "p001",
         "title": "Introduction",
         "description": "Introduction to student",
-        "content": "Hello my name is {StudentName}. I am in grade {StudentGrade} this year.",
+        "content": "<image src=\"https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg\"/><br/><h3>Hello my name is {StudentName}. I am in grade {StudentGrade} this year.</h3>",
+        
         "variables": [
           {
             "id": "v001",
             "name": "{StudentName}",
             "description": "Student's name here",
-            "default-value": ""
+            "defaultValue": ""
           },
           {
             "id": "v002",
             "name": "{StudentGrade}",
             "description": "Student's grade here",
-            "default-value": ""
+            "defaultValue": ""
           }
         ]
       },
@@ -34,13 +35,13 @@
             "id": "v001",
             "name": "{CurTeacherName}",
             "description": "Current teacher's name here",
-            "default-value": ""
+            "defaultValue": ""
           },
           {
             "id": "v002",
             "name": "{NextTeacherName}",
             "description": "Next year's teacher's name here",
-            "default-value": ""
+            "defaultValue": ""
           }
         ]
       },
@@ -54,13 +55,13 @@
             "id": "v001",
             "name": "{CurClassRoom}",
             "description": "Current class room name/description",
-            "default-value": ""
+            "defaultValue": ""
           },
           {
             "id": "v002",
             "name": "{NextClassRoom}",
             "description": "Current class room name/description",
-            "default-value": ""
+            "defaultValue": ""
           }
          
         ]
@@ -75,7 +76,7 @@
             "id": "v001",
             "name": "{AddDetails}",
             "description": "More about next year",
-            "default-value": ""
+            "defaultValue": ""
           }
         ]
       }
