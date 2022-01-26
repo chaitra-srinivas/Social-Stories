@@ -1,63 +1,49 @@
 import { React, useState, useEffect } from "react";
 
-const templates = require("./templates.json");
-
 function StoryInput(props) {
-  let selectedTemplate = templates[0];
+  const selectedPage = props.selectedPage;
+  const varUpdated = props.variablesUpdated;
+  const varModel = props.variablesModel;
 
-  const {pageInput} = props;
-  let {dynamicContent} = props;
+  const [variablesModel, setVariablesModel] = useState(varModel);
 
-  console.log(dynamicContent);
+  function getVarValue(pageId, varId) {
+    return variablesModel.find((f) => f.pageId === pageId && f.varId === varId).value;
+  }
 
-  let pageVariables = selectedTemplate.pages.flatMap((page) =>
-    page.variables.map((v) => ({ id: page.id + "-" + v.id, value: v.description }))
-  );
-  const [variableValues, setVariableValues] = useState(pageVariables);
+  function getUpdatedVarModel(pageId, varId, value) {
+    return [...variablesModel].map((m) => {
+      if (m.pageId === pageId && m.varId === varId) {
+        m.value = value;
+        return m;
+      } else {
+        return m;
+      }
+    });
+  }
 
- 
+  // Dynamically changes the values of the text input fields based on the selected page
 
- // Dynamically changes the values of the text input fields based on the selected page
-
-  let variables = pageInput.map((variable) => {
+  let variables = selectedPage.variables.map((variable) => {
     return (
       <div key={variable.id} className='form-group'>
         <label>{variable.description}:</label>
         <input
-        type='text'
-        className='form-control'
-          value={
-            variableValues.find(
-              (f) => f.id === pageInput.id + "-" + variable.id
-            )
-          }
+          type='text'
+          className='form-control'
+          value={getVarValue(selectedPage.id, variable.id)}
           onChange={(e) => {
-            setVariableValues(
-              [...variableValues].map((m) => {
-                if (m.id === pageInput.id + "-" + variable.id) {
-                  return {
-                    id: pageInput.id + "-" + variable.id,
-                    value: e.target.value,
-                  };
-                } else {
-                  return m;
-                }
-              })
+            setVariablesModel(
+              getUpdatedVarModel(selectedPage.id, variable.id, e.target.value)
             );
-            <div>
-              {dynamicContent}
-            </div>
+            varUpdated(variablesModel);
           }}
           placeholder={variable.description}></input>
       </div>
     );
   });
 
-  return (
-    <div className='form-group'> 
-       {variables}  
-    </div>
-  );
+  return <div className='form-group'>{variables}</div>;
 }
 
 export default StoryInput;

@@ -14,32 +14,31 @@ function StoryAdd() {
 
   let selectedTemplate = templates[0];
 
-  let storyPages = selectedTemplate.pages;
+
+  const [dynamicContent, setDynamicContent] = useState("");
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
   
-  let pageInput = selectedPage.variables;
- 
-  const [dynamicContent, setDynamicContent] = useState("");
 
-
-
-  // console.log(selectedTemplate);
-  let pageVariables = selectedTemplate.pages.flatMap((page) =>
-    page.variables.map((v) => ({
-      id: page.id + "-" + v.id,
-      value: v.description,
+  function createVariablesModel(template){
+   return template.pages.flatMap((page) =>
+    page.variables.map((variable) => ({
+      pageId: page.id,
+      varId: variable.id,
+      varDescription: variable.description,
+      value: variable.description,
     }))
   );
-  const [variableValues, setVariableValues] = useState(pageVariables);
-  //console.log(variableValues);
+  }
+
+  const [variablesModel, setVariablesModel] = useState(createVariablesModel(selectedTemplate));
 
   function prepareDynamicContent() {
     let content = selectedPage.content;
     selectedPage.variables.forEach((variable) => {
       content = content.replace(
         variable.name,
-        variableValues.find((f) => f.id === selectedPage.id + "-" + variable.id)
+        variablesModel.find((f) => f.id === selectedPage.id + "-" + variable.id)
           .value
       );
     });
@@ -49,6 +48,10 @@ function StoryAdd() {
   
   function pageSelected(page){
     setSelectedPage(page);
+  }
+
+  function variablesUpdated(varModel){
+    setVariablesModel(varModel);
   }
 
 
@@ -62,7 +65,7 @@ function StoryAdd() {
   return (
     <div>
       <div style={{ float: "left", width: "300px" }}>
-        <StoryPages pages={storyPages} pageSelected={pageSelected} />
+        <StoryPages pages={selectedTemplate.pages} pageSelected={pageSelected} />
       </div>
       <form
         style={{ float: "right", width: "700px" }}
@@ -84,7 +87,7 @@ function StoryAdd() {
           />
         </div>
         <div className='form-group'>
-          <StoryInput pageInput={pageInput}/>
+          <StoryInput selectedPage={selectedPage} variablesModel={variablesModel} variablesUpdated={variablesUpdated}/>
           <StoryContent />
         </div>
         <div className='form-group'>
