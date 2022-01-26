@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 
 const templates = require("./templates.json");
 
@@ -6,16 +6,20 @@ function StoryInput(props) {
   let selectedTemplate = templates[0];
 
   const {pageInput} = props;
+  let {dynamicContent} = props;
+
+  console.log(dynamicContent);
 
   let pageVariables = selectedTemplate.pages.flatMap((page) =>
     page.variables.map((v) => ({ id: page.id + "-" + v.id, value: v.description }))
   );
   const [variableValues, setVariableValues] = useState(pageVariables);
 
+ 
 
  // Dynamically changes the values of the text input fields based on the selected page
 
-  let pages = pageInput.map((variable) => {
+  let variables = pageInput.map((variable) => {
     return (
       <div key={variable.id} className='form-group'>
         <label>{variable.description}:</label>
@@ -40,6 +44,9 @@ function StoryInput(props) {
                 }
               })
             );
+            <div>
+              {dynamicContent}
+            </div>
           }}
           placeholder={variable.description}></input>
       </div>
@@ -48,7 +55,7 @@ function StoryInput(props) {
 
   return (
     <div className='form-group'> 
-       {pages}  
+       {variables}  
     </div>
   );
 }

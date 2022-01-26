@@ -1,23 +1,25 @@
 import { React, useState } from "react";
 
 function StoryPages(props) {
-  const { pageLinks } = props;
-  const [selectedPage, setSelectedPage] = useState(pageLinks[0]);
+  const  pages  = props.pages;
+  const  pageSelected  = props.pageSelected;
+  
+  const [selectedPage, setSelectedPage] = useState(pages[0]);
 
-
- let links = pageLinks.map((pageLink)=>{
+ let links = pages.map((page)=>{
     return (
-        <div key={pageLink.id}>
+        <div key={page.id}>
                <a
                  href='#'
                  onClick={(e) => {
                    e.preventDefault();
-                  setSelectedPage(pageLink);
+                  setSelectedPage(page);
+                  pageSelected(page);
                  }}>
-                 {pageLink.title}
+                 {page.title}
                </a>
                <br />
-               <span>{pageLink.description}</span> <br />
+               <span>{page.description}</span> <br />
              </div>
          );
   })

@@ -22,6 +22,8 @@ function StoryAdd() {
  
   const [dynamicContent, setDynamicContent] = useState("");
 
+
+
   // console.log(selectedTemplate);
   let pageVariables = selectedTemplate.pages.flatMap((page) =>
     page.variables.map((v) => ({
@@ -45,6 +47,11 @@ function StoryAdd() {
   }
 
   
+  function pageSelected(page){
+    setSelectedPage(page);
+  }
+
+
   // StoryAdd
 
   const [createStory, { loading, error }] = useMutation(CREATE_STORY);
@@ -55,7 +62,7 @@ function StoryAdd() {
   return (
     <div>
       <div style={{ float: "left", width: "300px" }}>
-        <StoryPages pageLinks={storyPages} />
+        <StoryPages pages={storyPages} pageSelected={pageSelected} />
       </div>
       <form
         style={{ float: "right", width: "700px" }}
@@ -77,7 +84,8 @@ function StoryAdd() {
           />
         </div>
         <div className='form-group'>
-          <StoryInput pageInput={pageInput} />
+          <StoryInput pageInput={pageInput}/>
+          <StoryContent />
         </div>
         <div className='form-group'>
           <label>Content:</label>
@@ -89,7 +97,11 @@ function StoryAdd() {
             }}
           />
         </div>
-
+            <div >
+        {/*     <StoryContent pageContent={selectedTemplate} /> */}
+            
+          
+            </div>
         <div>
           <p className='btn-group'>
             <button type='submit' className='btn btn-primary'>
