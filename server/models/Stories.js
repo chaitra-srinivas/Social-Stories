@@ -1,27 +1,56 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-const storySchema = new Schema({
-    title:{
-        type: String,
-        required: true,
+const variablesSchema = new Schema({
+  id: {
+    type: String,
+    required: true,
+  },
+  /* name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  }, */
+  value: {
+    type: String,
+    required: false,
+  },
+});
+
+
+const pageSchema = new Schema({
+    id: {
+      type: String,
+      required: true,
     },
     content:{
         type: String,
         required: true,
     },
-    templateID: {
+   
+    variables: [variablesSchema],
+  });
+// A subdocument for page variables
 
-    },
-    pages:{
-        type: Array,
-        /* {
-            pageId:{}, // create just id
-            variables:{}, // var id, value
-            content:{}, // content string
-            title:{},
-        },    */
-    },
 
+const storySchema = new Schema({
+  templateId: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },    
+  
+  pages: [pageSchema],  
+  
 });
 
-module.exports = model('Stories', storySchema);
+// A subdocument for pages in a story
+
+
+
+module.exports = model("Stories", storySchema);

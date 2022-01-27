@@ -1,14 +1,24 @@
 import { gql } from '@apollo/client';
 
 const CREATE_STORY = gql`
-mutation createStory($title: String!, $content: String!) {
-  createStory(storyInput: { title: $title, content: $content }) {
+mutation createStory($templateId: String!, $title: String! , $pages: [PageInput]! ) {
+  createStory(storyInput: { templateId: $templateId, title: $title, pages: $pages}) {
     id
     title
-    content
+    pages{
+      id
+    }
   }
 }
-`;
+`; 
+/* 
+const CREATE_STORY = gql`
+mutation createStory($storyInput: StoryInput! ) {
+  createStory(storyInput: $storyInput) {
+    Story
+  }
+}
+`; */
 
 const DELETE_STORY = gql`
 mutation deleteStory($id: ID!) {

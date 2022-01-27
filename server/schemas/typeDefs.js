@@ -2,15 +2,43 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql(`
 
+type Variable{
+    id: String!
+    name: String
+    description: String
+    value: String
+}
+
+type Page{
+    id: String!
+    content: String
+    variables: [Variable]
+}
+
 type Story{
     id: ID!
-    title: String!
+    templateId: String!
+    title: String
+    pages: [Page]
+}
+
+input VariableInput{
+    id: String!
+    name: String
+    description: String
+    value: String
+}
+
+input PageInput{
+    id: String!
     content: String!
+    variables: [VariableInput]!
 }
 
 input StoryInput{
+    templateId: String!
     title: String!
-    content: String!
+    pages: [PageInput]!
 }
 
 type Query{

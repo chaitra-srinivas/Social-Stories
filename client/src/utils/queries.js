@@ -5,7 +5,7 @@ const GET_STORIES = gql`
     stories {
       id
       title
-      content
+     content
     }
   }
 `;

@@ -7,7 +7,6 @@ import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 import StoryContent from "./StoryContent";
 
-
 const templates = require("./templates.json");
 
 function StoryAdd() {
@@ -44,7 +43,6 @@ function StoryAdd() {
       );
     });
     setDynamicContent(content);
-  
   }
 
   function pageSelected(page) {
@@ -55,39 +53,31 @@ function StoryAdd() {
     setVariablesModel(varModel);
   }
 
-  function onSubmit() {
-    /* let storyToSave = {
-    templateId: selectedTemplate.id,
-    pages: [ {
-      id: id,
-      content: content,
-      variables: [
-        {id: id,
-        value: value,
-        },
-      ]
-      },
-      ]
-    } */
-
-    console.log("From on submit:");
-    console.log(variablesModel);
-
-    let pagesToSave = selectedTemplate.pages.map((p) => {
+  function saveStory() {
+    const pagesToSave = selectedTemplate.pages.map((p) => {
       return {
-        pageId: p.id,
-        pageContent: p.content,
+        id: p.id,
+        content: p.content,
         variables: p.variables.map((v) => {
           return {
-            varId: v.id,
-            value: variablesModel.find((f) => f.pageId === p.id && f.varId === v.id)
-            };
+            id: v.id,
+            value: variablesModel.find(
+              (f) => f.pageId === p.id && f.varId === v.id
+            ).value,
+          };
         }),
       };
     });
 
-    console.log("---------------");
-    console.log(pagesToSave);
+    createStory({
+      variables: {
+        templateId: "t001",
+        title: title.value,
+        pages: pagesToSave
+      },
+     // refetchQueries: [{ query: GET_STORIES }],
+    });
+
   }
 
   // StoryAdd
@@ -109,10 +99,7 @@ function StoryAdd() {
         style={{ float: "right", width: "700px" }}
         onSubmit={(e) => {
           e.preventDefault();
-          createStory({
-            variables: { title: title.value, content: content.value },
-            refetchQueries: [{ query: GET_STORIES }],
-          });
+     /*      saveStory(); */
         }}>
         <div className='form-group'>
           <label>Title:</label>
@@ -148,7 +135,8 @@ function StoryAdd() {
             <button
               type='submit'
               className='btn btn-primary'
-              onClick={onSubmit}>
+             onClick={saveStory}
+              >
               Submit
             </button>
             <Link to='/stories' className='btn btn-secondary'>
