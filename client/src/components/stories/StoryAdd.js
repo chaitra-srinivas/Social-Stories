@@ -6,9 +6,8 @@ import { GET_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 import StoryContent from "./StoryContent";
-const images = require('../../images/school.jpg');
 
-console.log(images);
+
 const templates = require("./templates.json");
 
 function StoryAdd() {
@@ -16,24 +15,24 @@ function StoryAdd() {
 
   let selectedTemplate = templates[0];
 
-
   const [dynamicContent, setDynamicContent] = useState("");
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
-  
 
-  function createVariablesModel(template){
-   return template.pages.flatMap((page) =>
-    page.variables.map((variable) => ({
-      pageId: page.id,
-      varId: variable.id,
-      varDescription: variable.description,
-      value: variable.defaultValue,
-    }))
-  );
+  function createVariablesModel(template) {
+    return template.pages.flatMap((page) =>
+      page.variables.map((variable) => ({
+        pageId: page.id,
+        varId: variable.id,
+        varDescription: variable.description,
+        value: variable.defaultValue,
+      }))
+    );
   }
 
-  const [variablesModel, setVariablesModel] = useState(createVariablesModel(selectedTemplate));
+  const [variablesModel, setVariablesModel] = useState(
+    createVariablesModel(selectedTemplate)
+  );
 
   function prepareDynamicContent() {
     let content = selectedPage.content;
@@ -45,17 +44,51 @@ function StoryAdd() {
       );
     });
     setDynamicContent(content);
+  
   }
 
-  
-  function pageSelected(page){
+  function pageSelected(page) {
     setSelectedPage(page);
   }
 
-  function variablesUpdated(varModel){
+  function variablesUpdated(varModel) {
     setVariablesModel(varModel);
   }
 
+  function onSubmit() {
+    /* let storyToSave = {
+    templateId: selectedTemplate.id,
+    pages: [ {
+      id: id,
+      content: content,
+      variables: [
+        {id: id,
+        value: value,
+        },
+      ]
+      },
+      ]
+    } */
+
+    console.log("From on submit:");
+    console.log(variablesModel);
+
+    let pagesToSave = selectedTemplate.pages.map((p) => {
+      return {
+        pageId: p.id,
+        pageContent: p.content,
+        variables: p.variables.map((v) => {
+          return {
+            varId: v.id,
+            value: variablesModel.find((f) => f.pageId === p.id && f.varId === v.id)
+            };
+        }),
+      };
+    });
+
+    console.log("---------------");
+    console.log(pagesToSave);
+  }
 
   // StoryAdd
 
@@ -67,7 +100,10 @@ function StoryAdd() {
   return (
     <div>
       <div style={{ float: "left", width: "300px" }}>
-        <StoryPages pages={selectedTemplate.pages} pageSelected={pageSelected} />
+        <StoryPages
+          pages={selectedTemplate.pages}
+          pageSelected={pageSelected}
+        />
       </div>
       <form
         style={{ float: "right", width: "700px" }}
@@ -89,7 +125,11 @@ function StoryAdd() {
           />
         </div>
         <div className='form-group'>
-          <StoryInput selectedPage={selectedPage} variablesModel={variablesModel} variablesUpdated={variablesUpdated}/>
+          <StoryInput
+            selectedPage={selectedPage}
+            variablesModel={variablesModel}
+            variablesUpdated={variablesUpdated}
+          />
           <StoryContent />
         </div>
         <div className='form-group'>
@@ -102,14 +142,13 @@ function StoryAdd() {
             }}
           />
         </div>
-            <div >
-        {/*     <StoryContent pageContent={selectedTemplate} /> */}
-            
-          
-            </div>
+        <div>{/*     <StoryContent pageContent={selectedTemplate} /> */}</div>
         <div>
           <p className='btn-group'>
-            <button type='submit' className='btn btn-primary'>
+            <button
+              type='submit'
+              className='btn btn-primary'
+              onClick={onSubmit}>
               Submit
             </button>
             <Link to='/stories' className='btn btn-secondary'>
