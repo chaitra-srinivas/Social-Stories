@@ -2,15 +2,15 @@ import { React, useState } from "react";
 
 const templates = require("./templates.json");
 
-function StoryContent() {
+function StoryContent(props) {
   let selectedTemplate = templates[0];
 
- /*  const { storyContent } = props; */
+  const { storyContent } = props; 
 
   console.log(selectedTemplate + "From storyContent");
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
-  const [dynamicContent, setDynamicContent] = useState("");
+  const [dynamicContent, setDynamicContent] = useState(storyContent);
 
   console.log(selectedTemplate);
   let pageVariables = selectedTemplate.pages.flatMap((page) =>
@@ -35,8 +35,9 @@ function StoryContent() {
   return (
     <div>
       <p>Page content here:</p>
-      {dynamicContent}
-     
+    
+      <div dangerouslySetInnerHTML={{ __html: dynamicContent }}>
+      </div>
     </div>
   );
 }

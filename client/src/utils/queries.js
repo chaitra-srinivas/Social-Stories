@@ -9,6 +9,7 @@ const GET_STORIES = gql`
       pages{
         id
         content
+        image
         variables{
           id
           name
@@ -29,6 +30,7 @@ const GET_STORY = gql`
       pages{
         id
         content
+        image
         variables{
           id
           name

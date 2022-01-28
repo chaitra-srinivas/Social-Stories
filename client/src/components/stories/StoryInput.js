@@ -1,9 +1,12 @@
 import { React, useState, useEffect } from "react";
+import StoryContent from "./StoryContent";
 
 function StoryInput(props) {
   const selectedPage = props.selectedPage;
   const varUpdated = props.variablesUpdated;
   const varModel = props.variablesModel;
+
+  console.log(selectedPage.image);
 
   const [variablesModel, setVariablesModel] = useState(varModel);
   const [dynamicContent, setDynamicContent] = useState(getDynamicContent());
@@ -57,10 +60,10 @@ function StoryInput(props) {
     );
   });
 
-  return <div >
-    <div dangerouslySetInnerHTML={{ __html: dynamicContent }}></div>
+  return <div>
+   <img src={selectedPage.image} style={{width:"200px", height:"150px"}} alt="school" /> 
     <div className='form-group'>{variables}</div>
-    
+    <div dangerouslySetInnerHTML={{ __html: dynamicContent }}></div> 
     </div>;
 }
 

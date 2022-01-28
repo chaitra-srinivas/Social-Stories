@@ -11,6 +11,7 @@ type Variable{
 
 type Page{
     id: String!
+    image: String
     content: String
     variables: [Variable]
 }
@@ -31,6 +32,7 @@ input VariableInput{
 
 input PageInput{
     id: String!
+    image: String
     content: String!
     variables: [VariableInput]!
 }

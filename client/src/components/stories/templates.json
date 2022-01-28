@@ -8,7 +8,8 @@
         "id": "p001",
         "title": "Introduction",
         "description": "Introduction to student",
-        "content": "<image src=\"https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg\" width=400px height=200px /><br/><h3>Hello my name is {StudentName}. I am in grade {StudentGrade} this year.</h3>",
+        "image": "https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg",
+        "content": "<h3>Hello my name is {StudentName}. I am in grade {StudentGrade} this year.</h3>",
         
         "variables": [
           {
@@ -29,6 +30,7 @@
         "id": "p002",
         "title": "My current teacher",
         "description": "Introduction to student's teacher",
+        "image": "https://images.theconversation.com/files/72355/original/image-20150218-20793-1at6oxf.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip",
         "content": "My teacher this year is  {CurTeacherName}. Next year my teacher will be {NextTeacherName}.",
         "variables": [
           {
@@ -49,6 +51,7 @@
         "id": "p003",
         "title": "My current classroom",
         "description": "Introduction to student's new class",
+        "image": "https://images.theconversation.com/files/72932/original/image-20150224-25698-uck6en.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=926&fit=clip",
         "content": "My class this year is  {CurClassRoom}. Next year, my class will be {NextClassRoom}.",
         "variables": [
           {
@@ -70,6 +73,7 @@
         "id": "p004",
         "title": "Additional details",
         "description": "Add any other relevant details here",
+        "image": "https://www.playlsi.com/493d9e/globalassets/planning-tools/school-playgrounds/school-playground-350_07.jpg",
         "content": "{AddDetails}",
         "variables": [
           {

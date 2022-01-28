@@ -1,6 +1,6 @@
 import React from "react";
 import { Mutation } from "@apollo/client/react/components";
-import { GET_STORY } from "../../utils/queries";
+import { GET_STORY, GET_STORIES } from "../../utils/queries";
 import { UPDATE_STORY } from "../../utils/mutations";
 import { useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
@@ -47,7 +47,7 @@ function StoryEdit(props) {
         title: title.value,
         pages: pagesToUpdate,
       },
-      //  refetchQueries: [{ query: GET_STORIES }],
+        refetchQueries: [{ query: GET_STORIES }],
     }); 
   }
 

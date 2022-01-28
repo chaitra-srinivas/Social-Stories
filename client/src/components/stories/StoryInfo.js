@@ -21,6 +21,7 @@ function StoryInfo(props) {
         return (
           <div key={page.id}>
             <p>{page.content}</p>
+            <div>{page.image}</div>
           </div>
         )
       })}

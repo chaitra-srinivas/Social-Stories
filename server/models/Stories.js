@@ -29,7 +29,10 @@ const pageSchema = new Schema({
         type: String,
         required: true,
     },
-   
+    image:{
+      type: String,
+      required: false,
+    },
     variables: [variablesSchema],
   });
 // A subdocument for page variables

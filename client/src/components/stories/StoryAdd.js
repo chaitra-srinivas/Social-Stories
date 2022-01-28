@@ -59,6 +59,7 @@ function StoryAdd() {
     const pagesToSave = selectedTemplate.pages.map((p) => {
       return {
         id: p.id,
+        image: p.image,
         content: p.content,
         variables: p.variables.map((v) => {
           return {
@@ -120,20 +121,10 @@ function StoryAdd() {
             variablesModel={variablesModel}
             variablesUpdated={variablesUpdated}
           />
-          <StoryContent />
-        </div>
-        <div className='form-group'>
-          <label>Content:</label>
-          <textarea
-            rows='5'
-            className='form-control'
-            ref={function (node) {
-              return (content = node);
-            }}
-          />
+      {/*     <StoryContent dynamicContent={prepareDynamicContent}/> */}
         </div>
         <div>
-          <p className='btn-group'>
+          <p className='btn-group'> 
             <button
               type='submit'
               className='btn btn-primary'
