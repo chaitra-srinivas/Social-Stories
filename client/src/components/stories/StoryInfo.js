@@ -16,12 +16,12 @@ function StoryInfo(props) {
   return (
     <div>
       <h2>{singleStory.title}</h2>
-      <small>id: {singleStory.id}</small>
+      
       {singleStory.pages.map((page)=>{
         return (
           <div key={page.id}>
             <p>{page.content}</p>
-            <div>{page.image}</div>
+            <img src={page.image} alt="pageimage" style={{width:"200px", height:"150px"}} />
           </div>
         )
       })}
