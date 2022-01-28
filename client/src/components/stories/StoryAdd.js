@@ -18,7 +18,7 @@ function StoryAdd() {
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
 
-  function createVariablesModel(template) {
+  /* function createVariablesModel(template) {
     return template.pages.flatMap((page) =>
       page.variables.map((variable) => ({
         pageId: page.id,
@@ -27,25 +27,24 @@ function StoryAdd() {
         value: variable.defaultValue,
       }))
     );
+  } */
+  function createVariablesModel(template) {
+    return template.pages.map((page) => {
+      return {
+        id: page.id,
+        content: page.content,
+        image: page.image,
+        variables: page.variables.map((variable) => ({
+          id: variable.id,
+          value: variable.defaultValue,
+        })),
+      };
+    });
   }
 
   const [variablesModel, setVariablesModel] = useState(
     createVariablesModel(selectedTemplate)
   );
-
-
-
-  function prepareDynamicContent() {
-    let content = selectedPage.content;
-    selectedPage.variables.forEach((variable) => {
-      content = content.replace(
-        variable.name,
-        variablesModel.find((f) => f.id === selectedPage.id + "-" + variable.id)
-          .value
-      );
-    });
-    setDynamicContent(prevContent =>[...prevContent, content]);
-  }
 
   function pageSelected(page) {
     setSelectedPage(page);
@@ -57,18 +56,18 @@ function StoryAdd() {
 
   function saveStory() {
     const pagesToSave = selectedTemplate.pages.map((p) => {
+      let pageVariablesModel = variablesModel.find((f) => f.id === p.id);
       return {
         id: p.id,
-        image: p.image,
-        content: p.content,
+        image: pageVariablesModel.image,
+        content: pageVariablesModel.content,
         variables: p.variables.map((v) => {
           return {
             id: v.id,
             name: v.name,
             description: v.description,
-            value: variablesModel.find(
-              (f) => f.pageId === p.id && f.varId === v.id
-            ).value,
+            value: pageVariablesModel.variables.find((f) => f.id === v.id)
+              .value,
           };
         }),
       };
@@ -78,11 +77,10 @@ function StoryAdd() {
       variables: {
         templateId: "t001",
         title: title.value,
-        pages: pagesToSave
+        pages: pagesToSave,
       },
       refetchQueries: [{ query: GET_STORIES }],
     });
-
   }
 
   // StoryAdd
@@ -104,7 +102,7 @@ function StoryAdd() {
         style={{ float: "right", width: "700px" }}
         onSubmit={(e) => {
           e.preventDefault();
-            }}>
+        }}>
         <div className='form-group'>
           <label>Title:</label>
           <input
@@ -121,15 +119,14 @@ function StoryAdd() {
             variablesModel={variablesModel}
             variablesUpdated={variablesUpdated}
           />
-      {/*     <StoryContent dynamicContent={prepareDynamicContent}/> */}
+          {/*     <StoryContent dynamicContent={prepareDynamicContent}/> */}
         </div>
         <div>
-          <p className='btn-group'> 
+          <p className='btn-group'>
             <button
               type='submit'
               className='btn btn-primary'
-             onClick={saveStory}
-              >
+              onClick={saveStory}>
               Submit
             </button>
             <Link to='/stories' className='btn btn-secondary'>

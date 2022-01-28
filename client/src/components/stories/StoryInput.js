@@ -6,8 +6,6 @@ function StoryInput(props) {
   const varUpdated = props.variablesUpdated;
   const varModel = props.variablesModel;
 
-  console.log(selectedPage.image);
-
   const [variablesModel, setVariablesModel] = useState(varModel);
   const [dynamicContent, setDynamicContent] = useState(getDynamicContent());
 
@@ -25,17 +23,21 @@ function StoryInput(props) {
   }
 
   function getVarValue(pageId, varId) {
-    return variablesModel.find((f) => f.pageId === pageId && f.varId === varId).value;
+    return variablesModel.find((p) => p.id === pageId).variables.find((v)=>v.id === varId).value;
   }
 
   function getUpdatedVarModel(pageId, varId, value) {
-    return [...variablesModel].map((m) => {
-      if (m.pageId === pageId && m.varId === varId) {
-        m.value = value;
-        return m;
-      } else {
-        return m;
-      }
+    return [...variablesModel].map((p) => {
+      p.variables = [...p.variables]; // clone variables
+
+      if (p.id === pageId) {
+        // Update variable value
+        p.variables.find((v)=>v.id===varId).value = value;
+      } 
+
+      // Update dynamic content
+      p.content = getDynamicContent();
+      return p;
     });
   }
 
