@@ -9,21 +9,25 @@ function StoryInput(props) {
   const [variablesModel, setVariablesModel] = useState(varModel);
   const [dynamicContent, setDynamicContent] = useState(getDynamicContent());
 
-  useEffect(()=>{
+  useEffect(() => {
     setDynamicContent(getDynamicContent());
-  })
+  });
 
-  function getDynamicContent(){
-  
-    let dynContent = selectedPage.content;  
-    selectedPage.variables.forEach(variable => {
-      dynContent = dynContent.replace(variable.name, getVarValue(selectedPage.id, variable.id));
-      });
-      return dynContent;   
+  function getDynamicContent() {
+    let dynContent = selectedPage.content;
+    selectedPage.variables.forEach((variable) => {
+      dynContent = dynContent.replace(
+        variable.name,
+        getVarValue(selectedPage.id, variable.id)
+      );
+    });
+    return dynContent;
   }
 
   function getVarValue(pageId, varId) {
-    return variablesModel.find((p) => p.id === pageId).variables.find((v)=>v.id === varId).value;
+    return variablesModel
+      .find((p) => p.id === pageId)
+      .variables.find((v) => v.id === varId).value;
   }
 
   function getUpdatedVarModel(pageId, varId, value) {
@@ -32,11 +36,10 @@ function StoryInput(props) {
 
       if (p.id === pageId) {
         // Update variable value
-        p.variables.find((v)=>v.id===varId).value = value;
-      } 
-
-      // Update dynamic content
-      p.content = getDynamicContent();
+        p.variables.find((v) => v.id === varId).value = value;
+        // Update dynamic content
+        p.content = getDynamicContent();
+      }
       return p;
     });
   }
@@ -62,11 +65,17 @@ function StoryInput(props) {
     );
   });
 
-  return <div>
-   <img src={selectedPage.image} style={{width:"200px", height:"150px"}} alt="school" /> 
-    <div className='form-group'>{variables}</div>
-    <div dangerouslySetInnerHTML={{ __html: dynamicContent }}></div> 
-    </div>;
+  return (
+    <div>
+      <img
+        src={selectedPage.image}
+        style={{ width: "200px", height: "150px" }}
+        alt='school'
+      />
+      <div className='form-group'>{variables}</div>
+      <div dangerouslySetInnerHTML={{ __html: dynamicContent }}></div>
+    </div>
+  );
 }
 
 export default StoryInput;
