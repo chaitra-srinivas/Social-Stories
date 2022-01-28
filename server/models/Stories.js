@@ -5,14 +5,14 @@ const variablesSchema = new Schema({
     type: String,
     required: true,
   },
-  /* name: {
+   name: {
     type: String,
-    required: true,
+    required: false,
   },
   description: {
     type: String,
-    required: true,
-  }, */
+    required: false,
+  }, 
   value: {
     type: String,
     required: false,

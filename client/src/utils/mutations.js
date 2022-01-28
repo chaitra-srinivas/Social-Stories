@@ -55,9 +55,11 @@ mutation updateStory($id: ID!,$templateId: String! $title: String!, $pages: [Pag
         name
         description
         value
-      }
+      } 
     }
   }
 }
 `;
 export { CREATE_STORY, DELETE_STORY, UPDATE_STORY };
+
+

@@ -63,6 +63,8 @@ function StoryAdd() {
         variables: p.variables.map((v) => {
           return {
             id: v.id,
+            name: v.name,
+            description: v.description,
             value: variablesModel.find(
               (f) => f.pageId === p.id && f.varId === v.id
             ).value,
