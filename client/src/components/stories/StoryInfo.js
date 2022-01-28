@@ -17,7 +17,13 @@ function StoryInfo(props) {
     <div>
       <h2>{singleStory.title}</h2>
       <small>id: {singleStory.id}</small>
-      <p>{singleStory.content}</p>
+      {singleStory.pages.map((page)=>{
+        return (
+          <div key={page.id}>
+            <p>{page.content}</p>
+          </div>
+        )
+      })}
       <p className='btn-group'>
         <Link to={`/stories/${singleStory.id}/edit`} className='btn btn-info'>
           Edit

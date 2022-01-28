@@ -4,21 +4,22 @@ const CREATE_STORY = gql`
 mutation createStory($templateId: String!, $title: String! , $pages: [PageInput]! ) {
   createStory(storyInput: { templateId: $templateId, title: $title, pages: $pages}) {
     id
+    templateId
     title
     pages{
       id
+      content
+      variables{
+        id
+        name
+        description
+        value
+      }
     }
   }
 }
 `; 
-/* 
-const CREATE_STORY = gql`
-mutation createStory($storyInput: StoryInput! ) {
-  createStory(storyInput: $storyInput) {
-    Story
-  }
-}
-`; */
+
 
 const DELETE_STORY = gql`
 mutation deleteStory($id: ID!) {

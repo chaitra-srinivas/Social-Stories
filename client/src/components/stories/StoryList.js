@@ -8,6 +8,7 @@ function StoryList() {
 
   const storyList = data?.stories || [];
 
+  console.log(storyList);
   return (
     <div>
       <h2>

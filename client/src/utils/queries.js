@@ -4,8 +4,18 @@ const GET_STORIES = gql`
   {
     stories {
       id
+      templateId
       title
-     content
+      pages{
+        id
+        content
+        variables{
+          id
+          name
+          description
+          value
+        }
+      }
     }
   }
 `;
@@ -14,8 +24,18 @@ const GET_STORY = gql`
   query story($id: ID!) {
     story(id: $id) {
       id
+      templateId
       title
-      content
+      pages{
+        id
+        content
+        variables{
+          id
+          name
+          description
+          value
+        }
+      }
     }
   }
 `;
