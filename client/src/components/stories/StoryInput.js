@@ -13,11 +13,12 @@ function StoryInput(props) {
   })
 
   function getDynamicContent(){
+  
     let dynContent = selectedPage.content;  
     selectedPage.variables.forEach(variable => {
       dynContent = dynContent.replace(variable.name, getVarValue(selectedPage.id, variable.id));
       });
-      return dynContent;
+      return dynContent;   
   }
 
   function getVarValue(pageId, varId) {
@@ -49,7 +50,6 @@ function StoryInput(props) {
             setVariablesModel(
               getUpdatedVarModel(selectedPage.id, variable.id, e.target.value)
             );
-           // setDynamicContent(getDynamicContent());
             varUpdated(variablesModel);
           }}
           placeholder={variable.description}></input>

@@ -8,7 +8,7 @@
         "id": "p001",
         "title": "Introduction",
         "description": "Introduction to student",
-        "content": "<image src=\"https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg\" width=400px height=200px/><br/><h3>Hello my name is {StudentName}. I am in grade {StudentGrade} this year.</h3>",
+        "content": "<image src=\"https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg\" width=400px height=200px /><br/><h3>Hello my name is {StudentName}. I am in grade {StudentGrade} this year.</h3>",
         
         "variables": [
           {

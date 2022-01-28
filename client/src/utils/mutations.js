@@ -25,18 +25,38 @@ const DELETE_STORY = gql`
 mutation deleteStory($id: ID!) {
   deleteStory(id: $id) {
     id
+    templateId
     title
-    content
+    pages{
+      id
+      content
+      variables{
+        id
+        name
+        description
+        value
+      }
+    }
   }
 }
 `;
 
 const UPDATE_STORY = gql` 
-mutation updateStory($id: ID!, $title: String!, $content: String!) {     
-  updateStory(id: $id, storyInput: { title: $title, content: $content }) { 
+mutation updateStory($id: ID!,$templateId: String! $title: String!, $pages: [PageInput]!) {     
+  updateStory(id: $id, storyInput: { templateId: $templateId, title: $title, pages: $pages }) { 
     id
+    templateId
     title
-    content
+    pages{
+      id
+      content
+      variables{
+        id
+        name
+        description
+        value
+      }
+    }
   }
 }
 `;

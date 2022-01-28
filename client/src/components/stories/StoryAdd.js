@@ -14,7 +14,7 @@ function StoryAdd() {
 
   let selectedTemplate = templates[0];
 
-  const [dynamicContent, setDynamicContent] = useState("");
+  const [dynamicContent, setDynamicContent] = useState([]);
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
 
@@ -33,6 +33,8 @@ function StoryAdd() {
     createVariablesModel(selectedTemplate)
   );
 
+
+
   function prepareDynamicContent() {
     let content = selectedPage.content;
     selectedPage.variables.forEach((variable) => {
@@ -42,7 +44,7 @@ function StoryAdd() {
           .value
       );
     });
-    setDynamicContent(content);
+    setDynamicContent(prevContent =>[...prevContent, content]);
   }
 
   function pageSelected(page) {
@@ -75,7 +77,7 @@ function StoryAdd() {
         title: title.value,
         pages: pagesToSave
       },
-     // refetchQueries: [{ query: GET_STORIES }],
+      refetchQueries: [{ query: GET_STORIES }],
     });
 
   }
@@ -99,8 +101,7 @@ function StoryAdd() {
         style={{ float: "right", width: "700px" }}
         onSubmit={(e) => {
           e.preventDefault();
-     /*      saveStory(); */
-        }}>
+            }}>
         <div className='form-group'>
           <label>Title:</label>
           <input
@@ -129,7 +130,6 @@ function StoryAdd() {
             }}
           />
         </div>
-        <div>{/*     <StoryContent pageContent={selectedTemplate} /> */}</div>
         <div>
           <p className='btn-group'>
             <button

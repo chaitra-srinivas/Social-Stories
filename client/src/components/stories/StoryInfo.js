@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { Mutation } from "@apollo/client/react/components";
 import { GET_STORY, GET_STORIES } from "../../utils/queries";
@@ -10,7 +10,7 @@ function StoryInfo(props) {
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
   const singleStory = data?.story || {};
 
-
+  const navigate = useNavigate();
   if (loading) return "Loading...";
 
   return (
@@ -38,7 +38,7 @@ function StoryInfo(props) {
                     variables: { id: singleStory.id },
                     refetchQueries: [{ query: GET_STORIES }],
                   });
-                  props.history.push("/stories");
+                  navigate('/stories/');
                 }}>
                 Delete
               </button>
