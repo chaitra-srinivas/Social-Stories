@@ -6,10 +6,23 @@ import { DELETE_STORY } from "../../utils/mutations";
 
 function StoryInfo() {
   let { id } = useParams();
-  const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
+  const { loading, data } = useQuery(GET_STORY, { variables: { id: id }
+   
+  });
   const singleStory = data?.story || {};
   const [deleteStory, { dataLoading, error }] = useMutation(DELETE_STORY, {
     variables: { id: singleStory.id },
+    update(cache, { data: { deleteStory } }) {
+      try {
+        const stories = cache.readQuery({ query: GET_STORIES });
+        cache.writeQuery({
+          query: GET_STORIES,
+          data: stories,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    },
   });
 
   const navigate = useNavigate();
@@ -21,7 +34,7 @@ function StoryInfo() {
       <h2>{singleStory.title}</h2>
       {singleStory.pages.map((page) => {
         return (
-          <div key={page.id}>
+          <div key={page.id} className='card mb-3 card-body bg-light p-2'>
             <p>
               <h6>{page.content}</h6>
             </p>
@@ -41,7 +54,6 @@ function StoryInfo() {
           className='btn btn-danger'
           onClick={() => {
             deleteStory({
-              refetchQueries: [{ query: GET_STORIES }],
             });
             navigate("/stories/");
           }}>

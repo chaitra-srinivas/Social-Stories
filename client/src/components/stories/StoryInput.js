@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import StoryContent from "./StoryContent";
 
 function StoryInput(props) {
   const selectedPage = props.selectedPage;

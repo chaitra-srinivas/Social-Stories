@@ -8,7 +8,12 @@ function StoryList() {
 
   const storyList = data?.stories || [];
 
-  console.log(storyList);
+  if(!storyList.length){
+    return <h3>No stories added yet.</h3>
+  }
+
+  if (loading) return "Loading...";
+
   return (
     <div>
       <h2>
@@ -17,23 +22,18 @@ function StoryList() {
           Create Story
         </Link>
       </h2>
-      {loading ? (
-        <div> Loading...</div>
-      ) : (
-        <ul>
-          {storyList.map((story) => {
-            return (
-              <div key={story.id}>
-                <hr />
-                <h4>
-                  <Link to={`/stories/${story.id}`}>{story.title}</Link>
-                </h4>
-                <small>id: {story.id}</small>
-              </div>
-            );
-          })}
-        </ul>
-      )}
+      <ul>
+        {storyList.map((story) => {
+          return (
+            <div key={story.id} className="card mb-3 card-body bg-light ">
+              <hr />
+              <h4 > 
+                <Link to={`/stories/${story.id}`}>{story.title}</Link>
+              </h4>
+            </div>
+          );
+        })}
+      </ul>
     </div>
   );
 }

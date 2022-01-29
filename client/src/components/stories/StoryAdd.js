@@ -6,13 +6,11 @@ import { GET_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 
-
 const templates = require("./templates.json");
 
 function StoryAdd() {
-  
   const navigate = useNavigate();
-  let  title;
+  let title;
 
   let selectedTemplate = templates[0];
 
@@ -69,14 +67,25 @@ function StoryAdd() {
         title: title.value,
         pages: pagesToSave,
       },
-      refetchQueries: [{ query: GET_STORIES }],
     });
     navigate("/stories");
   }
 
   // StoryAdd
 
-  const [createStory, { loading, error }] = useMutation(CREATE_STORY);
+  const [createStory, { loading, error }] = useMutation(CREATE_STORY, {
+    update(cache, { data: { createStory } }) {
+      try {
+        const { stories } = cache.readQuery({ query: GET_STORIES });
+        cache.writeQuery({
+          query: GET_STORIES,
+          data: { stories: [createStory, ...stories] },
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
+  });
 
   if (loading) return "Loading...";
   if (error) return `Submission error! ${error.message}`;
@@ -110,7 +119,6 @@ function StoryAdd() {
             variablesModel={variablesModel}
             variablesUpdated={variablesUpdated}
           />
-         
         </div>
         <div>
           <p className='btn-group'>

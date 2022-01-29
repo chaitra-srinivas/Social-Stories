@@ -20,7 +20,19 @@ function StoryEdit(props) {
   }
 
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
-  const [updateStory, { dataloading, error }] = useMutation(UPDATE_STORY);
+  const [updateStory, { dataloading, error }] = useMutation(UPDATE_STORY, {
+    update(cache, { data: { updateStory } }) {
+      try {
+        cache.readQuery({ query: GET_STORY });
+        cache.writeQuery({
+          query: GET_STORY,
+          data: { story: updateStory },
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    },
+  });
   const story = data?.story || {};
 
   let selectedTemplate = templates[0];
@@ -84,7 +96,6 @@ function StoryEdit(props) {
         title: story.title,
         pages: pagesToUpdate,
       },
-      refetchQueries: [{ query: GET_STORIES }],
     });
     navigate("/stories/");
   }
@@ -109,7 +120,7 @@ function StoryEdit(props) {
             className='form-control'
             ref={function (node) {
               return (title = node);
-            }} 
+            }}
             defaultValue={story.title}
           />
         </div>
