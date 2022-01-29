@@ -12,7 +12,7 @@ function StoryAdd() {
   const navigate = useNavigate();
   let title;
 
-  let selectedTemplate = templates[0];
+  let selectedTemplate = templates[1];
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
 

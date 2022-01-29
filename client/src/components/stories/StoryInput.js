@@ -16,7 +16,7 @@ function StoryInput(props) {
     let dynContent = selectedPage.content;
     selectedPage.variables.forEach((variable) => {
       dynContent = dynContent.replace(
-        variable.name,
+        new RegExp(variable.name, "g")  ,
         getVarValue(selectedPage.id, variable.id)
       );
     });
