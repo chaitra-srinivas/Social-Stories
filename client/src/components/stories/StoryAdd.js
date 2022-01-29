@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams , useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATE_STORY } from "../../utils/mutations";
 import { GET_STORIES } from "../../utils/queries";
@@ -9,7 +9,11 @@ import StoryInput from "./StoryInput";
 
 const templates = require("./templates.json");
 
+
+
 function StoryAdd() {
+  
+  const navigate = useNavigate();
   let  title;
 
   let selectedTemplate = templates[0];
@@ -60,7 +64,7 @@ function StoryAdd() {
         }),
       };
     });
-// ToDo: Fix template id
+
     createStory({
       variables: {
         templateId: selectedTemplate.id,
@@ -69,6 +73,7 @@ function StoryAdd() {
       },
       refetchQueries: [{ query: GET_STORIES }],
     });
+    navigate("/stories");
   }
 
   // StoryAdd
@@ -107,7 +112,7 @@ function StoryAdd() {
             variablesModel={variablesModel}
             variablesUpdated={variablesUpdated}
           />
-          {/*     <StoryContent dynamicContent={prepareDynamicContent}/> */}
+         
         </div>
         <div>
           <p className='btn-group'>

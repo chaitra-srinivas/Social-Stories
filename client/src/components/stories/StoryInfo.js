@@ -10,7 +10,6 @@ function StoryInfo(props) {
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
   const singleStory = data?.story || {};
 
-  console.log(singleStory);
   const navigate = useNavigate();
   if (loading) return "Loading...";
 
@@ -21,7 +20,7 @@ function StoryInfo(props) {
       {singleStory.pages.map((page) => {
         return (
           <div key={page.id}>
-            <p>{page.content}</p>
+            <p><h6>{page.content}</h6></p>
             <img
               src={page.image}
               alt='pageimage'

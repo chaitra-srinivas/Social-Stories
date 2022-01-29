@@ -7,7 +7,6 @@ import { useMutation, useQuery } from "@apollo/client";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 
-
 const templates = require("./templates.json");
 
 function StoryEdit(props) {
@@ -38,7 +37,6 @@ function StoryEdit(props) {
   if (error) return `Submission error! ${error.message}`;
 
   function createVariablesModel(story) {
-    console.log(story);
     return story.pages.map((page) => {
       return {
         id: page.id,
@@ -88,6 +86,7 @@ function StoryEdit(props) {
       },
       refetchQueries: [{ query: GET_STORIES }],
     });
+    navigate("/stories/");
   }
 
   return (
@@ -110,7 +109,8 @@ function StoryEdit(props) {
             className='form-control'
             ref={function (node) {
               return (title = node);
-            }}
+            }} 
+            defaultValue={story.title}
           />
         </div>
         <div className='form-group'>
