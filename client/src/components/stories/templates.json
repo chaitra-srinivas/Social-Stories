@@ -9,8 +9,8 @@
         "title": "Introduction",
         "description": "Introduction to student",
         "image": "https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg",
-        "content": "<h3>Hello my name is {StudentName}. I am in grade {StudentGrade} this year.</h3>",
-        
+        "content": "Hello my name is {StudentName}. I am in grade {StudentGrade} this year.",
+
         "variables": [
           {
             "id": "v001",
@@ -66,7 +66,6 @@
             "description": "Current class room name/description",
             "defaultValue": ""
           }
-         
         ]
       },
       {
@@ -80,6 +79,103 @@
             "id": "v007",
             "name": "{AddDetails}",
             "description": "More about next year",
+            "defaultValue": ""
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "id": "t002",
+    "title": "Excursion template",
+    "description": "Use this template to prepare the student for an excursion",
+    "pages": [
+      {
+        "id": "p001",
+        "title": "Introduction",
+        "description": "Introduction to student",
+        "image": "https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg",
+        "content": "Hello my name is {StudentName}. I am in grade {StudentGrade} this year.",
+
+        "variables": [
+          {
+            "id": "v001",
+            "name": "{StudentName}",
+            "description": "Student's name here",
+            "defaultValue": ""
+          },
+          {
+            "id": "v002",
+            "name": "{StudentGrade}",
+            "description": "Student's grade here",
+            "defaultValue": ""
+          }
+        ]
+      },
+      {
+        "id": "p002",
+        "title": "Introduction to the event",
+        "description": "Field trip to the Zoo",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Melbourne_Zoo%2C_Victoria%2C_Australia_-22Jan2011.jpg",
+        "content": "Our class is going on a field trip to {NameOfTheVenue}. I will see lots of {ThingsToSee/Do} at the {NameOfTheVenue}.",
+        "variables": [
+          {
+            "id": "v003",
+            "name": "{NameOfTheVenue}",
+            "description": "Name of the venue here",
+            "defaultValue": ""
+          },
+          {
+            "id": "v004",
+            "name": "{ThingsToSee/Do}",
+            "description": "Things to do/see here",
+            "defaultValue": ""
+          }
+        ]
+      },
+      {
+        "id": "p003",
+        "title": "Mode of transport",
+        "description": "How do we get to the event?",
+        "image": "https://en.byd.com/wp-content/uploads/2021/07/school-bus-2-scaled-1.jpg",
+        "content": "Our class will be going on a {ModeOfTransport}. I will sit in my seat at all times in the {ModeOfTransport}.",
+        "variables": [
+          {
+            "id": "v005",
+            "name": "{ModeOfTransport}",
+            "description": "How do we get to the event?",
+            "defaultValue": ""
+          }
+        ]
+      },
+
+      {
+        "id": "p004",
+        "title": "Expectations on the trip",
+        "description": "Things to carry and expectations",
+        "image": "https://raisingchildren.net.au/__data/assets/image/0011/51140/Healthy-lunch-box-ideas-for-children-PIP-7.gif",
+        "content": "I will need {ThingsToCarry} for the trip. I will always stay with my teacher and make good choices.",
+        "variables": [
+          {
+            "id": "v006",
+            "name": "{ThingsToCarry}",
+            "description": "What will be need on the trip?",
+            "defaultValue": ""
+          }
+        ]
+      },
+      {
+        "id": "p005",
+        "title": "Additional details",
+        "description": "More details about the trip/event",
+        "image": "https://zooaquarium.org.au/images/ZAA/website/News/Taronga%20TISL%20classroom-01.jpg",
+        "content": "{AdditionalDetails}",
+        "variables": [
+          {
+            "id": "v007",
+            "name": "{AdditionalDetails}",
+            "description": "More about the trip/event",
             "defaultValue": ""
           }
         ]
