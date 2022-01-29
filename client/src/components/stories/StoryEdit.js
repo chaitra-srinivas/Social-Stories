@@ -1,9 +1,14 @@
-import React from "react";
-import { Mutation } from "@apollo/client/react/components";
+import { React, useState } from "react";
 import { GET_STORY, GET_STORIES } from "../../utils/queries";
 import { UPDATE_STORY } from "../../utils/mutations";
-import { useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
+
+import StoryPages from "./StoryPages";
+import StoryInput from "./StoryInput";
+
+
+const templates = require("./templates.json");
 
 function StoryEdit(props) {
   let { id } = useParams();
@@ -17,112 +22,119 @@ function StoryEdit(props) {
 
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
   const [updateStory, { dataloading, error }] = useMutation(UPDATE_STORY);
-  const singleStory = data?.story || {};
+  const story = data?.story || {};
 
-  console.log(singleStory.pages[0].variables);
+  let selectedTemplate = templates[0];
+
+  const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
+
+  const [variablesModel, setVariablesModel] = useState(
+    createVariablesModel(story)
+  );
+
+  console.log(variablesModel);
 
   if (loading || dataloading) return "Loading...";
   if (error) return `Submission error! ${error.message}`;
 
+  function createVariablesModel(story) {
+    console.log(story);
+    return story.pages.map((page) => {
+      return {
+        id: page.id,
+        content: page.content,
+        image: page.image,
+        variables: page.variables.map((variable) => ({
+          id: variable.id,
+          value: variable.value,
+        })),
+      };
+    });
+  }
+
+  function pageSelected(page) {
+    setSelectedPage(page);
+  }
+
+  function variablesUpdated(varModel) {
+    setVariablesModel(varModel);
+  }
+
   function editStory() {
-    const pagesToUpdate = singleStory.pages.map((p) => {
+    const pagesToUpdate = selectedTemplate.pages.map((p) => {
+      let pageVariablesModel = variablesModel.find((f) => f.id === p.id);
       return {
         id: p.id,
-        content: p.content,
+        image: pageVariablesModel.image,
+        content: pageVariablesModel.content,
         variables: p.variables.map((v) => {
           return {
             id: v.id,
             name: v.name,
             description: v.description,
-            value: v.value,
+            value: pageVariablesModel.variables.find((f) => f.id === v.id)
+              .value,
           };
-        }), 
+        }),
       };
     });
 
-     updateStory({
+    updateStory({
       variables: {
-        id: singleStory.id,
-        templateId: "t001",
-        title: title.value,
+        id: story.id,
+        templateId: story.templateId,
+        title: story.title,
         pages: pagesToUpdate,
       },
-        refetchQueries: [{ query: GET_STORIES }],
-    }); 
+      refetchQueries: [{ query: GET_STORIES }],
+    });
   }
 
   return (
     <div>
-      <h1>Edit {singleStory.title}</h1>
-      <Mutation mutation={UPDATE_STORY}>
-        {function (updateStory, { loading, data, error }) {
-          return (
-            <div>
-              <form
-                onSubmit={function (event) {
-                  event.preventDefault();
-                  /*  updateStory({
-                    variables: {
-                      id: singleStory.id,
-                      templateId: singleStory.templateId,
-                      title: title.value,
-                      pages: singleStory.pages,
-                    },
-                  }); */
-                  navigate(`/stories/${singleStory.id}`);
-                }}>
-                <div className='form-group'>
-                  <label>Title</label>
-                  <input
-                    type='text'
-                    className='form-control'
-                    defaultValue={singleStory.title}
-                    ref={function (node) {
-                      return (title = node);
-                    }}
-                  />
-                </div>
-                {singleStory.pages.map((page) => {
-                  return (
-                    <div key={page.id} className='form-group'>
-                     <div>
-                       <label></label>
-                     </div>
-                      <input
-                        type='text'
-                        className='form-control'
-                        defaultValue={page.content}
-                        ref={function (node) {
-                          return (content = node);
-                        }}
-                      />
-                    </div>
-                  );
-                })}
-
-                <div className='btn-group'>
-                  <button
-                    type='submit'
-                    className='btn btn-primary'
-                    onClick={editStory}>
-                    Update
-                  </button>
-                  <button
-                    type='button'
-                    className='btn btn-secondary'
-                    onClick={function () {
-                      handleCancel(singleStory.id);
-                    }}>
-                    Cancel
-                  </button>
-                </div>
-              </form>
-              {loading && <p>Loading...</p>}
-              {error && <p>Error : {error.message}</p>}
-            </div>
-          );
-        }}
-      </Mutation>
+      <div style={{ float: "left", width: "300px" }}>
+        <StoryPages
+          pages={selectedTemplate.pages}
+          pageSelected={pageSelected}
+        />
+      </div>
+      <form
+        style={{ float: "right", width: "700px" }}
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}>
+        <div className='form-group'>
+          <label>Title:</label>
+          <input
+            type='text'
+            className='form-control'
+            ref={function (node) {
+              return (title = node);
+            }}
+          />
+        </div>
+        <div className='form-group'>
+          <StoryInput
+            selectedPage={selectedPage}
+            variablesModel={variablesModel}
+            variablesUpdated={variablesUpdated}
+          />
+          {/*     <StoryContent dynamicContent={prepareDynamicContent}/> */}
+        </div>
+        <div>
+          <p className='btn-group'>
+            <button
+              type='submit'
+              className='btn btn-primary'
+              onClick={editStory}>
+              Update
+            </button>
+            <Link to='/stories' className='btn btn-secondary'>
+              Cancel
+            </Link>
+          </p>
+        </div>
+      </form>
     </div>
   );
 }

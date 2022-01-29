@@ -10,20 +10,25 @@ function StoryInfo(props) {
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
   const singleStory = data?.story || {};
 
+  console.log(singleStory);
   const navigate = useNavigate();
   if (loading) return "Loading...";
 
   return (
     <div>
       <h2>{singleStory.title}</h2>
-      
-      {singleStory.pages.map((page)=>{
+
+      {singleStory.pages.map((page) => {
         return (
           <div key={page.id}>
             <p>{page.content}</p>
-            <img src={page.image} alt="pageimage" style={{width:"200px", height:"150px"}} />
+            <img
+              src={page.image}
+              alt='pageimage'
+              style={{ width: "200px", height: "150px" }}
+            />
           </div>
-        )
+        );
       })}
       <p className='btn-group'>
         <Link to={`/stories/${singleStory.id}/edit`} className='btn btn-info'>
@@ -39,7 +44,7 @@ function StoryInfo(props) {
                     variables: { id: singleStory.id },
                     refetchQueries: [{ query: GET_STORIES }],
                   });
-                  navigate('/stories/');
+                  navigate("/stories/");
                 }}>
                 Delete
               </button>

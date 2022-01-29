@@ -5,29 +5,17 @@ import { CREATE_STORY } from "../../utils/mutations";
 import { GET_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
-import StoryContent from "./StoryContent";
+
 
 const templates = require("./templates.json");
 
 function StoryAdd() {
-  let { title, content } = useParams;
+  let  title;
 
   let selectedTemplate = templates[0];
 
-  const [dynamicContent, setDynamicContent] = useState([]);
-
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
 
-  /* function createVariablesModel(template) {
-    return template.pages.flatMap((page) =>
-      page.variables.map((variable) => ({
-        pageId: page.id,
-        varId: variable.id,
-        varDescription: variable.description,
-        value: variable.defaultValue,
-      }))
-    );
-  } */
   function createVariablesModel(template) {
     return template.pages.map((page) => {
       return {
@@ -72,10 +60,10 @@ function StoryAdd() {
         }),
       };
     });
-
+// ToDo: Fix template id
     createStory({
       variables: {
-        templateId: "t001",
+        templateId: selectedTemplate.id,
         title: title.value,
         pages: pagesToSave,
       },
