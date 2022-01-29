@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Link, useParams , useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATE_STORY } from "../../utils/mutations";
 import { GET_STORIES } from "../../utils/queries";
@@ -8,8 +8,6 @@ import StoryInput from "./StoryInput";
 
 
 const templates = require("./templates.json");
-
-
 
 function StoryAdd() {
   
