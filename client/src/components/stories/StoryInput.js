@@ -25,17 +25,17 @@ function StoryInput(props) {
 
   function getVarValue(pageId, varId) {
     return variablesModel
-      .find((p) => p.id === pageId)
-      .variables.find((v) => v.id === varId).value;
+      .find((p) => p.pageId === pageId)
+      .variables.find((v) => v.varId === varId).value;
   }
 
   function getUpdatedVarModel(pageId, varId, value) {
     return [...variablesModel].map((p) => {
       p.variables = [...p.variables]; // clone variables
 
-      if (p.id === pageId) {
+      if (p.pageId === pageId) {
         // Update variable value
-        p.variables.find((v) => v.id === varId).value = value;
+        p.variables.find((v) => v.varId === varId).value = value;
         // Update dynamic content
         p.content = getDynamicContent();
       }

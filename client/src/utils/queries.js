@@ -8,10 +8,12 @@ const GET_STORIES = gql`
       title
       pages{
         id
+        pageId
         content
         image
         variables{
           id
+          varId
           name
           description
           value
@@ -29,10 +31,12 @@ const GET_STORY = gql`
       title
       pages{
         id
+        pageId
         content
         image
         variables{
           id
+          varId
           name
           description
           value

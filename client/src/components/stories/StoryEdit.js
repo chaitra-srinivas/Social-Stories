@@ -14,10 +14,7 @@ function StoryEdit(props) {
 
   const navigate = useNavigate();
 
-  let title, content;
-  function handleCancel(id) {
-    navigate(`/stories/${id}`);
-  }
+ 
 
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
   const [updateStory, { dataloading, error }] = useMutation(UPDATE_STORY, {
@@ -38,12 +35,8 @@ function StoryEdit(props) {
   let selectedTemplate = templates[0];
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
-
-  const [variablesModel, setVariablesModel] = useState(
-    createVariablesModel(story)
-  );
-
-  console.log(variablesModel);
+  const [variablesModel, setVariablesModel] = useState(createVariablesModel(story));
+  const [title, setTitle] = useState(story.title);
 
   if (loading || dataloading) return "Loading...";
   if (error) return `Submission error! ${error.message}`;
@@ -51,11 +44,11 @@ function StoryEdit(props) {
   function createVariablesModel(story) {
     return story.pages.map((page) => {
       return {
-        id: page.id,
+        pageId: page.pageId,
         content: page.content,
         image: page.image,
         variables: page.variables.map((variable) => ({
-          id: variable.id,
+          varId: variable.varId,
           value: variable.value,
         })),
       };
@@ -72,17 +65,17 @@ function StoryEdit(props) {
 
   function editStory() {
     const pagesToUpdate = selectedTemplate.pages.map((p) => {
-      let pageVariablesModel = variablesModel.find((f) => f.id === p.id);
+      let pageVariablesModel = variablesModel.find((f) => f.pageId === p.id);
       return {
-        id: p.id,
+        pageId: p.id,
         image: pageVariablesModel.image,
         content: pageVariablesModel.content,
         variables: p.variables.map((v) => {
           return {
-            id: v.id,
+            varId: v.id,
             name: v.name,
             description: v.description,
-            value: pageVariablesModel.variables.find((f) => f.id === v.id)
+            value: pageVariablesModel.variables.find((f) => f.varId === v.id)
               .value,
           };
         }),
@@ -93,7 +86,7 @@ function StoryEdit(props) {
       variables: {
         id: story.id,
         templateId: story.templateId,
-        title: story.title,
+        title: title,
         pages: pagesToUpdate,
       },
     });
@@ -118,10 +111,10 @@ function StoryEdit(props) {
           <input
             type='text'
             className='form-control'
-            ref={function (node) {
-              return (title = node);
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
             }}
-            defaultValue={story.title}
           />
         </div>
         <div className='form-group'>

@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const variablesSchema = new Schema({
-  id: {
+  varId: {
     type: String,
     required: true,
   },
@@ -21,7 +21,7 @@ const variablesSchema = new Schema({
 
 
 const pageSchema = new Schema({
-    id: {
+    pageId: {
       type: String,
       required: true,
     },

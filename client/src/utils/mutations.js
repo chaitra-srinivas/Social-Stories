@@ -8,10 +8,12 @@ mutation createStory($templateId: String!, $title: String! , $pages: [PageInput]
     title
     pages{
       id
+      pageId
       content
       image
       variables{
         id
+        varId
         name
         description
         value
@@ -30,10 +32,12 @@ mutation deleteStory($id: ID!) {
     title
     pages{
       id
+      pageId
       content
       image
       variables{
         id
+        varId
         name
         description
         value
@@ -51,10 +55,12 @@ mutation updateStory($id: ID!,$templateId: String! $title: String!, $pages: [Pag
     title
     pages{
       id
+      pageId
       content
       image
       variables{
         id
+        varId
         name
         description
         value

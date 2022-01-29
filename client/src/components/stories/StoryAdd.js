@@ -19,11 +19,11 @@ function StoryAdd() {
   function createVariablesModel(template) {
     return template.pages.map((page) => {
       return {
-        id: page.id,
+        pageId: page.id,
         content: page.content,
         image: page.image,
         variables: page.variables.map((variable) => ({
-          id: variable.id,
+          varId: variable.id,
           value: variable.defaultValue,
         })),
       };
@@ -44,23 +44,23 @@ function StoryAdd() {
 
   function saveStory() {
     const pagesToSave = selectedTemplate.pages.map((p) => {
-      let pageVariablesModel = variablesModel.find((f) => f.id === p.id);
+      let pageVariablesModel = variablesModel.find((f) => f.pageId === p.id);
       return {
-        id: p.id,
+        pageId: p.id,
         image: pageVariablesModel.image,
         content: pageVariablesModel.content,
         variables: p.variables.map((v) => {
           return {
-            id: v.id,
+            varId: v.id,
             name: v.name,
             description: v.description,
-            value: pageVariablesModel.variables.find((f) => f.id === v.id)
+            value: pageVariablesModel.variables.find((f) => f.varId === v.id)
               .value,
           };
         }),
       };
     });
-
+console.log(pagesToSave);
     createStory({
       variables: {
         templateId: selectedTemplate.id,

@@ -3,14 +3,16 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql(`
 
 type Variable{
-    id: String!
+    id: ID!
+    varId: String!
     name: String
     description: String
     value: String
 }
 
 type Page{
-    id: String!
+    id: ID!
+    pageId: String!
     image: String
     content: String
     variables: [Variable]
@@ -24,14 +26,14 @@ type Story{
 }
 
 input VariableInput{
-    id: String!
+    varId: String!
     name: String
     description: String
     value: String
 }
 
 input PageInput{
-    id: String!
+    pageId: String!
     image: String
     content: String!
     variables: [VariableInput]!
