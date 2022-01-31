@@ -8,26 +8,19 @@ function StoryList() {
 
   const storyList = data?.stories || [];
   if (loading) return "Loading...";
-  if(!storyList.length){
-    return <h3>No stories added yet.</h3>
+  if (!storyList.length) {
+    return <h3>No stories added yet.</h3>;
   }
-
-  
 
   return (
     <div>
-      <h2>
-        Stories
-        {/* <Link to='/stories/new' className='btn btn-primary float-right'>
-          Create Story
-        </Link> */}
-      </h2>
+      <h2>Stories</h2>
       <ul>
         {storyList.map((story) => {
           return (
-            <div key={story.id} className="card mb-3 card-body bg-light ">
+            <div key={story.id} className='card mb-3 card-body bg-light '>
               <hr />
-              <h4 > 
+              <h4>
                 <Link to={`/stories/${story.id}`}>{story.title}</Link>
               </h4>
             </div>

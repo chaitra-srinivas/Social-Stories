@@ -17,7 +17,7 @@ function StoryAdd() {
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
 
-  function createVariablesModel(template) {
+  function createPageVariablesModel(template) {
     return template.pages.map((page) => {
       return {
         pageId: page.id,
@@ -31,8 +31,8 @@ function StoryAdd() {
     });
   }
 
-  const [variablesModel, setVariablesModel] = useState(
-    createVariablesModel(selectedTemplate)
+  const [pageVariablesModel, setPageVariablesModel] = useState(
+    createPageVariablesModel(selectedTemplate)
   );
 
   function pageSelected(page) {
@@ -40,22 +40,22 @@ function StoryAdd() {
   }
 
   function variablesUpdated(varModel) {
-    setVariablesModel(varModel);
+    setPageVariablesModel(varModel);
   }
 
   function saveStory() {
     const pagesToSave = selectedTemplate.pages.map((p) => {
-      let pageVariablesModel = variablesModel.find((f) => f.pageId === p.id);
+      let pageVariables = pageVariablesModel.find((f) => f.pageId === p.id);
       return {
         pageId: p.id,
-        image: pageVariablesModel.image,
-        content: pageVariablesModel.content,
+        image: pageVariables.image,
+        content: pageVariables.content,
         variables: p.variables.map((v) => {
           return {
             varId: v.id,
             name: v.name,
             description: v.description,
-            value: pageVariablesModel.variables.find((f) => f.varId === v.id)
+            value: pageVariables.variables.find((f) => f.varId === v.id)
               .value,
           };
         }),
@@ -117,7 +117,7 @@ function StoryAdd() {
         <div className='form-group'>
           <StoryInput
             selectedPage={selectedPage}
-            variablesModel={variablesModel}
+            variablesModel={pageVariablesModel}
             variablesUpdated={variablesUpdated}
           />
         </div>
