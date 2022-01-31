@@ -11,7 +11,8 @@ function StoryInfo() {
   
   const [deleteStory, { dataLoading, error }] = useMutation(DELETE_STORY, {
     variables: { id: singleStory.id },
-    update(cache, { data: { deleteStory } }) {
+     refetchQueries: [GET_STORIES], 
+    /*  update(cache, { data: { deleteStory } }) {
       try {
         const stories = cache.readQuery({ query: GET_STORIES });
         cache.writeQuery({
@@ -21,7 +22,7 @@ function StoryInfo() {
       } catch (e) {
         console.log(e);
       }
-    },
+    },  */
   });
 
   const navigate = useNavigate();
@@ -54,7 +55,7 @@ function StoryInfo() {
           onClick={() => {
             deleteStory({
             });
-            navigate("/stories/");
+           navigate("/stories/");
           }}>
           Delete
         </button>
