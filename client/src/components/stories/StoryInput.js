@@ -18,7 +18,7 @@ function StoryInput(props) {
       dynContent = dynContent.replace(
         new RegExp(variable.name, "g")  ,
         getVarValue(selectedPage.id, variable.id)
-      );
+      );  
     });
     return dynContent;
   }

@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATE_STORY } from "../../utils/mutations";
 import { GET_STORIES } from "../../utils/queries";
@@ -11,8 +11,9 @@ const templates = require("./templates.json");
 function StoryAdd() {
   const navigate = useNavigate();
   let title;
+  let id = useParams();
 
-  let selectedTemplate = templates[1];
+  let selectedTemplate =  templates.find((f)=>f.id === id.id);
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
 
@@ -60,7 +61,7 @@ function StoryAdd() {
         }),
       };
     });
-console.log(pagesToSave);
+    console.log(pagesToSave);
     createStory({
       variables: {
         templateId: selectedTemplate.id,
@@ -128,7 +129,7 @@ console.log(pagesToSave);
               onClick={saveStory}>
               Submit
             </button>
-            <Link to='/stories' className='btn btn-secondary'>
+            <Link to='/' className='btn btn-secondary'>
               Cancel
             </Link>
           </p>

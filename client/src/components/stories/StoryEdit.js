@@ -11,10 +11,9 @@ const templates = require("./templates.json");
 
 function StoryEdit(props) {
   let { id } = useParams();
-
   const navigate = useNavigate();
 
- 
+  console.log(id);
 
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
   const [updateStory, { dataloading, error }] = useMutation(UPDATE_STORY, {
@@ -32,7 +31,7 @@ function StoryEdit(props) {
   });
   const story = data?.story || {};
 
-  let selectedTemplate = templates[0];
+  let selectedTemplate = templates.find((f)=>f.id == story.templateId);
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
   const [variablesModel, setVariablesModel] = useState(createVariablesModel(story));

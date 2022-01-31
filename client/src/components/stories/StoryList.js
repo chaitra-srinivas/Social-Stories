@@ -7,20 +7,20 @@ function StoryList() {
   const { loading, data } = useQuery(GET_STORIES);
 
   const storyList = data?.stories || [];
-
+  if (loading) return "Loading...";
   if(!storyList.length){
     return <h3>No stories added yet.</h3>
   }
 
-  if (loading) return "Loading...";
+  
 
   return (
     <div>
       <h2>
         Stories
-        <Link to='/stories/new' className='btn btn-primary float-right'>
+        {/* <Link to='/stories/new' className='btn btn-primary float-right'>
           Create Story
-        </Link>
+        </Link> */}
       </h2>
       <ul>
         {storyList.map((story) => {

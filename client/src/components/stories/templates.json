@@ -10,7 +10,6 @@
         "description": "Introduction to student",
         "image": "https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg",
         "content": "Hello my name is {StudentName}. I am in grade {StudentGrade} this year.",
-
         "variables": [
           {
             "id": "v001",
@@ -85,7 +84,6 @@
       }
     ]
   },
-
   {
     "id": "t002",
     "title": "Excursion template",
@@ -97,7 +95,6 @@
         "description": "Introduction to student",
         "image": "https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg",
         "content": "Hello my name is {StudentName}. I am in grade {StudentGrade} this year.",
-
         "variables": [
           {
             "id": "v001",
@@ -149,7 +146,6 @@
           }
         ]
       },
-
       {
         "id": "p004",
         "title": "Expectations on the trip",

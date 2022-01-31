@@ -1,9 +1,46 @@
-import React from 'react'; 
+import React, { useState } from 'react'; 
+import { Link } from "react-router-dom";
+
+
 
 function Home() { 
+const templates = require('../stories/templates.json');
+
+const [formData, setFormData] = useState("Choose template");
+
+//const navigate = useNavigate();
+
+const handleInputChange = (event) => {
+  const { name, value } = event.target;
+  setFormData({formData, [name]: value });
+};
+
+const handleFormSubmit = async (event) => {
+  event.preventDefault();
+  setFormData("Choose template");
+}
+
   return (
     <div className="jumbotron">
-      <h1>Home Page</h1>
+      <h1>Welcome!</h1>
+      <form onSubmit={handleFormSubmit}>
+            <label className="m-2">Choose a template:</label>
+            <select id='selectTemplate' name="template" onChange={handleInputChange}>
+              <option disabled value="Choose template">
+                Select
+              </option>
+              {templates.map((template) => {
+                return (
+                  <option key={template.id} value={template.id}>
+                    {template.title}
+                  </option>
+                );
+              })}
+            </select>
+             <Link to={`/stories/${formData.template}/new`} className='btn btn-secondary'>
+                Submit
+              </Link>
+          </form>
     </div>
   );
 }

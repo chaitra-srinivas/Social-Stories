@@ -65,7 +65,7 @@ function Main() {
     <Routes>
       <Route exact path='/' element={<Home />} />
       <Route exact path='/stories' element={<StoryList />} />
-      <Route exact path='/stories/new' element={<StoryAdd />} />
+      <Route exact path='/stories/:id/new' element={<StoryAdd />} />
       <Route exact path='/stories/:id' element={<StoryInfo />} />
       <Route exact path='/stories/:id/edit' element={<StoryEdit />} />
     </Routes>

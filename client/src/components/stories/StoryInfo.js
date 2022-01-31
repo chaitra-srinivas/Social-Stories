@@ -6,10 +6,9 @@ import { DELETE_STORY } from "../../utils/mutations";
 
 function StoryInfo() {
   let { id } = useParams();
-  const { loading, data } = useQuery(GET_STORY, { variables: { id: id }
-   
-  });
+  const { loading, data } = useQuery(GET_STORY, { variables: { id: id }});
   const singleStory = data?.story || {};
+  
   const [deleteStory, { dataLoading, error }] = useMutation(DELETE_STORY, {
     variables: { id: singleStory.id },
     update(cache, { data: { deleteStory } }) {
