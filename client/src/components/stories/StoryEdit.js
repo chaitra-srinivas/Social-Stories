@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { GET_STORY, GET_STORIES } from "../../utils/queries";
+import { GET_STORY } from "../../utils/queries";
 import { UPDATE_STORY } from "../../utils/mutations";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";

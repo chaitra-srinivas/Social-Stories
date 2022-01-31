@@ -10,7 +10,7 @@ function StoryInput(props) {
 
   useEffect(() => {
     setDynamicContent(getDynamicContent());
-  });
+  },[getDynamicContent]);
 
   function getDynamicContent() {
     let dynContent = selectedPage.content;

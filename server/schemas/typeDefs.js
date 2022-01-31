@@ -25,6 +25,19 @@ type Story{
     pages: [Page]
 }
 
+type User{
+    id: ID!
+    username: String
+    email: String
+    password: String
+    stories: [Story]
+}
+
+type Auth {
+    token: ID!
+    user: User
+}
+
 input VariableInput{
     varId: String!
     name: String
@@ -46,11 +59,15 @@ input StoryInput{
 }
 
 type Query{
-    stories: [Story]
     story(id: ID!) : Story 
+    users: [User]
+    user(username: String): User
+    stories(username: String): [Story]
 }
 
 type Mutation {
+    addUser(username: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
     createStory(storyInput: StoryInput): Story
     deleteStory(id: ID!): Story
     updateStory(id: ID!, storyInput: StoryInput): Story!
