@@ -25,13 +25,12 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@material/checkbox": "^13.0.0",
-    "@material/select": "^13.0.0",
-    "@material/textfield": "^13.0.0",
+    "@mui/icons-material": "^5.3.1",
     "@mui/material": "^5.3.1",
     "bcrypt": "^5.0.1",
     "concurrently": "^7.0.0",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "jwt-decode": "^3.1.2"
   },
   "devDependencies": {
     "web-vitals": "^2.1.3"

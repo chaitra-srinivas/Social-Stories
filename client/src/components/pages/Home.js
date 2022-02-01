@@ -1,46 +1,41 @@
-import React, { useState } from 'react'; 
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Login from "./Login";
 
+function Home() {
+  const templates = require("../stories/templates.json");
 
+  const [formData, setFormData] = useState("Choose template");
 
-function Home() { 
-const templates = require('../stories/templates.json');
+  //const navigate = useNavigate();
 
-const [formData, setFormData] = useState("Choose template");
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ formData, [name]: value });
+  };
 
-//const navigate = useNavigate();
-
-const handleInputChange = (event) => {
-  const { name, value } = event.target;
-  setFormData({formData, [name]: value });
-};
-
-const handleFormSubmit = async (event) => {
-  event.preventDefault();
-  setFormData("Choose template");
-}
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    setFormData("Choose template");
+  };
 
   return (
-    <div className="jumbotron">
-      <h1>Welcome!</h1>
-      <form onSubmit={handleFormSubmit}>
-            <label className="m-2">Choose a template:</label>
-            <select id='selectTemplate' name="template" onChange={handleInputChange}>
-              <option disabled value="Choose template">
-                Select
-              </option>
-              {templates.map((template) => {
-                return (
-                  <option key={template.id} value={template.id}>
-                    {template.title}
-                  </option>
-                );
-              })}
-            </select>
-             <Link to={`/stories/${formData.template}/new`} className='btn btn-secondary'>
-                Submit
-              </Link>
-          </form>
+    <div className='Jumbotron'>
+      <h1>Social Stories</h1>
+      <p>
+        An app that helps you build and store social stories to help students
+        with special needs
+        <br />
+        Already a registered user?
+      </p>
+      <Link to='/login' className='btn btn-secondary'>
+        Login
+      </Link>
+
+      <p>New User?</p>
+      <Link to='/signup' className='btn btn-secondary'>
+        Register
+      </Link>
     </div>
   );
 }
