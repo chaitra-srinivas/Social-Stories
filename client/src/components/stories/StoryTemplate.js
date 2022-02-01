@@ -1,5 +1,6 @@
 import React, { useState } from 'react'; 
 import { Link } from "react-router-dom";
+import Navigation from '../pages/Navigation';
 
 function StoryTemplate() { 
 const templates = require('./templates.json');
@@ -20,6 +21,7 @@ const handleFormSubmit = async (event) => {
 
   return (
     <div className="jumbotron">
+       <Navigation />
       <h1>Welcome!</h1>
       <form onSubmit={handleFormSubmit}>
             <label className="m-2">Choose a template:</label>

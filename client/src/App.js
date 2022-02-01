@@ -28,12 +28,14 @@ import {
 } from "react-router-dom";
 
 import Home from "./components/pages/Home";
+import Navigation from "./components/pages/Navigation";
+import Login from "./components/pages/Login";
+import Signup from "./components/pages/Signup";
+
 import StoryList from "./components/stories/StoryList";
 import StoryAdd from "./components/stories/StoryAdd";
 import StoryInfo from "./components/stories/StoryInfo";
 import StoryEdit from "./components/stories/StoryEdit";
-import Login from "./components/pages/Login";
-import Signup from "./components/pages/Signup";
 import StoryTemplate from "./components/stories/StoryTemplate";
 
 const client = new ApolloClient({
@@ -43,63 +45,37 @@ const client = new ApolloClient({
 
 function App() {
   return (
-   
     <ApolloProvider client={client}>
       <Router>
-        <Navigation />
-        <div className='container'>
-          <Main />
+        <div className='container flex-column justify-flex-start min-100-vh'>
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+          </Routes>
+          <Routes>
+            <Route exact path='/login' element={<Login />} />
+          </Routes>
+          <Routes>
+            <Route exact path='/signup' element={<Signup />} />
+          </Routes>
+          <Routes>
+            <Route exact path='/menu' element={<Navigation />} />
+          </Routes>
+          <div className='container'>
+            <Main />
+          </div>
         </div>
       </Router>
     </ApolloProvider>
   );
 }
 
-function Navigation() {
-  return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-dark mb-4'>
-      <div className='container'>
-        <ul className='navbar-nav mr-auto'>
-          <li className='nav-item'>
-            <NavLink
-              //exact
-              className='nav-link'
-              activeclassname='active'
-              to='/'>
-              Home
-            </NavLink>
-          </li>
-          <li className='nav-item'>
-            <NavLink
-              //  exact
-              to='/stories'
-              className='nav-link'
-              activeclassname='active'>
-              View Stories
-            </NavLink>
-          </li>
-          <li>
-          <NavLink
-              //  exact
-              to='/template'
-              className='nav-link'
-              activeclassname='active'>
-              Create Story
-            </NavLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
-}
-
 function Main() {
   return (
     <Routes>
-      <Route exact path='/' element={<Home />} />  
-      <Route exact path='/login' element={<Login />} />  
-      <Route exact path='/signup' element={<Signup />} /> 
-       <Route exact path='/template' element={<StoryTemplate />} />
+      {/*   <Route exact path='/' element={<Home />} /> */}
+      {/*   <Route exact path='/login' element={<Login />} /> */}
+      {/*    <Route exact path='/signup' element={<Signup />} /> */}
+      <Route exact path='/template' element={<StoryTemplate />} />
       <Route exact path='/stories' element={<StoryList />} />
       <Route exact path='/stories/:id/new' element={<StoryAdd />} />
       <Route exact path='/stories/:id' element={<StoryInfo />} />
@@ -107,7 +83,5 @@ function Main() {
     </Routes>
   );
 }
-
-
 
 export default App;

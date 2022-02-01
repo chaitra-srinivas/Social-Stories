@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_STORIES } from "../../utils/queries";
+import Navigation from "../pages/Navigation";
 
 function StoryList() {
   const { loading, data } = useQuery(GET_STORIES);
@@ -13,7 +14,8 @@ function StoryList() {
   }
 
   return (
-    <div>
+    <div className='container flex-column justify-flex-start min-100-vh'>
+      <Navigation />
       <h2>Stories</h2>
       <ul>
         {storyList.map((story) => {

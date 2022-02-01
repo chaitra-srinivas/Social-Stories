@@ -5,6 +5,7 @@ import { CREATE_STORY } from "../../utils/mutations";
 import { GET_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
+import Navigation from '../pages/Navigation';
 
 const templates = require("./templates.json");
 
@@ -93,6 +94,7 @@ function StoryAdd() {
 
   return (
     <div>
+      <Navigation />
       <div style={{ float: "left", width: "300px" }}>
         <StoryPages
           pages={selectedTemplate.pages}
