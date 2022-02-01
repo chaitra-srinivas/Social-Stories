@@ -1,17 +1,45 @@
 import { gql } from "@apollo/client";
 
+const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      id
+      username
+      email
+      stories {
+        id
+        templateId
+        title
+        pages {
+          id
+          pageId
+          content
+          image
+          variables {
+            id
+            varId
+            name
+            description
+            value
+          }
+        }
+      }
+    }
+  }
+`;
+
 const GET_STORIES = gql`
   {
     stories {
       id
       templateId
       title
-      pages{
+      pages {
         id
         pageId
         content
         image
-        variables{
+        variables {
           id
           varId
           name
@@ -29,12 +57,12 @@ const GET_STORY = gql`
       id
       templateId
       title
-      pages{
+      pages {
         id
         pageId
         content
         image
-        variables{
+        variables {
           id
           varId
           name
@@ -46,8 +74,4 @@ const GET_STORY = gql`
   }
 `;
 
-
-
-
-
-export { GET_STORY, GET_STORIES };
+export { GET_STORY, GET_STORIES, QUERY_USER };
