@@ -19,7 +19,14 @@ export default App;
 Original code
 */
 import React from "react";
-import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  createHttpLink,
+} from "@apollo/client";
+
+import { setContext } from "@apollo/client/link/context";
 import {
   BrowserRouter as Router,
   Route,
@@ -38,8 +45,22 @@ import StoryInfo from "./components/stories/StoryInfo";
 import StoryEdit from "./components/stories/StoryEdit";
 import StoryTemplate from "./components/stories/StoryTemplate";
 
-const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri: "/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem("id_token");
+
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    },
+  };
+});
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

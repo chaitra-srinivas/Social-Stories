@@ -2,17 +2,27 @@ const { ApolloServer, gql } = require("apollo-server-express");
 const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
 const express = require("express");
 const http = require("http");
-const cors = require('cors');
+const cors = require("cors");
 const db = require("./config/connection");
+const path = require("path");
 
 const typeDefs = require("./schemas/typeDefs");
 const resolvers = require("./schemas/resolvers");
 
-const PORT = 3001;
+const { authMiddleware } = require("./utils/auth");
+const PORT = process.env.PORT || 3001;
+const app = express();
 
 async function startApolloServer(typeDefs, resolvers) {
-  const app = express();
   const httpServer = http.createServer(app);
+
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    cors: true,
+    context: authMiddleware,
+  });
 
   db.once("open", function () {
     console.log("Connected to the database");
@@ -22,16 +32,11 @@ async function startApolloServer(typeDefs, resolvers) {
     console.log("Mongoose connection error: " + error);
   });
 
-  const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-    cors: true
-  });
+ 
 
   await server.start();
   server.applyMiddleware({ app });
   await new Promise((resolve) => httpServer.listen({ port: 3001 }, resolve));
   console.log(`🚀 Server ready at http://localhost:3001${server.graphqlPath}`);
 }
-startApolloServer(typeDefs, resolvers);
+startApolloServer(typeDefs, resolvers, authMiddleware);

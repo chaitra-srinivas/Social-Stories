@@ -1,18 +1,3 @@
-/*
-import React from "react";
-import { Grid, Paper } from "@mui/material";
-
-const Login = () => {
-  return (
-    <Grid>
-      <Paper elevation={10}>Sign in</Paper>
-    </Grid>
-  );
-};
-
-export default Login;
-*/
- 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -64,7 +49,7 @@ const Login = (props) => {
             {data ? (
               <p>
                 Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/template">Create a new story</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>

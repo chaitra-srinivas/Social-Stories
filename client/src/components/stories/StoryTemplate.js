@@ -1,6 +1,7 @@
 import React, { useState } from 'react'; 
 import { Link } from "react-router-dom";
 import Navigation from '../pages/Navigation';
+import Signup from '../pages/Signup';
 
 function StoryTemplate() { 
 const templates = require('./templates.json');
@@ -11,7 +12,7 @@ const [formData, setFormData] = useState("Choose template");
 
 const handleInputChange = (event) => {
   const { name, value } = event.target;
-  setFormData({formData, [name]: value });
+  setFormData({...formData, [name]: value });
 };
 
 const handleFormSubmit = async (event) => {
