@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+import Navigation from "./Navigation";
 
 function Home() {
   return (
     <div className='Jumbotron'>
+      <Navigation />
       <h1>Social Stories</h1>
       <p>
         An app that helps you build and store social stories to help students
@@ -11,13 +13,6 @@ function Home() {
         <br />
         Already a registered user?
       </p>
-      <Link to='/login' className='btn btn-secondary'>
-        Login
-      </Link>
-      <p>New User?</p>
-      <Link to='/signup' className='btn btn-secondary'>
-        Register
-      </Link>
     </div>
   );
 }

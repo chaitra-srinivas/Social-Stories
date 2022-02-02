@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; 
 import { Link } from "react-router-dom";
 import Navigation from '../pages/Navigation';
-import Signup from '../pages/Signup';
+
 
 function StoryTemplate() { 
 const templates = require('./templates.json');

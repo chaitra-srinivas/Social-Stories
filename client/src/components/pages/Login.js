@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
+import Navigation from './Navigation';
 
 import Auth from '../../utils/auth';
 
@@ -42,6 +43,7 @@ const Login = (props) => {
 
   return (
     <main className="flex-row justify-center mb-4">
+         <Navigation />
       <div className="col-12 col-lg-10">
         <div className="card">
           <h4 className="card-header bg-dark text-light p-2">Login</h4>
@@ -49,7 +51,7 @@ const Login = (props) => {
             {data ? (
               <p>
                 Success! You may now head{' '}
-                <Link to="/template">Create a new story</Link>
+                <Link to="/stories">View avaliable stories</Link>
               </p>
             ) : (
               <form onSubmit={handleFormSubmit}>
