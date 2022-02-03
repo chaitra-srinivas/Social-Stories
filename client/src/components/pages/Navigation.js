@@ -4,12 +4,9 @@ import { NavLink, Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 
 function Navigation() {
-  
   const logout = (event) => {
     event.preventDefault();
-   
     Auth.logout();
-   
   };
 
   return (
@@ -17,11 +14,7 @@ function Navigation() {
       <div className='container flex justify-between'>
         <ul className='navbar-nav mr-auto'>
           <li className='nav-item'>
-            <NavLink
-              //exact
-              className='nav-link'
-              activeclassname='active'
-              to='/'>
+            <NavLink className='nav-link' activeclassname='active' to='/'>
               Home
             </NavLink>
           </li>
@@ -48,17 +41,9 @@ function Navigation() {
               <Link className='btn btn-md btn-light m-2' to='/'>
                 {Auth.getProfile().data.username}'s profile
               </Link>
-             {/*  <Link to='/'>
-                <button className='btn btn-md btn-light m-2' onClick={logout}>
-                  Logout
-                </button>
-              </Link> */}
-              <li>
-                <Link to='/' onClick={logout}>
-                  <i className='fa fa-sign-out pull-right'></i>
-                  Log Out
-                </Link>
-              </li>
+              <button className='btn btn-md btn-light m-2' onClick={logout}>
+                Logout
+              </button>
             </>
           ) : (
             <>
