@@ -1,7 +1,14 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+
+import Auth from "../../utils/auth";
 
 function Navigation() {
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  };
+
   return (
     <nav className='navbar navbar-expand-lg navbar-dark bg-dark mb-4'>
       <div className='container flex justify-between'>
@@ -15,42 +22,46 @@ function Navigation() {
               Home
             </NavLink>
           </li>
-          <li className='nav-item'>
-            <NavLink
-              //  exact
-              to='/login'
-              className='nav-link'
-              activeclassname='active'>
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              //  exact
-              to='/signup'
-              className='nav-link'
-              activeclassname='active'>
-              Signup
-            </NavLink>
-          </li>
-          <li className='nav-item'>
-            <NavLink
-              //  exact
-              to='/stories'
-              className='nav-link'
-              activeclassname='active'>
-              View Stories
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              //  exact
-              to='/template'
-              className='nav-link'
-              activeclassname='active'>
-              Create Story
-            </NavLink>
-          </li>
+          <li></li>
+
+          {Auth.loggedIn() ? (
+            <>
+              <li className='nav-item'>
+                <Link
+                  //  exact
+                  to='/stories'
+                  className='nav-link'
+                  activeclassname='active'>
+                  View Stories
+                </Link>
+              </li>
+              <li>
+                <Link
+                  //  exact
+                  to='/template'
+                  className='nav-link'
+                  activeclassname='active'>
+                  Create Story
+                </Link>
+              </li>
+              <Link className='btn btn-md btn-light m-2' to='/'>
+                {Auth.getProfile().data.username}'s profile
+              </Link>
+
+              <button className='btn btn-md btn-light m-2' onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link className='btn btn-md btn-light m-2' to='/login'>
+                Login
+              </Link>
+              <Link className='btn btn-md btn-light m-2' to='/signup'>
+                Signup
+              </Link>
+            </>
+          )}
         </ul>
       </div>
     </nav>

@@ -31,7 +31,6 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  NavLink,
 } from "react-router-dom";
 
 import Home from "./components/pages/Home";
@@ -78,9 +77,10 @@ function App() {
           <Routes>
             <Route exact path='/signup' element={<Signup />} />
           </Routes>
-          <Routes>
+         {/*  <Routes>
             <Route exact path='/menu' element={<Navigation />} />
-          </Routes>
+          </Routes> */}
+          
           <div className='container'>
             <Main />
           </div>
@@ -96,7 +96,7 @@ function Main() {
       {/*   <Route exact path='/' element={<Home />} /> */}
       {/*   <Route exact path='/login' element={<Login />} /> */}
       {/*    <Route exact path='/signup' element={<Signup />} /> */}
-      <Route exact path='/template' element={<StoryTemplate />} />
+       <Route exact path='/template' element={<StoryTemplate />} />
       <Route exact path='/stories' element={<StoryList />} />
       <Route exact path='/stories/:id/new' element={<StoryAdd />} />
       <Route exact path='/stories/:id' element={<StoryInfo />} />
