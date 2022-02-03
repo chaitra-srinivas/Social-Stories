@@ -8,8 +8,8 @@ function StoryTemplate() {
 
   const [formData, setFormData] = useState("Choose template");
 
-  if (Auth.loggedIn() && Auth.getProfile().data.username) {
-    return <Link to='/stories' />;
+/*   if (Auth.loggedIn() && Auth.getProfile().data.username) {
+    return <Link to='/template' />;
     //return(<p>You are logged In</p>);
   }
   if (!Auth.getProfile().data.username) {
@@ -19,7 +19,7 @@ function StoryTemplate() {
         sign up or log in!
       </h4>
     );
-  }
+  } */
 
   //const navigate = useNavigate();
 

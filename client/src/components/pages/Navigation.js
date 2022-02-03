@@ -4,9 +4,12 @@ import { NavLink, Link } from "react-router-dom";
 import Auth from "../../utils/auth";
 
 function Navigation() {
+  
   const logout = (event) => {
     event.preventDefault();
+   
     Auth.logout();
+   
   };
 
   return (
@@ -28,7 +31,6 @@ function Navigation() {
             <>
               <li className='nav-item'>
                 <Link
-                  //  exact
                   to='/stories'
                   className='nav-link'
                   activeclassname='active'>
@@ -37,7 +39,6 @@ function Navigation() {
               </li>
               <li>
                 <Link
-                  //  exact
                   to='/template'
                   className='nav-link'
                   activeclassname='active'>
@@ -47,10 +48,17 @@ function Navigation() {
               <Link className='btn btn-md btn-light m-2' to='/'>
                 {Auth.getProfile().data.username}'s profile
               </Link>
-
-              <button className='btn btn-md btn-light m-2' onClick={logout}>
-                Logout
-              </button>
+             {/*  <Link to='/'>
+                <button className='btn btn-md btn-light m-2' onClick={logout}>
+                  Logout
+                </button>
+              </Link> */}
+              <li>
+                <Link to='/' onClick={logout}>
+                  <i className='fa fa-sign-out pull-right'></i>
+                  Log Out
+                </Link>
+              </li>
             </>
           ) : (
             <>

@@ -20,7 +20,7 @@ function Home() {
         An app that helps you build and store social stories to help students
         with special needs
         <br />
-        Already a registered user?
+        Please login to be able to see and create stories.
       </p>
     </div>
     </div>
