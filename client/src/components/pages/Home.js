@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Image } from "semantic-ui-react";
 import Navigation from "./Navigation";
 import Happykids from "../images/homepage.png";
+import '../../App.css';
 
 function Home() {
   return (

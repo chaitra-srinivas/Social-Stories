@@ -1,3 +1,4 @@
+import { Button } from "bootstrap";
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Menu, Segment } from "semantic-ui-react";
@@ -14,7 +15,7 @@ function Navigation() {
   //handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   return (
-    <div className='ui pointing secondary menu'>
+    <div className='ui secondary pointing menu'>
       <NavLink className='active item' to='/'>
         Home
       </NavLink>
@@ -28,17 +29,18 @@ function Navigation() {
           <Link to='/template' className='item'>
             Create Story
           </Link>
-
-          <Link className='ui pointing right menu' to='/'>
-            {Auth.getProfile().data.username}'s profile
-          </Link>
-          <button className='ui pointing right menu item' onClick={logout}>
-            Logout
-          </button>
+          <div className='right menu'>
+            <Link className='item' to='/'>
+              {Auth.getProfile().data.username}'s profile
+            </Link>
+            <button  className='item' onClick={logout}>
+              Logout
+            </button>
+          </div>
         </>
       ) : (
         <>
-          <div className='ui pointing right menu'>
+          <div className='right menu'>
             <Link className='item' to='/login'>
               Login
             </Link>
