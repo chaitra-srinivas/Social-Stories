@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-
+import { Menu, Segment } from "semantic-ui-react";
 import Auth from "../../utils/auth";
 
 function Navigation() {
@@ -9,8 +9,48 @@ function Navigation() {
     Auth.logout();
   };
 
+  //state = { activeItem: 'home' }
+
+  //handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
   return (
-    <nav className='navbar navbar-expand-lg navbar-dark bg-dark mb-4'>
+    <div className='ui pointing secondary menu'>
+      <NavLink className='active item' to='/'>
+        Home
+      </NavLink>
+
+      {Auth.loggedIn() ? (
+        <>
+          <Link to='/stories' className='item'>
+            View Stories
+          </Link>
+
+          <Link to='/template' className='item'>
+            Create Story
+          </Link>
+
+          <Link className='ui pointing right menu' to='/'>
+            {Auth.getProfile().data.username}'s profile
+          </Link>
+          <button className='ui pointing right menu item' onClick={logout}>
+            Logout
+          </button>
+        </>
+      ) : (
+        <>
+          <div className='ui pointing right menu'>
+            <Link className='item' to='/login'>
+              Login
+            </Link>
+            <Link className='item' to='/signup'>
+              Signup
+            </Link>
+          </div>
+        </>
+      )}
+    </div>
+
+    /*  <nav className='navbar navbar-expand-lg navbar-dark bg-dark mb-4'>
       <div className='container flex justify-between'>
         <ul className='navbar-nav mr-auto'>
           <li className='nav-item'>
@@ -57,7 +97,7 @@ function Navigation() {
           )}
         </ul>
       </div>
-    </nav>
+    </nav> */
   );
 }
 

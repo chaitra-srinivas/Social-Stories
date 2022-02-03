@@ -1,28 +1,26 @@
 import React from "react";
-
+import { Grid, Image } from "semantic-ui-react";
 import Navigation from "./Navigation";
-//import Happykids from "https://image.pngaaa.com/785/459785-middle.png";
-//import happy from "../../../src/components/images/homepage.png";
+import Happykids from "../images/homepage.png";
 
 function Home() {
   return (
-    <div className='Jumbotron'>
+    <div className='home'>
       <Navigation />
-      <h1>Social Stories</h1>
-      <div className='justify-center'>
-        {/*  <image
-          src={require(Happykids)}
-          className='mx-auto'
-          alt='Happykids'
-        />  */}
-     
-      <p>
-        An app that helps you build and store social stories to help students
-        with special needs
-        <br />
-        Please login to be able to see and create stories.
-      </p>
-    </div>
+      <Grid columns={1} padded>
+        <Grid.Row>
+          <h1>Social Stories</h1>
+          
+            <Image src={Happykids} className='img' size='large' centered />
+            <p padded centered>
+              An app that helps you build and store social stories to help
+              students with special needs
+              <br />
+              Please login to be able to see and create stories.
+            </p>
+         
+        </Grid.Row>
+      </Grid>
     </div>
   );
 }
