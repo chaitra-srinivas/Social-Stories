@@ -60,7 +60,7 @@ const Login = (props) => {
         style={{ height: "70vh" }}
         verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header id='loginHeader' as='h2' textAlign='center'>
+          <Header id='loginHeader' textAlign='center'>
             <Image src={logo} /> Log-in
           </Header>
           {data ? (

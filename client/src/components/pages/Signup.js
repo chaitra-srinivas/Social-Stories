@@ -60,8 +60,8 @@ const Signup = () => {
         style={{ height: "70vh" }}
         verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Header id='loginHeader' as='h2' textAlign='center'>
-            <Image src={logo} /> Sign up
+          <Header id='loginHeader' textAlign='center'>
+            <Image src={logo} /> Signup
           </Header>
           {data ? (
             <p>

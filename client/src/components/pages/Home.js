@@ -4,6 +4,7 @@ import Navigation from "./Navigation";
 import Happykids from "../images/homepage.png";
 import "../../App.css";
 
+
 function Home() {
   return (
     <div className='home ui center aligned container'>

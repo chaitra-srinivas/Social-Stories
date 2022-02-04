@@ -18,18 +18,18 @@
   color: var(--navItemTextColor);
 }
 
-h1,
-h2 {
+h1, h2 {
   font-family: "Sofia", cursive;
   font-size: 4rem;
   text-shadow: 3px 3px 3px var(--headerTextShadow);
-  width: 100px;
+  width: auto; 
   color: var(--headerTextColor);
   padding: 20px;
 }
 
 h2 {
   font-size: 2rem;
+  text-align: center;
 }
 
 #tagLine,
@@ -46,11 +46,16 @@ h2 {
 #loginHeader {
   color: var(--headerTextColor);
   font-family: "Happy Monkey", cursive;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
 }
 
 #btnSubmit {
   background-color: var(--navItemBackgroundColor);
   color: var(--navItemTextColor);
+  font-family: "Happy Monkey", cursive;
+ 
 }
 
 #msg {
@@ -67,4 +72,11 @@ h2 {
 
 #storyList {
   padding: 20px;
+}
+
+#selectStyle{
+  font-family: "Happy Monkey", cursive;
+  padding: 30px;
+  font-size: 1.2rem;
+
 }
