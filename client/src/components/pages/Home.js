@@ -2,26 +2,30 @@ import React from "react";
 import { Grid, Image } from "semantic-ui-react";
 import Navigation from "./Navigation";
 import Happykids from "../images/homepage.png";
-import '../../App.css';
+import "../../App.css";
 
 function Home() {
   return (
-    <div className='home'>
+    <div className='home ui center aligned container'>
       <Navigation />
-      <Grid columns={1} padded>
-        <Grid.Row>
-          <h1>Social Stories</h1>
-          
+     
+        <Grid columns={1} padded>
+          <Grid.Row>
+            <h1>Social Stories</h1>
+            <div className='ui raised segment' id="frontCover">
             <Image src={Happykids} className='img' size='large' centered />
-            <p padded centered>
-              An app that helps you build and store social stories to help
-              students with special needs
+           
+            </div>
+            <div id="tagLine">
+           
+             A place to find, create and store social stories.
               <br />
-              Please login to be able to see and create stories.
-            </p>
-         
-        </Grid.Row>
-      </Grid>
+             Make learning fun!
+            
+            </div>
+          </Grid.Row>
+        </Grid>
+     
     </div>
   );
 }
