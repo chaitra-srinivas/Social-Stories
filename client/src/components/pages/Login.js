@@ -72,8 +72,9 @@ const Login = (props) => {
             <Form size='large' onSubmit={handleFormSubmit}>
               <Segment>
                 <Form.Input
+                  required
                   fluid
-                  icon='user'
+                  icon='mail'
                   iconPosition='left'
                   placeholder='E-mail address'
                   name='email'
@@ -82,6 +83,7 @@ const Login = (props) => {
                   onChange={handleChange}
                 />
                 <Form.Input
+                  required
                   fluid
                   icon='lock'
                   iconPosition='left'
@@ -91,12 +93,7 @@ const Login = (props) => {
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <Button
-                  id='btnSubmit'
-                  color='teal'
-                  fluid
-                  size='large'
-                  type='submit'>
+                <Button id='btnSubmit' fluid size='large' type='submit'>
                   Login
                 </Button>
                 <Message id='msg'>
@@ -105,7 +102,6 @@ const Login = (props) => {
               </Segment>
             </Form>
           )}
-
           {error && <div id='errorMsg'>{error.message}</div>}
         </Grid.Column>
       </Grid>

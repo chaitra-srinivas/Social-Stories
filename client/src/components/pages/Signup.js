@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../../utils/mutations';
-import Navigation from './Navigation';
-import Auth from '../../utils/auth';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../../utils/mutations";
+import Navigation from "./Navigation";
+import Auth from "../../utils/auth";
+import "../../App.css";
+
+import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
+import logo from "../images/SocialStories.gif";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -26,15 +30,22 @@ const Signup = () => {
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
+    console.log();
 
- 
+    let errorObj = String;
+
     try {
+      if (!formState.email || !formState.password || !formState.username) {
+        console.log("details missing");
+        errorObj = "Please enter required fields";
+        return errorObj;
+      }
       const { data } = await addUser({
         variables: { ...formState },
       });
 
       console.log(data);
+
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -42,62 +53,67 @@ const Signup = () => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-         <Navigation />
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/stories">Create a new story.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your username"
-                  name="username"
-                  type="text"
+    <div>
+      <Navigation />
+      <Grid
+        textAlign='center'
+        style={{ height: "70vh" }}
+        verticalAlign='middle'>
+        <Grid.Column style={{ maxWidth: 450 }}>
+          <Header id='loginHeader' as='h2' textAlign='center'>
+            <Image src={logo} /> Sign up
+          </Header>
+          {data ? (
+            <p>
+              Success! You may now head{" "}
+              <Link to='/template'>Create a new story.</Link>
+            </p>
+          ) : (
+            <Form size='large' onSubmit={handleFormSubmit}>
+              <Segment>
+                <Form.Input
+                  required
+                  fluid
+                  icon='user'
+                  iconPosition='left'
+                  placeholder='Your username'
+                  name='username'
+                  type='text'
                   value={formState.username}
                   onChange={handleChange}
                 />
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
+                <Form.Input
+                  required
+                  fluid
+                  icon='mail'
+                  iconPosition='left'
+                  placeholder='Your email'
+                  name='email'
+                  type='email'
                   value={formState.email}
                   onChange={handleChange}
                 />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
+                <Form.Input
+                  required
+                  fluid
+                  icon='lock'
+                  iconPosition='left'
+                  placeholder='******'
+                  name='password'
+                  type='password'
                   value={formState.password}
                   onChange={handleChange}
                 />
-                <button
-                  className="btn btn-block btn-info"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
+                <Button id='btnSubmit' fluid size='large' type='submit'>
                   Submit
-                </button>
-              </form>
-            )}
-
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </main>
+                </Button>
+              </Segment>
+            </Form>
+          )}
+          {error && <div id='errorMsg'>{error.message}</div>}
+        </Grid.Column>
+      </Grid>
+    </div>
   );
 };
 
