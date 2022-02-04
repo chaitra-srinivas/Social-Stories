@@ -80,3 +80,17 @@ h2 {
   font-size: 1.2rem;
 
 }
+
+#pageContent{
+  display: flex;
+  flex-direction: row;
+}
+
+#pContent{
+position: relative;
+bottom: 100px;
+font-family: "Happy Monkey", cursive;
+font-size: 1.2rem;
+font-weight: bolder;
+flex-wrap: wrap;
+}
