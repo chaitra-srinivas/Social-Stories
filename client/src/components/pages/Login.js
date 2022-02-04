@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../../utils/mutations';
 import Navigation from './Navigation';
+import "../../App.css";
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 import Auth from '../../utils/auth';
 
@@ -42,54 +44,65 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-         <Navigation />
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/stories">View avaliable stories</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
+    <div>
+       <Navigation />
+       <Grid textAlign='center' style={{ height: '70vh' }} verticalAlign='middle'>
+       <Grid.Column style={{ maxWidth: 450 }}>
+      <Header id="loginHeader" as='h2' textAlign='center'>
+        <Image src='/logo.png' /> Log-in
+      </Header>
+          {data ? (
+            <p>
+              Success! You may now head{' '}
+              <Link to="/stories">View avaliable stories</Link>
+            </p>
+          ) : (
+            <Form size='large' onSubmit={handleFormSubmit}>
+               <Segment>
+            <Form.Input 
+            fluid icon='user'
+             iconPosition='left'
+             placeholder='E-mail address' 
+             name="email"
+             type='email'
+             value={formState.email}
+             onChange={handleChange}
+              />
+              <Form.Input
+            fluid
+            icon='lock'
+            iconPosition='left'
+            placeholder='Password'
+            name="password"
+            type='password'
+            value={formState.password}
+            onChange={handleChange}
+          />
+           <Button id="btnSubmit"
+           color='teal' 
+           fluid size='large'
+           type='submit'
+           >
+            Login
+          </Button>
+          <Message id="msg">
+        New user? <Link to='/signup'>Sign Up</Link>
+      </Message>
+           </Segment>
+           </Form>
+          )}
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </main>
+          {error && (
+            <div id='errorMsg' >
+              {error.message}
+            </div>
+          )}
+         
+      
+    </Grid.Column>
+  </Grid>
+    </div>
+   
   );
 };
 
