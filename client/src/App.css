@@ -18,15 +18,22 @@
   color: var(--navItemTextColor);
 }
 
-body h1{
+h1,
+h2 {
   font-family: "Sofia", cursive;
   font-size: 4rem;
   text-shadow: 3px 3px 3px var(--headerTextShadow);
   width: 100px;
   color: var(--headerTextColor);
+  padding: 20px;
 }
 
-#tagLine {
+h2 {
+  font-size: 2rem;
+}
+
+#tagLine,
+#storyList {
   font-family: "Happy Monkey", cursive;
   font-size: 1.5rem;
   padding: 50px;
@@ -36,24 +43,28 @@ body h1{
   padding: 50px;
 }
 
-#loginHeader{
+#loginHeader {
   color: var(--headerTextColor);
   font-family: "Happy Monkey", cursive;
 }
 
-#btnSubmit{
+#btnSubmit {
   background-color: var(--navItemBackgroundColor);
   color: var(--navItemTextColor);
 }
 
-#msg{
+#msg {
   color: var(--headerTextColor);
 }
 
-#errorMsg{
+#errorMsg {
   margin-top: 20px;
   padding: 10px;
   font-size: 1.5rem;
   color: var(--navItemBackgroundColor);
-  background-color: var(--navItemTextColor) ;
+  background-color: var(--navItemTextColor);
+}
+
+#storyList {
+  padding: 20px;
 }

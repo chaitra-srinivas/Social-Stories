@@ -15,7 +15,7 @@ function Home() {
             <Image src={Happykids} className='img' size='large' centered />
             </div>
             <div id="tagLine">
-             A place to find, create and store social stories.
+             A place to find, create and share social stories.
               <br />
              Make learning fun!
             </div>

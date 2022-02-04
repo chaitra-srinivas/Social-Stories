@@ -3,6 +3,20 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_STORIES } from "../../utils/queries";
 import Navigation from "../pages/Navigation";
+import { List } from "semantic-ui-react";
+
+function getTemplateDescription(story) {
+  if (story.templateId === "t001") {
+    return {
+      description: "A transition story to help student with change",
+      icon: "graduation cap",
+    };
+  } else if (story.templateId === "t002") {
+    return { description: "A social story about excursions", icon: "bus" };
+  } else {
+    return "";
+  }
+}
 
 function StoryList() {
   const { loading, data } = useQuery(GET_STORIES);
@@ -14,21 +28,26 @@ function StoryList() {
   }
 
   return (
-    <div className='container flex-column justify-flex-start min-100-vh'>
+    <div> 
       <Navigation />
       <h2>Stories</h2>
-      <ul>
-        {storyList.map((story) => {
-          return (
-            <div key={story.id} className='card mb-3 card-body bg-light '>
-              <hr />
-              <h4>
-                <Link to={`/stories/${story.id}`}>{story.title}</Link>
-              </h4>
-            </div>
-          );
-        })}
-      </ul>
+      {storyList.map((story) => {
+        return (
+          <List id='storyList'>
+            <List.Item key={story.id}>
+              <List.Icon name={getTemplateDescription(story).icon} />
+              <List.Content>
+                <List.Header>
+                  <Link to={`/stories/${story.id}`}>{story.title}</Link>
+                </List.Header>
+                <List.Description>
+                  {getTemplateDescription(story).description}
+                </List.Description>
+              </List.Content>
+            </List.Item>
+          </List>
+        );
+      })}
     </div>
   );
 }
