@@ -18,11 +18,12 @@
   color: var(--navItemTextColor);
 }
 
-h1, h2 {
+h1,
+h2 {
   font-family: "Sofia", cursive;
   font-size: 4rem;
   text-shadow: 3px 3px 3px var(--headerTextShadow);
-  width: auto; 
+  width: auto;
   color: var(--headerTextColor);
   padding: 20px;
 }
@@ -55,7 +56,6 @@ h2 {
   background-color: var(--navItemBackgroundColor);
   color: var(--navItemTextColor);
   font-family: "Happy Monkey", cursive;
- 
 }
 
 #msg {
@@ -74,23 +74,20 @@ h2 {
   padding: 20px;
 }
 
-#selectStyle{
+#selectStyle {
   font-family: "Happy Monkey", cursive;
   padding: 30px;
   font-size: 1.2rem;
-
 }
 
-#pageContent{
+#pageContent {
   display: flex;
   flex-direction: row;
 }
 
-#pContent{
-position: relative;
-bottom: 100px;
-font-family: "Happy Monkey", cursive;
-font-size: 1.2rem;
-font-weight: bolder;
-flex-wrap: wrap;
+#pContent {
+  font-family: "Happy Monkey", cursive;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  padding: 50px;
 }

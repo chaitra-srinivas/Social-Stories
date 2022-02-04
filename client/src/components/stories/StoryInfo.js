@@ -48,7 +48,9 @@ function StoryInfo() {
                       alt='pageimage'
                     />
                   </div>
-                  <div id='pContent' className='ui center aligned container'>
+                </div>
+                <div key={page.id} className='item'>
+                  <div id='pContent' className=''>
                     <p>{page.content}</p>
                   </div>
                 </div>
