@@ -34,7 +34,7 @@ function StoryList() {
       {storyList.map((story) => {
         return (
           <List id='storyList'>
-            <List.Item key={story.id}>
+            <List.Item key={story.pageId}>
               <List.Icon name={getTemplateDescription(story).icon} />
               <List.Content>
                 <List.Header>

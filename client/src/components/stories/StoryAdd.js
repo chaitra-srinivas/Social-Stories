@@ -115,7 +115,7 @@ function StoryAdd() {
                   <label>Title:</label>
                   <input
                     type='text'
-                    className='form-control'
+                    className='ten wide field'
                     ref={function (node) {
                       return (title = node);
                     }}

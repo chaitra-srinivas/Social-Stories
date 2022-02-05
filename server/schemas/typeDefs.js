@@ -23,7 +23,7 @@ type Story{
     templateId: String!
     title: String
     pages: [Page]
-    userId: ID
+    userId: ID!
 }
 
 type User{

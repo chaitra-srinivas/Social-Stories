@@ -3,17 +3,15 @@ import { GET_STORY } from "../../utils/queries";
 import { UPDATE_STORY } from "../../utils/mutations";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
+import { Button, Form} from "semantic-ui-react";
 
 import Auth from "../../utils/auth";
 
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
+import Navigation from "../pages/Navigation";
 
 const templates = require("./templates.json");
-
-
-
-
 
 function StoryEdit(props) {
   let { id } = useParams();
@@ -22,10 +20,6 @@ function StoryEdit(props) {
   console.log(id);
 
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
-
-  if(data.userId===Auth.getProfile().data._id){
-    navigate("/");
-  }
 
   const [updateStory, { dataloading, error }] = useMutation(UPDATE_STORY, {
     update(cache, { data: { updateStory } }) {
@@ -41,13 +35,14 @@ function StoryEdit(props) {
     },
   });
   const story = data?.story || {};
+  const canEdit = story.userId === Auth.getProfile().data._id;
 
-  
-
-  let selectedTemplate = templates.find((f)=>f.id == story.templateId);
+  let selectedTemplate = templates.find((f) => f.id === story.templateId);
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
-  const [variablesModel, setVariablesModel] = useState(createVariablesModel(story));
+  const [variablesModel, setVariablesModel] = useState(
+    createVariablesModel(story)
+  );
   const [title, setTitle] = useState(story.title);
 
   if (loading || dataloading) return "Loading...";
@@ -100,6 +95,7 @@ function StoryEdit(props) {
         templateId: story.templateId,
         title: title,
         pages: pagesToUpdate,
+        userId: Auth.getProfile().data._id
       },
     });
     navigate("/stories/");
@@ -107,29 +103,32 @@ function StoryEdit(props) {
 
   return (
     <div>
-      <div style={{ float: "left", width: "300px" }}>
+      <Navigation />
+      <div className='ui bottom attached segment pushable'>
         <StoryPages
           pages={selectedTemplate.pages}
           pageSelected={pageSelected}
         />
-      </div>
-      <form
-        style={{ float: "right", width: "700px" }}
+     
+      <div className='pusher'>
+          <div className='ui basic segment'>
+      <Form
+        size="large"
         onSubmit={(e) => {
           e.preventDefault();
         }}>
-        <div className='form-group'>
+        <div className='ui header'>
           <label>Title:</label>
           <input
             type='text'
-            className='form-control'
+            className='twelve wide field'
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
             }}
           />
         </div>
-        <div className='form-group'>
+        <div className='ui basic segment'>
           <StoryInput
             selectedPage={selectedPage}
             variablesModel={variablesModel}
@@ -138,18 +137,26 @@ function StoryEdit(props) {
         </div>
         <div>
           <p className='btn-group'>
-            <button
-              type='submit'
-              className='btn btn-primary'
-              onClick={editStory}>
-              Update
-            </button>
+            {canEdit ? (
+              <button
+                type='submit'
+                className='btn btn-primary'
+                onClick={editStory}>
+                Update
+              </button>
+            ) : (
+              <p></p>
+            )}
+
             <Link to='/stories' className='btn btn-secondary'>
               Cancel
             </Link>
           </p>
         </div>
-      </form>
+      </Form>
+      </div>
+    </div>
+    </div>
     </div>
   );
 }

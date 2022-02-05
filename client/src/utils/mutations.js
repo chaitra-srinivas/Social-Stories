@@ -84,7 +84,7 @@ const UPDATE_STORY = gql`
     $id: ID!
     $templateId: String!
     $title: String!
-    $userId: ID
+    $userId: ID!
     $pages: [PageInput]!
   ) {
     updateStory(
