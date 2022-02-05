@@ -35,10 +35,10 @@ function StoryInfo() {
       <h2>{singleStory.title}</h2>
       {singleStory.pages.map((page) => {
         return (
-          <Grid columns={2} padded>
+          <Grid key={page.id} columns={2} padded>
             <Grid.Row>
               <div id='pageContent' className='ui raised segment'>
-                <div key={page.id} className='item'>
+                <div className='item'>
                   <div className='ui medium image'>
                     <Image
                       className='img'
@@ -49,7 +49,7 @@ function StoryInfo() {
                     />
                   </div>
                 </div>
-                <div key={page.id} className='item'>
+                <div className='item'>
                   <div id='pContent' className=''>
                     <p>{page.content}</p>
                   </div>

@@ -1,4 +1,6 @@
 import { React, useState } from "react";
+import { Icons } from "semantic-ui-react";
+import "../../App.css";
 
 function StoryPages(props) {
   const pages = props.pages;
@@ -8,6 +10,7 @@ function StoryPages(props) {
 
   let links = pages.map((page) => {
     return (
+      // TODO: Change to button
       <a
         className='item'
         key={page.id}
@@ -17,18 +20,14 @@ function StoryPages(props) {
           setSelectedPage(page);
           pageSelected(page);
         }}>
-        <i className='home icon'></i>
+        <i className='pencil alternate icon'></i>
         {page.title}
         <br />
-        <span>{page.description}</span> <br />
+        <span>{page.description}</span>
       </a>
     );
   });
 
-  return (
-    <div className='ui visible left vertical sidebar menu'>
-         {links}
-    </div>
-  );
+  return <div className='ui visible left vertical sidebar menu'>{links}</div>;
 }
 export default StoryPages;

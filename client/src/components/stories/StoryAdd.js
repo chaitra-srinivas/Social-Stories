@@ -6,7 +6,7 @@ import { GET_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 import Navigation from "../pages/Navigation";
-import { Button, Form, Image, Segment} from "semantic-ui-react";
+import { Button, Form} from "semantic-ui-react";
 
 
 const templates = require("./templates.json");
@@ -119,7 +119,7 @@ function StoryAdd() {
                   />
                 </div>
               </div>
-              <div className='form-group ui basic segment'>
+              <div className='ui basic segment'>
                 <StoryInput
                   selectedPage={selectedPage}
                   variablesModel={pageVariablesModel}
@@ -127,17 +127,18 @@ function StoryAdd() {
                 />
               </div>
               <div>
-                <p className='btn-group'>
+                <div style={{backgroundColor: "Yellow"}} className="twelve wide field">
                   <Button
+                   className="ui right floated button"
                     type='submit'
-                    id="btnSubmit"
+        /*             id="btnSubmit"  */
                     onClick={saveStory}>
                     Submit
                   </Button>
-                  <Link to='/' id="btnCancel">
+                  <Link  className="ui right floated button" to='/' id="btnCancel">
                     Cancel
                   </Link>
-                </p>
+                </div>
               </div>
             </Form>
           </div>
