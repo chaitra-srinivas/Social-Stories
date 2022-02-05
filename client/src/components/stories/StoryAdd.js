@@ -8,6 +8,8 @@ import StoryInput from "./StoryInput";
 import Navigation from "../pages/Navigation";
 import { Button, Form} from "semantic-ui-react";
 
+import Auth from "../../utils/auth";
+
 
 const templates = require("./templates.json");
 
@@ -69,6 +71,7 @@ function StoryAdd() {
         templateId: selectedTemplate.id,
         title: title.value,
         pages: pagesToSave,
+        userId: Auth.getProfile().data._id
       },
     });
     navigate("/stories");

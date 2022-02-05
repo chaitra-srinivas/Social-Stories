@@ -23,6 +23,7 @@ type Story{
     templateId: String!
     title: String
     pages: [Page]
+    userId: ID
 }
 
 type User{
@@ -30,7 +31,7 @@ type User{
     username: String
     email: String
     password: String
-    stories: [Story]
+   
 }
 
 type Auth {
@@ -56,6 +57,7 @@ input StoryInput{
     templateId: String!
     title: String!
     pages: [PageInput]!
+    userId: ID!
 }
 
 type Query{

@@ -28,14 +28,16 @@ const CREATE_STORY = gql`
   mutation createStory(
     $templateId: String!
     $title: String!
+    $userId: ID!
     $pages: [PageInput]!
   ) {
     createStory(
-      storyInput: { templateId: $templateId, title: $title, pages: $pages }
+      storyInput: { templateId: $templateId, title: $title,  userId: $userId,pages: $pages }
     ) {
       id
       templateId
       title
+      userId
       pages {
         id
         pageId
@@ -59,6 +61,7 @@ const DELETE_STORY = gql`
       id
       templateId
       title
+      userId
       pages {
         id
         pageId
@@ -81,15 +84,17 @@ const UPDATE_STORY = gql`
     $id: ID!
     $templateId: String!
     $title: String!
+    $userId: ID
     $pages: [PageInput]!
   ) {
     updateStory(
       id: $id
-      storyInput: { templateId: $templateId, title: $title, pages: $pages }
+      storyInput: { templateId: $templateId, title: $title, pages: $pages, userId: $userId }
     ) {
       id
       templateId
       title
+      userId
       pages {
         id
         pageId

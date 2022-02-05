@@ -5,38 +5,36 @@ const variablesSchema = new Schema({
     type: String,
     required: true,
   },
-   name: {
+  name: {
     type: String,
     required: false,
   },
   description: {
     type: String,
     required: false,
-  }, 
+  },
   value: {
     type: String,
     required: false,
   },
 });
 
-
 const pageSchema = new Schema({
-    pageId: {
-      type: String,
-      required: true,
-    },
-    content:{
-        type: String,
-        required: true,
-    },
-    image:{
-      type: String,
-      required: false,
-    },
-    variables: [variablesSchema],
-  });
+  pageId: {
+    type: String,
+    required: true,
+  },
+  content: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: false,
+  },
+  variables: [variablesSchema],
+});
 // A subdocument for page variables
-
 
 const storySchema = new Schema({
   templateId: {
@@ -46,14 +44,16 @@ const storySchema = new Schema({
   title: {
     type: String,
     required: true,
-  },    
-  
-  pages: [pageSchema],  
-  
+  },
+
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+
+  pages: [pageSchema],
 });
 
 // A subdocument for pages in a story
-
-
 
 module.exports = model("Stories", storySchema);

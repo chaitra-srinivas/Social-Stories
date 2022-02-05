@@ -6,24 +6,6 @@ const QUERY_USER = gql`
       _id
       username
       email
-      stories {
-        id
-        templateId
-        title
-        pages {
-          id
-          pageId
-          content
-          image
-          variables {
-            id
-            varId
-            name
-            description
-            value
-          }
-        }
-      }
     }
   }
 `;
@@ -34,6 +16,7 @@ const GET_STORIES = gql`
       id
       templateId
       title
+      userId
       pages {
         id
         pageId
@@ -57,6 +40,7 @@ const GET_STORY = gql`
       id
       templateId
       title
+      userId
       pages {
         id
         pageId

@@ -4,10 +4,16 @@ import { UPDATE_STORY } from "../../utils/mutations";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 
+import Auth from "../../utils/auth";
+
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 
 const templates = require("./templates.json");
+
+
+
+
 
 function StoryEdit(props) {
   let { id } = useParams();
@@ -16,6 +22,11 @@ function StoryEdit(props) {
   console.log(id);
 
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
+
+  if(data.userId===Auth.getProfile().data._id){
+    navigate("/");
+  }
+
   const [updateStory, { dataloading, error }] = useMutation(UPDATE_STORY, {
     update(cache, { data: { updateStory } }) {
       try {
@@ -30,6 +41,8 @@ function StoryEdit(props) {
     },
   });
   const story = data?.story || {};
+
+  
 
   let selectedTemplate = templates.find((f)=>f.id == story.templateId);
 
@@ -122,7 +135,6 @@ function StoryEdit(props) {
             variablesModel={variablesModel}
             variablesUpdated={variablesUpdated}
           />
-          {/*     <StoryContent dynamicContent={prepareDynamicContent}/> */}
         </div>
         <div>
           <p className='btn-group'>

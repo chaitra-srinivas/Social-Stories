@@ -5,10 +5,13 @@ import { GET_STORY, GET_STORIES } from "../../utils/queries";
 import { DELETE_STORY } from "../../utils/mutations";
 import { Grid, Image } from "semantic-ui-react";
 
+import Auth from "../../utils/auth";
+
 function StoryInfo() {
   let { id } = useParams();
   const { loading, data } = useQuery(GET_STORY, { variables: { id: id } });
   const singleStory = data?.story || {};
+  const canEdit = singleStory.userId === Auth.getProfile().data._id;
 
   const [deleteStory, { dataLoading, error }] = useMutation(DELETE_STORY, {
     variables: { id: singleStory.id },
@@ -61,17 +64,26 @@ function StoryInfo() {
       })}
 
       <p className='btn-group'>
-        <Link to={`/stories/${singleStory.id}/edit`} className='btn btn-info'>
-          Edit
-        </Link>
-        <button
-          className='btn btn-danger'
-          onClick={() => {
-            deleteStory({});
-            navigate("/stories/");
-          }}>
-          Delete
-        </button>
+        {canEdit ? (
+          <div>
+            <Link
+              to={`/stories/${singleStory.id}/edit`}
+              className='btn btn-info'>
+              Edit
+            </Link>
+            <button
+              className='btn btn-danger'
+              onClick={() => {
+                deleteStory({});
+                navigate("/stories/");
+              }}>
+              Delete
+            </button>
+          </div>
+        ) : (
+          <p></p>
+        )}
+
         <Link to='/stories' className='btn btn-secondary'>
           Close
         </Link>
