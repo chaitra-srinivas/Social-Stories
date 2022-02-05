@@ -56,6 +56,20 @@ h2 {
   background-color: var(--navItemBackgroundColor);
   color: var(--navItemTextColor);
   font-family: "Happy Monkey", cursive;
+  width: 100px;
+  text-align: center;
+  font-weight: bolder;
+  height: 30px;
+}
+
+#btnCancel {
+  background-color: var(--navItemTextColor);
+  color: var(--navItemBackgroundColor);
+  font-family: "Happy Monkey", cursive;
+  width: 100px;
+  text-align: center;
+  font-weight: bolder;
+  height: 30px;
 }
 
 #msg {

@@ -1,37 +1,34 @@
 import { React, useState } from "react";
 
 function StoryPages(props) {
-  const  pages  = props.pages;
-  const  pageSelected  = props.pageSelected;
-  
+  const pages = props.pages;
+  const pageSelected = props.pageSelected;
+
   const [selectedPage, setSelectedPage] = useState(pages[0]);
 
- let links = pages.map((page)=>{
+  let links = pages.map((page) => {
     return (
-        <div key={page.id}>
-               <a
-                 href='#'
-                 onClick={(e) => {
-                   e.preventDefault();
-                  setSelectedPage(page);
-                  pageSelected(page);
-                 }}>
-                 {page.title}
-               </a>
-               <br />
-               <span>{page.description}</span> <br />
-             </div>
-         );
-  })
+      <a
+        className='item'
+        key={page.id}
+        href='#'
+        onClick={(e) => {
+          e.preventDefault();
+          setSelectedPage(page);
+          pageSelected(page);
+        }}>
+        <i className='home icon'></i>
+        {page.title}
+        <br />
+        <span>{page.description}</span> <br />
+      </a>
+    );
+  });
 
-  return(
-      <div>
-        <ul>
-          <li>{links}</li>
-        </ul>
-      </div>
-  )
-
-  
+  return (
+    <div className='ui visible left vertical sidebar menu'>
+         {links}
+    </div>
+  );
 }
 export default StoryPages;

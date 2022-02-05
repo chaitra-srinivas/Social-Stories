@@ -5,7 +5,9 @@ import { CREATE_STORY } from "../../utils/mutations";
 import { GET_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
-import Navigation from '../pages/Navigation';
+import Navigation from "../pages/Navigation";
+import { Button, Form, Image, Segment} from "semantic-ui-react";
+
 
 const templates = require("./templates.json");
 
@@ -14,7 +16,7 @@ function StoryAdd() {
   let title;
   let id = useParams();
 
-  let selectedTemplate =  templates.find((f)=>f.id === id.id);
+  let selectedTemplate = templates.find((f) => f.id === id.id);
 
   const [selectedPage, setSelectedPage] = useState(selectedTemplate.pages[0]);
 
@@ -56,8 +58,7 @@ function StoryAdd() {
             varId: v.id,
             name: v.name,
             description: v.description,
-            value: pageVariables.variables.find((f) => f.varId === v.id)
-              .value,
+            value: pageVariables.variables.find((f) => f.varId === v.id).value,
           };
         }),
       };
@@ -95,48 +96,53 @@ function StoryAdd() {
   return (
     <div>
       <Navigation />
-      <div style={{ float: "left", width: "300px" }}>
+      <div className='ui bottom attached segment pushable'>
         <StoryPages
           pages={selectedTemplate.pages}
           pageSelected={pageSelected}
         />
+        <div className='pusher'>
+          <div className='ui basic segment'>
+            <Form size="large"
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}>
+              <div className='form-group'>
+                <div className='ui header'>
+                  <label>Title:</label>
+                  <input
+                    type='text'
+                    className='form-control'
+                    ref={function (node) {
+                      return (title = node);
+                    }}
+                  />
+                </div>
+              </div>
+              <div className='form-group ui basic segment'>
+                <StoryInput
+                  selectedPage={selectedPage}
+                  variablesModel={pageVariablesModel}
+                  variablesUpdated={variablesUpdated}
+                />
+              </div>
+              <div>
+                <p className='btn-group'>
+                  <Button
+                    type='submit'
+                    id="btnSubmit"
+                    onClick={saveStory}>
+                    Submit
+                  </Button>
+                  <Link to='/' id="btnCancel">
+                    Cancel
+                  </Link>
+                </p>
+              </div>
+            </Form>
+          </div>
+        </div>
       </div>
-      <form
-        style={{ float: "right", width: "700px" }}
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}>
-        <div className='form-group'>
-          <label>Title:</label>
-          <input
-            type='text'
-            className='form-control'
-            ref={function (node) {
-              return (title = node);
-            }}
-          />
-        </div>
-        <div className='form-group'>
-          <StoryInput
-            selectedPage={selectedPage}
-            variablesModel={pageVariablesModel}
-            variablesUpdated={variablesUpdated}
-          />
-        </div>
-        <div>
-          <p className='btn-group'>
-            <button
-              type='submit'
-              className='btn btn-primary'
-              onClick={saveStory}>
-              Submit
-            </button>
-            <Link to='/' className='btn btn-secondary'>
-              Cancel
-            </Link>
-          </p>
-        </div>
-      </form>
     </div>
   );
 }
