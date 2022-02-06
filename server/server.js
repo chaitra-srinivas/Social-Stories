@@ -12,7 +12,6 @@ const resolvers = require("./schemas/resolvers");
 const { authMiddleware } = require("./utils/auth");
 const PORT = process.env.PORT || 3001;
 
-
 const app = express();
 
 async function startApolloServer(typeDefs, resolvers) {
@@ -34,7 +33,13 @@ async function startApolloServer(typeDefs, resolvers) {
     console.log("Mongoose connection error: " + error);
   });
 
- 
+  if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, "../client/build")));
+  }
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  });
 
   await server.start();
   server.applyMiddleware({ app });
