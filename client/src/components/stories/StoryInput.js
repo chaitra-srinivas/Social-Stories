@@ -48,11 +48,10 @@ function StoryInput(props) {
 
   let variables = selectedPage.variables.map((variable) => {
     return (
-      <div key={variable.id} className='nine wide field'>
-        <label>{variable.description}:</label>
+      <div  key={variable.id} className='nine wide field'>
+        <label >{variable.description}:</label>
         <input
           type='text'
-          /*  className='form-control' */
           value={getVarValue(selectedPage.id, variable.id)}
           onChange={(e) => {
             setVariablesModel(
@@ -66,7 +65,7 @@ function StoryInput(props) {
   });
 
   return (
-    <div className='ui two column divided grid'>
+    <div id="storyList"  className='ui two column divided grid'>
       <div className='stretched row'>
         <div className='column'>
           <div className='ui segment'>
@@ -74,12 +73,11 @@ function StoryInput(props) {
           </div>
         </div>
         <div className='column'>
-          <div className='ui form'>
+          <div  className='ui form'>
             {variables}
             <div className='ui message nine wide field'>
               <div className='header'>Preview</div>
               <div
-                className=''
                 dangerouslySetInnerHTML={{ __html: dynamicContent }}></div>
             </div>
           </div>

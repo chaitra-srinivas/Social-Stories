@@ -6,10 +6,9 @@ import { GET_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 import Navigation from "../pages/Navigation";
-import { Button, Form} from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 
 import Auth from "../../utils/auth";
-
 
 const templates = require("./templates.json");
 
@@ -71,7 +70,7 @@ function StoryAdd() {
         templateId: selectedTemplate.id,
         title: title.value,
         pages: pagesToSave,
-        userId: Auth.getProfile().data._id
+        userId: Auth.getProfile().data._id,
       },
     });
     navigate("/stories");
@@ -106,22 +105,23 @@ function StoryAdd() {
         />
         <div className='pusher'>
           <div className='ui basic segment'>
-            <Form size="large"
+            <Form
+              size='large'
               onSubmit={(e) => {
                 e.preventDefault();
               }}>
-              <div className='form-group'>
-                <div className='ui header'>
-                  <label>Title:</label>
-                  <input
-                    type='text'
-                    className='ten wide field'
-                    ref={function (node) {
-                      return (title = node);
-                    }}
-                  />
+              <div className='ui header'>
+                <label>Title:</label>
                 </div>
-              </div>
+                <div className='seven wide field'>
+                <input
+                  type='text'
+                  ref={function (node) {
+                    return (title = node);
+                  }}
+                />
+                </div>
+              
               <div className='ui basic segment'>
                 <StoryInput
                   selectedPage={selectedPage}
@@ -130,15 +130,18 @@ function StoryAdd() {
                 />
               </div>
               <div>
-                <div style={{backgroundColor: "Yellow"}} className="twelve wide field">
+                <div className='ui segment button'>
                   <Button
-                   className="ui right floated button"
+                    className='ui right floated button'
                     type='submit'
-        /*             id="btnSubmit"  */
+                    id='btnSubmit'
                     onClick={saveStory}>
                     Submit
                   </Button>
-                  <Link  className="ui right floated button" to='/' id="btnCancel">
+                  <Link
+                    className='ui right floated button'
+                    to='/'
+                    id='btnCancel'>
                     Cancel
                   </Link>
                 </div>

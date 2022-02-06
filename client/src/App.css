@@ -64,6 +64,12 @@ h2 {
   font-family: "Happy Monkey", cursive;
 }
 
+#btnDelete {
+  background-color: rgb(228, 52, 52);
+  color: var(--navItemBackgroundColor);
+  font-family: "Happy Monkey", cursive;
+}
+
 #msg {
   color: var(--headerTextColor);
 }
@@ -98,7 +104,7 @@ h2 {
   padding: 50px;
 }
 
-.pageLink {
+#pageLink {
   font-family: "Happy Monkey", cursive;
   font-size: 1rem;
   font-weight: bolder;

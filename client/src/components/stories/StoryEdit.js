@@ -3,7 +3,7 @@ import { GET_STORY } from "../../utils/queries";
 import { UPDATE_STORY } from "../../utils/mutations";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
-import { Button, Form} from "semantic-ui-react";
+import { Button, Form } from "semantic-ui-react";
 
 import Auth from "../../utils/auth";
 
@@ -95,7 +95,7 @@ function StoryEdit(props) {
         templateId: story.templateId,
         title: title,
         pages: pagesToUpdate,
-        userId: Auth.getProfile().data._id
+        userId: Auth.getProfile().data._id,
       },
     });
     navigate("/stories/");
@@ -109,54 +109,59 @@ function StoryEdit(props) {
           pages={selectedTemplate.pages}
           pageSelected={pageSelected}
         />
-     
-      <div className='pusher'>
-          <div className='ui basic segment'>
-      <Form
-        size="large"
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}>
-        <div className='ui header'>
-          <label>Title:</label>
-          <input
-            type='text'
-            className='twelve wide field'
-            value={title}
-            onChange={(e) => {
-              setTitle(e.target.value);
-            }}
-          />
-        </div>
-        <div className='ui basic segment'>
-          <StoryInput
-            selectedPage={selectedPage}
-            variablesModel={variablesModel}
-            variablesUpdated={variablesUpdated}
-          />
-        </div>
-        <div>
-          <p className='btn-group'>
-            {canEdit ? (
-              <button
-                type='submit'
-                className='btn btn-primary'
-                onClick={editStory}>
-                Update
-              </button>
-            ) : (
-              <p></p>
-            )}
 
-            <Link to='/stories' className='btn btn-secondary'>
-              Cancel
-            </Link>
-          </p>
+        <div className='pusher'>
+          <div className='ui basic segment'>
+            <Form
+              size='large'
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}>
+              <div className='ui header'>
+                <label>Title:</label>
+              </div>
+              <div className='seven wide field'>
+                <input
+                  type='text'
+                  className='twelve wide field'
+                  value={title}
+                  onChange={(e) => {
+                    setTitle(e.target.value);
+                  }}
+                />
+              </div>
+              <div className='ui basic segment'>
+                <StoryInput
+                  selectedPage={selectedPage}
+                  variablesModel={variablesModel}
+                  variablesUpdated={variablesUpdated}
+                />
+              </div>
+              <div>
+                <div className='ui segment button'>
+                  {canEdit ? (
+                    <Button
+                      type='submit'
+                      id='btnSubmit'
+                      className='ui right floated button'
+                      onClick={editStory}>
+                      Update
+                    </Button>
+                  ) : (
+                    <p></p>
+                  )}
+                  <Link
+                    id='btnCancel'
+                    to='/stories'
+                    className='ui right floated button'>
+                    Cancel
+                  </Link>
+                </div>
+              </div>
+            </Form>
+          </div>
         </div>
-      </Form>
       </div>
-    </div>
-    </div>
     </div>
   );
 }

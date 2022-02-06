@@ -4,6 +4,7 @@ import { useQuery, useMutation } from "@apollo/client";
 import { GET_STORY, GET_STORIES } from "../../utils/queries";
 import { DELETE_STORY } from "../../utils/mutations";
 import { Grid, Image } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 import Auth from "../../utils/auth";
 
@@ -16,7 +17,7 @@ function StoryInfo() {
   const [deleteStory, { dataLoading, error }] = useMutation(DELETE_STORY, {
     variables: { id: singleStory.id },
     refetchQueries: [GET_STORIES],
-     update(cache, { data: { deleteStory } }) {
+    update(cache, { data: { deleteStory } }) {
       try {
         const stories = cache.readQuery({ query: GET_STORIES });
         cache.writeQuery({
@@ -26,7 +27,7 @@ function StoryInfo() {
       } catch (e) {
         console.log(e);
       }
-    },  
+    },
   });
 
   const navigate = useNavigate();
@@ -34,60 +35,63 @@ function StoryInfo() {
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <div className='ui container'>
-      <h2>{singleStory.title}</h2>
-      {singleStory.pages.map((page) => {
-        return (
-          <Grid key={page.id} columns={2} padded>
-            <Grid.Row>
-              <div id='pageContent' className='ui raised segment'>
-                <div className='item'>
-                  <div className='ui medium image'>
-                    <Image
-                      className='img'
-                      size='large'
-                      centered
-                      src={page.image}
-                      alt='pageimage'
-                    />
+    <div>
+      <div className='ui container'>
+        <h2>{singleStory.title}</h2>
+        {singleStory.pages.map((page) => {
+          return (
+            <Grid key={page.id} columns={2} padded>
+              <Grid.Row>
+                <div id='pageContent' className='ui raised segment'>
+                  <div className='item'>
+                    <div className='ui medium image'>
+                      <Image
+                        className='img'
+                        size='large'
+                        centered
+                        src={page.image}
+                        alt='pageimage'
+                      />
+                    </div>
+                  </div>
+                  <div className='item'>
+                    <div id='pContent' className=''>
+                      <p>{page.content}</p>
+                    </div>
                   </div>
                 </div>
-                <div className='item'>
-                  <div id='pContent' className=''>
-                    <p>{page.content}</p>
-                  </div>
-                </div>
-              </div>
-            </Grid.Row>
-          </Grid>
-        );
-      })}
-      <p className='btn-group'>
+              </Grid.Row>
+            </Grid>
+          );
+        })}
+      </div>
+
+      <div className='ui container'>
         {canEdit ? (
           <div>
             <Link
               to={`/stories/${singleStory.id}/edit`}
-              className='btn btn-info'>
+              id='btnSubmit'
+              className='ui left floated button'>
               Edit
             </Link>
-            <button
-              className='btn btn-danger'
+            <Button
+              className='ui left floated button'
+              id='btnDelete'
               onClick={() => {
                 deleteStory({});
                 navigate("/stories/");
               }}>
               Delete
-            </button>
+            </Button>
           </div>
         ) : (
           <p></p>
         )}
-
-        <Link to='/stories' className='btn btn-secondary'>
+        <Link to='/stories' id='btnCancel' className='ui left floated button'>
           Close
         </Link>
-      </p>
-      <hr />
+      </div>
     </div>
   );
 }
