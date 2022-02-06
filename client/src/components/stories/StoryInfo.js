@@ -65,7 +65,6 @@ function StoryInfo() {
           );
         })}
       </div>
-
       <div className='ui container'>
         {canEdit ? (
           <div>

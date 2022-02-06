@@ -23,15 +23,24 @@ function StoryList() {
 
   const storyList = data?.stories || [];
   if (loading) return "Loading...";
-  if (!storyList.length) {
-    return <h3>No stories added yet.</h3>;
+
+  function checkAvailableStories(storyList){
+
+    if(!storyList.length){
+      const noStories = false;
+      return noStories;
+    }
+    
   }
+
+
+  
 
   return (
     <div> 
       <Navigation />
       <h2>Stories</h2>
-      {storyList.map((story) => {
+      {(!storyList.length) ? (<div id='storyList'><p>No Stories Available</p> </div>) : (<div>{storyList.map((story) => {
         return (
           <List id='storyList'>
             <List.Item key={story.pageId}>
@@ -47,7 +56,8 @@ function StoryList() {
             </List.Item>
           </List>
         );
-      })}
+      })}</div>)}
+      
     </div>
   );
 }

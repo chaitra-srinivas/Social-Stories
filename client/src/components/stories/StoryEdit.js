@@ -109,7 +109,6 @@ function StoryEdit(props) {
           pages={selectedTemplate.pages}
           pageSelected={pageSelected}
         />
-
         <div className='pusher'>
           <div className='ui basic segment'>
             <Form
