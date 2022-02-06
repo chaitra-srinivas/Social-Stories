@@ -11,6 +11,8 @@ const resolvers = require("./schemas/resolvers");
 
 const { authMiddleware } = require("./utils/auth");
 const PORT = process.env.PORT || 3001;
+
+
 const app = express();
 
 async function startApolloServer(typeDefs, resolvers) {
@@ -36,7 +38,7 @@ async function startApolloServer(typeDefs, resolvers) {
 
   await server.start();
   server.applyMiddleware({ app });
-  await new Promise((resolve) => httpServer.listen({ port: 3001 }, resolve));
+  await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
   console.log(`🚀 Server ready at http://localhost:3001${server.graphqlPath}`);
 }
 startApolloServer(typeDefs, resolvers, authMiddleware);
