@@ -22,7 +22,7 @@ function Navigation() {
             Create Story
           </Link>
           <div className='right menu'>
-            <Link id='navItem' className='item' to='/'>
+            <Link id='navItem' className='item' to='/profile'>
               {Auth.getProfile().data.username}'s profile
             </Link>
             <button id='navItem' className='item' onClick={logout}>

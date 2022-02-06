@@ -14,6 +14,10 @@ const resolvers = {
       const params = username ? { username } : {};
       return await Stories.find(params).sort({ title: -1 });
     },
+    mystories: async (root, {userId}) => {
+      const params = userId ? { userId } : {};
+      return await Stories.find(params).sort({ title: -1 });
+    },
     story: async function (parent, args) {
       return await Stories.findById(args.id);
     },

@@ -24,18 +24,6 @@ function StoryList() {
   const storyList = data?.stories || [];
   if (loading) return "Loading...";
 
-  function checkAvailableStories(storyList){
-
-    if(!storyList.length){
-      const noStories = false;
-      return noStories;
-    }
-    
-  }
-
-
-  
-
   return (
     <div> 
       <Navigation />

@@ -65,6 +65,7 @@ type Query{
     users: [User]
     user(username: String): User
     stories(username: String): [Story]
+    mystories(userId: ID!): [Story]
 }
 
 type Mutation {

@@ -34,6 +34,30 @@ const GET_STORIES = gql`
   }
 `;
 
+const GET_MY_STORIES = gql`
+  query mystories($userId: ID!) {
+    mystories(userId: $userId) {
+      id
+      templateId
+      title
+      userId
+      pages {
+        id
+        pageId
+        content
+        image
+        variables {
+          id
+          varId
+          name
+          description
+          value
+        }
+      }
+    }
+  }
+`;
+
 const GET_STORY = gql`
   query story($id: ID!) {
     story(id: $id) {
@@ -58,4 +82,4 @@ const GET_STORY = gql`
   }
 `;
 
-export { GET_STORY, GET_STORIES, QUERY_USER };
+export { GET_STORY, GET_STORIES, GET_MY_STORIES, QUERY_USER };

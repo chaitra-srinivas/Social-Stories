@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
 import Home from "./components/pages/Home";
-import Navigation from "./components/pages/Navigation";
+import Profile from "./components/pages/Profile";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 
@@ -75,6 +75,7 @@ function Main() {
       <Route exact path='/stories/:id/new' element={<StoryAdd />} />
       <Route exact path='/stories/:id' element={<StoryInfo />} />
       <Route exact path='/stories/:id/edit' element={<StoryEdit />} />
+      <Route exact path='/profile' element={<Profile />} />
     </Routes>
   );
 }
