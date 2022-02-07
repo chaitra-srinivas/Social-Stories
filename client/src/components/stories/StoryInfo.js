@@ -37,13 +37,11 @@ function StoryInfo() {
 
   return (
     <div className='ui container'>
-      <Navigation />
-      <div>
-        <h2>{singleStory.title}</h2>
+      <Navigation /> <h2>{singleStory.title}</h2>
         {singleStory.pages.map((page) => {
           return (
             <div
-              className='ui two column very relaxed grid raised segment'
+              className='ui two column  grid raised segment'
               key={page.id}>
               {/*  <Grid.Row> */}
               {/* <div id='pageContent' className='ui raised segment'>
@@ -75,33 +73,36 @@ function StoryInfo() {
             </div>
           );
         })}
-      </div>
-      <div className='ui container'>
+      <div >
         {canEdit ? (
-          <div>
-            <Link
-              to={`/stories/${singleStory.id}/edit`}
-              id='btnSubmit'
-              className='ui left floated button'>
-              Edit
-            </Link>
-            <Button
-              className='ui left floated button'
-              id='btnDelete'
-              onClick={() => {
-                deleteStory({});
-                navigate("/stories/");
-              }}>
-              Delete
-            </Button>
-          </div>
+          <Link
+            to={`/stories/${singleStory.id}/edit`}
+            id='btnSubmit'
+            className='ui button'>
+            Edit
+          </Link>
         ) : (
-          <p></p>
+          <div></div>
         )}
-        <Link to='/stories' id='btnCancel' className='ui left floated button'>
+        {canEdit ? (
+          <Button
+          className='ui button'
+            id='btnDelete'
+            onClick={() => {
+              deleteStory({});
+              navigate("/stories/");
+            }}>
+            Delete
+          </Button>
+        ) : (
+          <div></div>
+        )}
+
+        <Link to='/stories' id='btnCancel' className='ui button'>
           Close
         </Link>
       </div>
+
     </div>
   );
 }
