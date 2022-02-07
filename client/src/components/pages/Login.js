@@ -12,6 +12,7 @@ import {
   Image,
   Message,
   Segment,
+  Loader,
 } from "semantic-ui-react";
 import logo from "../images/SocialStories.gif";
 
@@ -63,12 +64,13 @@ const Login = (props) => {
           <Header id='loginHeader' textAlign='center'>
             <Image src={logo} /> Log-in
           </Header>
-          {data ? (
+         {data ? (
             <p>
-              Success! You may now head{" "}
-              <Link to='/stories'>View avaliable stories</Link>
+              <Loader active inline='centered' />
+              Successful login! <br/>
+              You can now view, share and create social stories!
             </p>
-          ) : (
+          ) : ( 
             <Form size='large' onSubmit={handleFormSubmit}>
               <Segment>
                 <Form.Input
@@ -101,7 +103,7 @@ const Login = (props) => {
                 </Message>
               </Segment>
             </Form>
-          )}
+           )} 
           {error && <div id='errorMsg'>{error.message}</div>}
         </Grid.Column>
       </Grid>

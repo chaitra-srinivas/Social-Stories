@@ -6,7 +6,7 @@ import Navigation from "./Navigation";
 import Auth from "../../utils/auth";
 import "../../App.css";
 
-import { Button, Form, Grid, Header, Image, Segment } from "semantic-ui-react";
+import { Button, Form, Grid, Header, Image, Segment, Loader } from "semantic-ui-react";
 import logo from "../images/SocialStories.gif";
 
 const Signup = () => {
@@ -44,8 +44,7 @@ const Signup = () => {
         variables: { ...formState },
       });
 
-      console.log(data);
-
+    
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -65,8 +64,8 @@ const Signup = () => {
           </Header>
           {data ? (
             <p>
-              Success! You may now head{" "}
-              <Link to='/template'>Create a new story.</Link>
+               <Loader active inline='centered' />
+              You are all set now!
             </p>
           ) : (
             <Form size='large' onSubmit={handleFormSubmit}>
