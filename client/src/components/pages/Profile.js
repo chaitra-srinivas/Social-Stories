@@ -37,7 +37,7 @@ function Profile() {
   </p>
 
   return (
-    <div>
+    <div className="home ui container">
       <Navigation />
       <h2>My Stories</h2>
       {!storyList.length ? (

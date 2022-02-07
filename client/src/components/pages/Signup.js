@@ -5,7 +5,15 @@ import Navigation from "./Navigation";
 import Auth from "../../utils/auth";
 import "../../App.css";
 
-import { Button, Form, Grid, Header, Image, Segment, Loader } from "semantic-ui-react";
+import {
+  Button,
+  Form,
+  Grid,
+  Header,
+  Image,
+  Segment,
+  Loader,
+} from "semantic-ui-react";
 import logo from "../images/SocialStories.gif";
 
 const Signup = () => {
@@ -43,7 +51,6 @@ const Signup = () => {
         variables: { ...formState },
       });
 
-    
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -51,7 +58,7 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className='home ui center aligned container'>
       <Navigation />
       <Grid
         textAlign='center'
@@ -63,7 +70,7 @@ const Signup = () => {
           </Header>
           {data ? (
             <p>
-               <Loader active inline='centered' />
+              <Loader active inline='centered' />
               You are all set now!
             </p>
           ) : (

@@ -31,7 +31,7 @@ function StoryList() {
   if (loading) return "Loading...";
 
   return (
-    <div>
+    <div className="home ui container">
       <Navigation />
       <h2>Stories</h2>
       {!storyList.length ? (

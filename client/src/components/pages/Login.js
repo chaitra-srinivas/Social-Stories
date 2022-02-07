@@ -54,7 +54,7 @@ const Login = (props) => {
   };
 
   return (
-    <div>
+    <div className="home ui center aligned container">
       <Navigation />
       <Grid
         textAlign='center'

@@ -96,7 +96,7 @@ function StoryAdd() {
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <div>
+    <div  className="home ui container">
       <Navigation />
       <div className='ui bottom attached segment pushable'>
         <StoryPages

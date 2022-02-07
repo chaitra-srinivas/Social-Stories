@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Button, Icons, List, Image } from "semantic-ui-react";
+import { List } from "semantic-ui-react";
 import "../../App.css";
 
 function StoryPages(props) {

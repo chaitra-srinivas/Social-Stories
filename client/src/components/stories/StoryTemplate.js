@@ -8,7 +8,7 @@ function StoryTemplate() {
   const templates = require("./templates.json");
 
   return (
-    <div>
+    <div  className='home ui center aligned container'>
       <Navigation />
       <h2>Please choose a template:</h2>
       <div className='ui cards centered'>

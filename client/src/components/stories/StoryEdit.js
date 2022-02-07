@@ -102,7 +102,7 @@ function StoryEdit(props) {
   }
 
   return (
-    <div>
+    <div className="home ui  container">
       <Navigation />
       <div className='ui bottom attached segment pushable'>
         <StoryPages
@@ -122,27 +122,23 @@ function StoryEdit(props) {
               <div className='seven wide field'>
                 <input
                   type='text'
-                  className='twelve wide field'
                   value={title}
                   onChange={(e) => {
                     setTitle(e.target.value);
                   }}
                 />
               </div>
-              <div className='ui basic segment'>
-                <StoryInput
+              <StoryInput
                   selectedPage={selectedPage}
                   variablesModel={variablesModel}
                   variablesUpdated={variablesUpdated}
                 />
-              </div>
               <div>
-                <div className='ui segment button'>
-                  {canEdit ? (
+              {canEdit ? (
                     <Button
                       type='submit'
                       id='btnSubmit'
-                      className='ui right floated button'
+                      className='ui button'
                       onClick={editStory}>
                       Update
                     </Button>
@@ -152,10 +148,9 @@ function StoryEdit(props) {
                   <Link
                     id='btnCancel'
                     to='/stories'
-                    className='ui right floated button'>
+                    className='ui  button'>
                     Cancel
                   </Link>
-                </div>
               </div>
             </Form>
           </div>

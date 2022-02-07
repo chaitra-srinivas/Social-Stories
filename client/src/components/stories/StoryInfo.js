@@ -35,7 +35,7 @@ function StoryInfo() {
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <div>
+    <div  className="home ui center aligned container">
       <div className='ui container'>
         <h2>{singleStory.title}</h2>
         {singleStory.pages.map((page) => {
