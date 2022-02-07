@@ -104,8 +104,13 @@ h2 {
   padding: 50px;
 }
 
-#pageLink {
+/* #pageLink {
   font-family: "Happy Monkey", cursive;
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: bolder;
-}
+} */
+
+ #pageDesc{
+  padding-left: 20px;
+  font-size: 1rem;
+} 

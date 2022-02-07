@@ -73,7 +73,7 @@
       {
         "id": "p004",
         "title": "Additional details",
-        "description": "Add any other relevant details here",
+        "description": "Any other relevant details here",
         "image": "https://images.unsplash.com/photo-1605627079912-97c3810a11a4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDV8fHNjaG9vbCUyMHBsYXlncm91bmR8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60",
         "content": "{AddDetails}",
         "variables": [

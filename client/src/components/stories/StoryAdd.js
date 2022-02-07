@@ -112,39 +112,31 @@ function StoryAdd() {
               }}>
               <div className='ui header'>
                 <label>Title:</label>
-                </div>
-                <div className='seven wide field'>
+              </div>
+              <div className='seven wide field'>
                 <input
                   type='text'
                   ref={function (node) {
                     return (title = node);
                   }}
                 />
-                </div>
-              
-              <div className='ui basic segment'>
-                <StoryInput
-                  selectedPage={selectedPage}
-                  variablesModel={pageVariablesModel}
-                  variablesUpdated={variablesUpdated}
-                />
               </div>
+              <StoryInput
+                selectedPage={selectedPage}
+                variablesModel={pageVariablesModel}
+                variablesUpdated={variablesUpdated}
+              />
               <div>
-                <div className='ui segment button'>
-                  <Button
-                    className='ui right floated button'
-                    type='submit'
-                    id='btnSubmit'
-                    onClick={saveStory}>
-                    Submit
-                  </Button>
-                  <Link
-                    className='ui right floated button'
-                    to='/'
-                    id='btnCancel'>
-                    Cancel
-                  </Link>
-                </div>
+                <Button
+                  className='ui button'
+                  type='submit'
+                  id='btnSubmit'
+                  onClick={saveStory}>
+                  Submit
+                </Button>
+                <Link className='ui button' to='/' id='btnCancel'>
+                  Cancel
+                </Link>
               </div>
             </Form>
           </div>

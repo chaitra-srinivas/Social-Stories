@@ -69,7 +69,7 @@ function StoryInput(props) {
     <div id="storyList"  className='ui two column divided grid'>
       <div className='stretched row'>
         <div className='column'>
-          <div className='ui segment'>
+          <div>
             <Image src={selectedPage.image} alt='school' />
           </div>
         </div>

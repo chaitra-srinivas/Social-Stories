@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Icons } from "semantic-ui-react";
+import { Button, Icons, List, Image } from "semantic-ui-react";
 import "../../App.css";
 
 function StoryPages(props) {
@@ -10,21 +10,23 @@ function StoryPages(props) {
 
   let links = pages.map((page) => {
     return (
-      // TODO: Change to button
-      <a
-        className='item'
+      <div
+        ui
+        celled
+        list
         key={page.id}
-        href='#'
+        className='item'
         onClick={(e) => {
           e.preventDefault();
           setSelectedPage(page);
           pageSelected(page);
         }}>
         <i className='pencil alternate icon'></i>
-        {page.title}
-        <br />
-        <span>{page.description}</span>
-      </a>
+        <List className='content'>
+          <div className='ui header'>{page.title}</div>
+          {page.description}
+        </List>
+      </div>
     );
   });
 
