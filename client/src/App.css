@@ -35,8 +35,8 @@ h2 {
 
 #tagLine,
 #storyList {
-  font-family: "Happy Monkey", cursive;
-  font-size: 1.5rem;
+  /* font-family: "Happy Monkey", cursive;*/
+  font-size:1.5rem; 
   padding: 50px;
 }
 
@@ -104,11 +104,11 @@ h2 {
   padding: 50px;
 }
 
-/* #pageLink {
+#pageLink {
   font-family: "Happy Monkey", cursive;
   font-size: 1.3rem;
   font-weight: bolder;
-} */
+} 
 
  #pageDesc{
   padding-left: 20px;
