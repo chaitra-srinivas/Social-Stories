@@ -3,8 +3,9 @@
 [
   {
     "id": "t001",
-    "title": "Transition template",
-    "description": "Use this for transition",
+    "title": "Transition",
+    "description": "Transitioning to a new grade at the beginning of a school year can be a tricky situation for some students. It can trigger a lot of anxiety and distress to some students - Use this template to create a story to support the individual needs of your students.",
+    "image": "https://i.pinimg.com/236x/3d/a2/0c/3da20ca45b941688cb3746663b9a057f.jpg",
     "pages": [
       {
         "id": "p001",
@@ -88,8 +89,9 @@
   },
   {
     "id": "t002",
-    "title": "Excursion template",
-    "description": "Use this template to prepare the student for an excursion",
+    "title": "Excursion",
+    "description": "Being aware of the schedule and a detailed breakdown of the day in an unfamiliar environment can prepare students and make the experience more enjoyable. This template can be used to prepare your student for a field trip outside of school.",
+    "image": "https://i.pinimg.com/originals/a5/b4/73/a5b473e5a62b707ea32bed6f08bc554f.jpg",
     "pages": [
       {
         "id": "p001",
@@ -183,8 +185,9 @@
 
   {
     "id": "t003",
-    "title": "Managing anger/feelings template",
-    "description": "Use this template to teach students how to appropriately manage their emotions",
+    "title": "Managing emotions",
+    "description": "Some students can experience a myraid of emotions during a busy school day. This template can be used to support and educate students and remind them to use strategies to appropriately manage their emotions",
+    "image": "https://files.liveworksheets.com/def_files/2020/9/17/917074812334087/917074812334087001.jpg",
     "pages": [
       {
         "id": "p001",

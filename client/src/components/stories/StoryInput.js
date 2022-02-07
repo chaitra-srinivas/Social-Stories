@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { Image, Form } from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 
 function StoryInput(props) {
   const selectedPage = props.selectedPage;
@@ -13,6 +13,7 @@ function StoryInput(props) {
     setDynamicContent(getDynamicContent());
   }, [getDynamicContent]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function getDynamicContent() {
     let dynContent = selectedPage.content;
     selectedPage.variables.forEach((variable) => {
