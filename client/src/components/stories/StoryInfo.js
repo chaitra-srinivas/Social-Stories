@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_STORY, GET_STORIES } from "../../utils/queries";
 import { DELETE_STORY } from "../../utils/mutations";
-import { Grid, Image, Button } from "semantic-ui-react";
+import { Image, Button } from "semantic-ui-react";
 
 import Navigation from "../pages/Navigation";
 
@@ -38,42 +38,27 @@ function StoryInfo() {
   return (
     <div className='ui container'>
       <Navigation /> <h2>{singleStory.title}</h2>
-        {singleStory.pages.map((page) => {
-          return (
-            <div
-              className='ui two column  grid raised segment'
-              key={page.id}>
-              {/*  <Grid.Row> */}
-              {/* <div id='pageContent' className='ui raised segment'>
-                  <div className='item'>
-                    <div className='ui medium image'> */}
-              <div className='column'>
-                <div>
-                  <Image
-                    className='img'
-                    size='large'
-                    centered
-                    src={page.image}
-                    alt='pageimage'
-                  />
-                </div>
+      {singleStory.pages.map((page) => {
+        return (
+          <div className='ui two column  grid raised segment' key={page.id}>
+            <div className='column'>
+              <div>
+                <Image
+                  className='img'
+                  size='large'
+                  centered
+                  src={page.image}
+                  alt='pageimage'
+                />
               </div>
-              <div id='pContent' className='column'>
-                <p>{page.content}</p>
-              </div>
-              {/*  </div>
-                  </div> */}
-              {/*  <div className='item'>
-                    <div id='pContent' className=''> */}
-
-              {/* </div>
-                  </div> */}
-              {/*  </div> */}
-              {/*   </Grid.Row> */}
             </div>
-          );
-        })}
-      <div >
+            <div id='pContent' className='column'>
+              <p>{page.content}</p>
+            </div>
+          </div>
+        );
+      })}
+      <div>
         {canEdit ? (
           <Link
             to={`/stories/${singleStory.id}/edit`}
@@ -86,7 +71,7 @@ function StoryInfo() {
         )}
         {canEdit ? (
           <Button
-          className='ui button'
+            className='ui button'
             id='btnDelete'
             onClick={() => {
               deleteStory({});
@@ -97,12 +82,10 @@ function StoryInfo() {
         ) : (
           <div></div>
         )}
-
         <Link to='/stories' id='btnCancel' className='ui button'>
           Close
         </Link>
       </div>
-
     </div>
   );
 }
