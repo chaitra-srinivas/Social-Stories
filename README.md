@@ -23,7 +23,7 @@
     <li><a href="#contributor">Contact</a></li>
       <li><a href="#project-links">Project Links</a></li>
     <li><a href="#installation">Installation</a></li>
-    <li><a href="#contrib">Contributions</a></li>
+    <li><a href="#questions">Questions</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
@@ -99,7 +99,7 @@ SO THAT my personal information is secure and my data is saved
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<div id="contributors"></div>
+<div id="contributor"></div>
 
 ## Contact:
 
@@ -119,7 +119,7 @@ The Following video deomonstrates the project funtionality:
 
 ## Project Links
 
-Project Link: https://github.com/chaitra-srinivas/Social-Stories
+Project Link: https://github.com/chaitra-srinivas/Social-Stories <br/>
 Deployed application: https://damp-gorge-33906.herokuapp.com/
 
 <p align="right">(<a href="#top">back to top</a>)</p>
@@ -145,19 +145,11 @@ To get a local copy up and running please follow these steps.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
-<div id="contrib"></div>
+<div id="questions"></div>
 
-## Contributing
+## Questions
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request.
-
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b Feature`)
-3. Commit your Changes (`git commit -m 'This is the new feature'`)
-4. Push to the Branch (`git push origin Feature`)
-5. Open a Pull Request
+If you have a suggestions/questions regarding the project please contact me @ cmurthy.dev@gmail.com
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -165,6 +157,6 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Distributed under the MIT License. See `LICENCE.txt` for more information.
+Distributed under the MIT License. ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
