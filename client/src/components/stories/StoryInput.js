@@ -49,7 +49,7 @@ function StoryInput(props) {
   let variables = selectedPage.variables.map((variable) => {
     return (
       <div  key={variable.id} className='nine wide field'>
-        <label >{variable.description}:</label>
+        <label >{variable.description}</label>
         <input
           type='text'
           value={getVarValue(selectedPage.id, variable.id)}
