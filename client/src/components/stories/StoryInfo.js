@@ -3,8 +3,9 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_STORY, GET_STORIES } from "../../utils/queries";
 import { DELETE_STORY } from "../../utils/mutations";
-import { Grid, Image } from "semantic-ui-react";
-import { Button } from "semantic-ui-react";
+import { Grid, Image, Button } from "semantic-ui-react";
+
+import Navigation from "../pages/Navigation";
 
 import Auth from "../../utils/auth";
 
@@ -35,33 +36,43 @@ function StoryInfo() {
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <div  className="home ui center aligned container">
-      <div className='ui container'>
+    <div className='ui container'>
+      <Navigation />
+      <div>
         <h2>{singleStory.title}</h2>
         {singleStory.pages.map((page) => {
           return (
-            <Grid key={page.id} columns={2} padded>
-              <Grid.Row>
-                <div id='pageContent' className='ui raised segment'>
+            <div
+              className='ui two column very relaxed grid raised segment'
+              key={page.id}>
+              {/*  <Grid.Row> */}
+              {/* <div id='pageContent' className='ui raised segment'>
                   <div className='item'>
-                    <div className='ui medium image'>
-                      <Image
-                        className='img'
-                        size='large'
-                        centered
-                        src={page.image}
-                        alt='pageimage'
-                      />
-                    </div>
-                  </div>
-                  <div className='item'>
-                    <div id='pContent' className=''>
-                      <p>{page.content}</p>
-                    </div>
-                  </div>
+                    <div className='ui medium image'> */}
+              <div className='column'>
+                <div>
+                  <Image
+                    className='img'
+                    size='large'
+                    centered
+                    src={page.image}
+                    alt='pageimage'
+                  />
                 </div>
-              </Grid.Row>
-            </Grid>
+              </div>
+              <div id='pContent' className='column'>
+                <p>{page.content}</p>
+              </div>
+              {/*  </div>
+                  </div> */}
+              {/*  <div className='item'>
+                    <div id='pContent' className=''> */}
+
+              {/* </div>
+                  </div> */}
+              {/*  </div> */}
+              {/*   </Grid.Row> */}
+            </div>
           );
         })}
       </div>
