@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { GET_MY_STORIES } from "../../utils/queries";
 import Navigation from "../pages/Navigation";
-import { List } from "semantic-ui-react";
+import { List, Loader } from "semantic-ui-react";
 import Auth from "../../utils/auth";
 
 function getTemplateDescription(story) {
@@ -14,7 +14,13 @@ function getTemplateDescription(story) {
     };
   } else if (story.templateId === "t002") {
     return { description: "A social story about excursions", icon: "bus" };
-  } else {
+  } else if (story.templateId === "t003") {
+    return {
+      description: "A social story to improve students emotional literacy",
+      icon: "frown outline",
+    };
+  }
+  else{
     return "";
   }
 }
@@ -26,7 +32,9 @@ function Profile() {
 
   const storyList = data?.mystories || [];
 
-  if (loading) return "Loading...";
+  if (loading) return  <p>Loading...
+    <Loader active inline='centered' />;
+  </p>
 
   return (
     <div>

@@ -9,7 +9,7 @@
         "title": "Introduction",
         "description": "Introduction to student",
         "image": "https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg",
-        "content": "Hello my name is {StudentName}. I am in grade {StudentGrade} this year.",
+        "content": "Hello, my name is {StudentName}. I am in grade {StudentGrade} this year.",
         "variables": [
           {
             "id": "v001",
@@ -94,7 +94,7 @@
         "title": "Introduction",
         "description": "Introduction to student",
         "image": "https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg",
-        "content": "Hello my name is {StudentName}. I am in grade {StudentGrade} this year.",
+        "content": "Hello, my name is {StudentName}. I am in grade {StudentGrade} this year.",
         "variables": [
           {
             "id": "v001",
@@ -172,6 +172,119 @@
             "id": "v007",
             "name": "{AdditionalDetails}",
             "description": "More about the trip/event",
+            "defaultValue": ""
+          }
+        ]
+      }
+    ]
+  },
+
+  {
+    "id": "t003",
+    "title": "Managing anger/feelings template",
+    "description": "Use this template to teach students how to appropriately manage their emotions",
+    "pages": [
+      {
+        "id": "p001",
+        "title": "Introduction",
+        "description": "Introduction to student",
+        "image": "https://cdn.decoratorist.com/wp-content/uploads/school-building-497644.jpg",
+        "content": "Hello, my name is {StudentName}. I am in grade {StudentGrade} this year.",
+        "variables": [
+          {
+            "id": "v001",
+            "name": "{StudentName}",
+            "description": "Student's name here",
+            "defaultValue": ""
+          },
+          {
+            "id": "v002",
+            "name": "{StudentGrade}",
+            "description": "Student's grade here",
+            "defaultValue": ""
+          }
+        ]
+      },
+      {
+        "id": "p002",
+        "title": "Describe an unpleasant situation",
+        "description": "Situation that can cause anger",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Melbourne_Zoo%2C_Victoria%2C_Australia_-22Jan2011.jpg",
+        "content": "Sometimes during {When} when I {Where/What}",
+        "variables": [
+          {
+            "id": "v003",
+            "name": "{When}",
+            "description": "When did I feel frustrated/angry/confused?",
+            "defaultValue": ""
+          },
+          {
+            "id": "v004",
+            "name": "{Where/What}",
+            "description": "What was I doing at the time?",
+            "defaultValue": ""
+          }
+        ]
+      },
+      {
+        "id": "p003",
+        "title": "Describe how I feel",
+        "description": "How am I feeling right now?",
+        "image": "https://en.byd.com/wp-content/uploads/2021/07/school-bus-2-scaled-1.jpg",
+        "content": "I might have {Conflict} with my {Who}. I might feel {How}",
+        "variables": [
+          {
+            "id": "v005",
+            "name": "{Conflict}",
+            "description": "What was the reason?",
+            "defaultValue": ""
+          },
+          {
+            "id": "v006",
+            "name": "{Who}",
+            "description": "Who did I get frustrated with?",
+            "defaultValue": ""
+          },
+          {
+            "id": "v007",
+            "name": "{How}",
+            "description": "How do I feel right now?",
+            "defaultValue": ""
+          }
+        ]
+      },
+      {
+        "id": "p004",
+        "title": "Coping strategies",
+        "description": "Things I can do to calm down",
+        "image": "https://raisingchildren.net.au/__data/assets/image/0011/51140/Healthy-lunch-box-ideas-for-children-PIP-7.gif",
+        "content": "It is not OK to scream and yell at {Who}. I can {Strategy} to calm down.",
+        "variables": [
+          {
+            "id": "v008",
+            "name": "{Who}",
+            "description": "Who am I upset with?",
+            "defaultValue": ""
+          },
+          {
+            "id": "v009",
+            "name": "{Strategy}",
+            "description": "What strategy can I use to calm down?",
+            "defaultValue": ""
+          }
+        ]
+      },
+      {
+        "id": "p005",
+        "title": "Additional strategies",
+        "description": "Additional coping strategies",
+        "image": "https://zooaquarium.org.au/images/ZAA/website/News/Taronga%20TISL%20classroom-01.jpg",
+        "content": "{AdditionalCopingStrategies}",
+        "variables": [
+          {
+            "id": "v010",
+            "name": "{AdditionalCopingStrategies}",
+            "description": "Additional coping strategies",
             "defaultValue": ""
           }
         ]

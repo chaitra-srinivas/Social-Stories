@@ -13,7 +13,13 @@ function getTemplateDescription(story) {
     };
   } else if (story.templateId === "t002") {
     return { description: "A social story about excursions", icon: "bus" };
-  } else {
+  } else if (story.templateId === "t003") {
+    return {
+      description: "A social story to improve students emotional literacy",
+      icon: "frown outline",
+    };
+  }
+  else{
     return "";
   }
 }
@@ -25,27 +31,34 @@ function StoryList() {
   if (loading) return "Loading...";
 
   return (
-    <div> 
+    <div>
       <Navigation />
       <h2>Stories</h2>
-      {(!storyList.length) ? (<div id='storyList'><p>No Stories Available</p> </div>) : (<div>{storyList.map((story) => {
-        return (
-          <List id='storyList'>
-            <List.Item key={story.pageId}>
-              <List.Icon name={getTemplateDescription(story).icon} />
-              <List.Content>
-                <List.Header>
-                  <Link to={`/stories/${story.id}`}>{story.title}</Link>
-                </List.Header>
-                <List.Description>
-                  {getTemplateDescription(story).description}
-                </List.Description>
-              </List.Content>
-            </List.Item>
-          </List>
-        );
-      })}</div>)}
-      
+      {!storyList.length ? (
+        <div id='storyList'>
+          <p>No Stories Available</p>{" "}
+        </div>
+      ) : (
+        <div>
+          {storyList.map((story) => {
+            return (
+              <List id='storyList'>
+                <List.Item key={story.pageId}>
+                  <List.Icon name={getTemplateDescription(story).icon} />
+                  <List.Content>
+                    <List.Header>
+                      <Link to={`/stories/${story.id}`}>{story.title}</Link>
+                    </List.Header>
+                    <List.Description>
+                      {getTemplateDescription(story).description}
+                    </List.Description>
+                  </List.Content>
+                </List.Item>
+              </List>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
