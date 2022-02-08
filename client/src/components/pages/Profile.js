@@ -19,8 +19,7 @@ function getTemplateDescription(story) {
       description: "A social story to improve students emotional literacy",
       icon: "frown outline",
     };
-  }
-  else{
+  } else {
     return "";
   }
 }
@@ -28,16 +27,35 @@ function getTemplateDescription(story) {
 function Profile() {
   const { loading, data } = useQuery(GET_MY_STORIES, {
     variables: { userId: Auth.getProfile().data._id },
+    refetchQueries: [
+      GET_MY_STORIES,
+      { variables: { userId: Auth.getProfile().data._id } },
+    ],
+    /*  update(cache, { data: { mystories } }) {
+      try {
+        const stories = cache.readQuery({ query: GET_MY_STORIES });
+        cache.writeQuery({
+          query: GET_MY_STORIES,
+          data: stories,
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    },   */
   });
 
   const storyList = data?.mystories || [];
 
-  if (loading) return  <p>Loading...
-    <Loader active inline='centered' />;
-  </p>
+  if (loading)
+    return (
+      <p>
+        Loading...
+        <Loader active inline='centered' />;
+      </p>
+    );
 
   return (
-    <div className="home ui container">
+    <div className='home ui container'>
       <Navigation />
       <h2>My Stories</h2>
       {!storyList.length ? (

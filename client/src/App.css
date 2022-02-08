@@ -114,3 +114,20 @@ h2 {
   padding-left: 20px;
   font-size: 1rem;
 } 
+
+@media only screen and (max-width:768px){
+  #sideBar{
+    flex-wrap: wrap;
+    font-size: 10px;
+    float: none;
+    width: 5%;
+
+  }
+  
+  #addForm{
+    flex-wrap: wrap;
+    font-size: 10px;
+   
+    width: 25%;
+  }
+}

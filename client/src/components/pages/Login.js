@@ -54,7 +54,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className="home ui center aligned container">
+    <div className='home ui center aligned container'>
       <Navigation />
       <Grid
         textAlign='center'
@@ -64,13 +64,13 @@ const Login = (props) => {
           <Header id='loginHeader' textAlign='center'>
             <Image src={logo} /> Log-in
           </Header>
-         {data ? (
+          {data ? (
             <p>
               <Loader active inline='centered' />
-              Successful login! <br/>
+              Successful login! <br />
               You can now view, share and create social stories!
             </p>
-          ) : ( 
+          ) : (
             <Form size='large' onSubmit={handleFormSubmit}>
               <Segment>
                 <Form.Input
@@ -103,7 +103,7 @@ const Login = (props) => {
                 </Message>
               </Segment>
             </Form>
-           )} 
+          )}
           {error && <div id='errorMsg'>{error.message}</div>}
         </Grid.Column>
       </Grid>

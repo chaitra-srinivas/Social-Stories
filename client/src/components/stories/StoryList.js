@@ -25,7 +25,7 @@ function getTemplateDescription(story) {
 }
 
 function StoryList() {
-  const { loading, data } = useQuery(GET_STORIES);
+  const { loading, data } = useQuery(GET_STORIES, { refetchQueries: [GET_STORIES]});
 
   const storyList = data?.stories || [];
   if (loading) return "Loading...";

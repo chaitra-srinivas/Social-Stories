@@ -2,11 +2,11 @@ import { React, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATE_STORY } from "../../utils/mutations";
-import { GET_STORIES } from "../../utils/queries";
+import { GET_STORIES, GET_MY_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 import Navigation from "../pages/Navigation";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Grid } from "semantic-ui-react";
 
 import Auth from "../../utils/auth";
 
@@ -96,7 +96,7 @@ function StoryAdd() {
   if (error) return `Submission error! ${error.message}`;
 
   return (
-    <div  className="home ui container">
+    <div className='ui container'>
       <Navigation />
       <div className='ui bottom attached segment pushable'>
         <StoryPages
@@ -121,6 +121,7 @@ function StoryAdd() {
                   }}
                 />
               </div>
+
               <StoryInput
                 selectedPage={selectedPage}
                 variablesModel={pageVariablesModel}

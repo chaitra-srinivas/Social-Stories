@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_STORY, GET_STORIES } from "../../utils/queries";
+import { GET_STORY, GET_STORIES, GET_MY_STORIES } from "../../utils/queries";
 import { DELETE_STORY } from "../../utils/mutations";
 import { Image, Button } from "semantic-ui-react";
 
@@ -17,12 +17,16 @@ function StoryInfo() {
 
   const [deleteStory, { dataLoading, error }] = useMutation(DELETE_STORY, {
     variables: { id: singleStory.id },
-    refetchQueries: [GET_STORIES],
+    refetchQueries: [GET_STORIES, GET_MY_STORIES],
     update(cache, { data: { deleteStory } }) {
       try {
-        const stories = cache.readQuery({ query: GET_STORIES });
+        const stories = cache.readQuery(
+          { query: GET_STORIES,
+           GET_MY_STORIES }
+        );
         cache.writeQuery({
           query: GET_STORIES,
+          GET_MY_STORIES,
           data: stories,
         });
       } catch (e) {
