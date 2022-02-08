@@ -9,7 +9,7 @@ function Navigation() {
   };
 
   return (
-    <div className='nav ui secondary pointing menu' id='navMenu'>
+    <div className='nav ui secondary pointing menu stackable' id='navMenu'>
       <Link id='navItem' className='item' to='/'>
         Home
       </Link>

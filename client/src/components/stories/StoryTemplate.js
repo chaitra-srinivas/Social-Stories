@@ -21,7 +21,7 @@ function StoryTemplate() {
                 <div className='description'>{template.description}</div>
               </div>
               <Link to={`/stories/${template.id}/new`} type='submit'>
-                <div className='ui bottom attached button'>
+                <div className='ui bottom attached button header'>
                   <i className='add icon'></i>Add a story
                 </div>
               </Link>

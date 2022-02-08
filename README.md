@@ -109,9 +109,11 @@ SO THAT my personal information is secure and my data is saved
 
 <div id="proj-func"></div>
 
-The Following video deomonstrates the project funtionality:
+Some images from the application to deomonstrate funtionality:
 
-![](.)
+![Login page](./client/src/components/images/login.png)
+![Add Story](./client/src/components/images/addstory.png)
+![Pick template](./client/src/components/images/template.png)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
