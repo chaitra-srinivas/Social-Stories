@@ -15,7 +15,7 @@ function StoryTemplate() {
         {templates.map((template) => {
           return (
             <div className='card' key={template.id}>
-              <Image src={template.image} alt="template img"/>
+              <Image src={template.image} alt="template img" size="small" centered/>
               <div className='content'>
                 <div className='header'>{template.title}</div>
                 <div className='description'>{template.description}</div>
