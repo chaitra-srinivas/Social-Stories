@@ -39,10 +39,10 @@ function StoryList() {
           <p>No Stories Available</p>{" "}
         </div>
       ) : (
-        <div>
+        <div >
           {storyList.map((story) => {
             return (
-              <List id='storyList'>
+              <List className="ui middle aligned animated list" id='storyList'>
                 <List.Item key={story.pageId}>
                   <List.Icon name={getTemplateDescription(story).icon} />
                   <List.Content>

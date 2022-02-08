@@ -30,6 +30,6 @@ function StoryPages(props) {
     );
   });
 
-  return <div mobile={16} tablet={5} computer={5} className='ui visible left vertical sidebar menu'>{links}</div>;
+  return <div className='ui visible left vertical sidebar selection list menu  '>{links}</div>;
 }
 export default StoryPages;
