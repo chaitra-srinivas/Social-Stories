@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Auth from "../../utils/auth";
 
 function Navigation() {
@@ -10,21 +10,21 @@ function Navigation() {
 
   return (
     <div className='nav ui secondary pointing menu stackable' id='navMenu'>
-      <Link id='navItem' className='item' to='/'>
+      <NavLink id='navItem' className='item' to='/' activeClassName="active">
         Home
-      </Link>
+      </NavLink>
       {Auth.loggedIn() ? (
         <>
-          <Link id='navItem' to='/stories' className='item'>
+          <NavLink id='navItem' to='/stories' className='item' activeClassName="active">
             View Stories
-          </Link>
-          <Link id='navItem' to='/template' className='item'>
+          </NavLink>
+          <NavLink id='navItem' to='/template' className='item' activeClassName="active">
             Create Story
-          </Link>
+          </NavLink>
           <div className='right menu'>
-            <Link id='navItem' className='item' to='/profile'>
+            <NavLink id='navItem' className='item' to='/profile' activeClassName="active">
               {Auth.getProfile().data.username}'s profile
-            </Link>
+            </NavLink>
             <button id='navItem' className='item' onClick={logout}>
               Logout
             </button>
@@ -33,12 +33,12 @@ function Navigation() {
       ) : (
         <>
           <div className='right menu'>
-            <Link id='navItem' className='item' to='/login'>
+            <NavLink id='navItem' className='item' to='/login' activeClassName="active">
               Login
-            </Link>
-            <Link id='navItem' className='item' to='/signup'>
+            </NavLink>
+            <NavLink id='navItem' className='item' to='/signup' activeClassName="active">
               Signup
-            </Link>
+            </NavLink>
           </div>
         </>
       )}
