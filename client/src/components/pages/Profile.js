@@ -31,17 +31,17 @@ function Profile() {
       GET_MY_STORIES,
       { variables: { userId: Auth.getProfile().data._id } },
     ],
-    /*  update(cache, { data: { mystories } }) {
+    /* update(cache, { data: { data } }) {
       try {
-        const stories = cache.readQuery({ query: GET_MY_STORIES });
+        const { mystories } = cache.readQuery({ query: GET_MY_STORIES });
         cache.writeQuery({
           query: GET_MY_STORIES,
-          data: stories,
+          data: mystories,
         });
       } catch (e) {
         console.log(e);
       }
-    },   */
+    }, */
   });
 
   const storyList = data?.mystories || [];

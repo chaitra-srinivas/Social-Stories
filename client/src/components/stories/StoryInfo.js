@@ -20,13 +20,9 @@ function StoryInfo() {
     refetchQueries: [GET_STORIES, GET_MY_STORIES],
     update(cache, { data: { deleteStory } }) {
       try {
-        const stories = cache.readQuery(
-          { query: GET_STORIES,
-           GET_MY_STORIES }
-        );
+        const stories = cache.readQuery({ query: GET_STORIES });
         cache.writeQuery({
           query: GET_STORIES,
-          GET_MY_STORIES,
           data: stories,
         });
       } catch (e) {
