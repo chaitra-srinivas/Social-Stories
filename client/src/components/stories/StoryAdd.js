@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATE_STORY } from "../../utils/mutations";
-import { GET_STORIES, GET_MY_STORIES } from "../../utils/queries";
+import { GET_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 import Navigation from "../pages/Navigation";
@@ -98,9 +98,9 @@ function StoryAdd() {
   return (
     <div className='ui container'>
       <Navigation />
-      <Grid stackable columns={2}>
+      <Grid container stackable columns={2} >
         <Grid.Column width={4}>
-          <div>
+          <div className='ui container'>
             <StoryPages
               pages={selectedTemplate.pages}
               pageSelected={pageSelected}
@@ -109,15 +109,14 @@ function StoryAdd() {
         </Grid.Column>
         <Grid.Column width={12}>
           <div className='ui stackable segment'>
-            <Form
-              size='small'
+            <Form size="tiny"
               onSubmit={(e) => {
                 e.preventDefault();
               }}>
               <div className='ui header'>
                 <label>Title:</label>
               </div>
-              <div >
+              <div>
                 <input
                   type='text'
                   ref={function (node) {
@@ -126,8 +125,8 @@ function StoryAdd() {
                 />
               </div>
               <Grid stackable columns={1}>
-                <Grid.Column>
-                  <StoryInput
+                <Grid.Column >
+                  <StoryInput 
                     selectedPage={selectedPage}
                     variablesModel={pageVariablesModel}
                     variablesUpdated={variablesUpdated}

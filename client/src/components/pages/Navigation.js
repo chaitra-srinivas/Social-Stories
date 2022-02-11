@@ -10,19 +10,19 @@ function Navigation() {
 
   return (
     <div className='nav ui secondary pointing menu stackable' id='navMenu'>
-      <NavLink id='navItem' className='item' to='/' activeClassName="active">
+      <NavLink id='navItem' className='item' to='/' activeclassname="active">
         Home
       </NavLink>
       {Auth.loggedIn() ? (
         <>
-          <NavLink id='navItem' to='/stories' className='item' activeClassName="active">
+          <NavLink id='navItem' to='/stories' className='item' activeclassname="active">
             View Stories
           </NavLink>
-          <NavLink id='navItem' to='/template' className='item' activeClassName="active">
+          <NavLink id='navItem' to='/template' className='item' activeclassname="active">
             Create Story
           </NavLink>
           <div className='right menu'>
-            <NavLink id='navItem' className='item' to='/profile' activeClassName="active">
+            <NavLink id='navItem' className='item' to='/profile' activeclassname="active">
               {Auth.getProfile().data.username}'s profile
             </NavLink>
             <button id='navItem' className='item' onClick={logout}>
@@ -33,10 +33,10 @@ function Navigation() {
       ) : (
         <>
           <div className='right menu'>
-            <NavLink id='navItem' className='item' to='/login' activeClassName="active">
+            <NavLink id='navItem' className='item' to='/login' activeclassname="active">
               Login
             </NavLink>
-            <NavLink id='navItem' className='item' to='/signup' activeClassName="active">
+            <NavLink id='navItem' className='item' to='/signup' activeclassname="active">
               Signup
             </NavLink>
           </div>

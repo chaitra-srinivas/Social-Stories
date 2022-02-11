@@ -10,10 +10,7 @@ function StoryPages(props) {
 
   let links = pages.map((page) => {
     return (
-      <div
-        ui
-        celled
-        list
+      <List.Item
         key={page.id}
         className='item'
         onClick={(e) => {
@@ -22,16 +19,18 @@ function StoryPages(props) {
           pageSelected(page);
         }}>
         <i className='pencil alternate icon'></i>
-        <List className='content'>
-          <div className='ui header'>{page.title}</div>
+        <List.Content>
+          <div className='ui header'>{page.title} </div>
           {page.description}
-        </List>
-      </div>
+        </List.Content>
+      </List.Item>
     );
   });
 
-  return <div className='ui selection list'>{links}</div>;
-
-/*   return <div className='ui visible left vertical sidebar selection list menu '>{links}</div>;
- */}
+  return (
+    <List selection verticalAlign='middle'>
+     {links}
+    </List>
+  );
+}
 export default StoryPages;

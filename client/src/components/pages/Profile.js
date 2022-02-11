@@ -31,17 +31,7 @@ function Profile() {
       GET_MY_STORIES,
       { variables: { userId: Auth.getProfile().data._id } },
     ],
-    /* update(cache, { data: { data } }) {
-      try {
-        const { mystories } = cache.readQuery({ query: GET_MY_STORIES });
-        cache.writeQuery({
-          query: GET_MY_STORIES,
-          data: mystories,
-        });
-      } catch (e) {
-        console.log(e);
-      }
-    }, */
+ 
   });
 
   const storyList = data?.mystories || [];

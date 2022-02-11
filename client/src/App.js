@@ -67,9 +67,6 @@ function App() {
 function Main() {
   return (
     <Routes>
-      {/*   <Route exact path='/' element={<Home />} /> */}
-      {/*   <Route exact path='/login' element={<Login />} /> */}
-      {/*    <Route exact path='/signup' element={<Signup />} /> */}
       <Route exact path='/template' element={<StoryTemplate />} />
       <Route exact path='/stories' element={<StoryList />} />
       <Route exact path='/stories/:id/new' element={<StoryAdd />} />

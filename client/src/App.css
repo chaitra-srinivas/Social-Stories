@@ -37,7 +37,7 @@ h2 {
 #storyList {
   /* font-family: "Happy Monkey", cursive;*/
   font-size:1.5rem; 
-  padding: 50px;
+   padding: 50px;
 }
 
 #frontCover {
@@ -114,20 +114,3 @@ h2 {
   padding-left: 20px;
   font-size: 1rem;
 } 
-
-@media only screen and (max-width:768px){
-  #sideBar{
-    flex-wrap: wrap;
-    font-size: 10px;
-    float: none;
-    width: 5%;
-
-  }
-  
-  #addForm{
-    flex-wrap: wrap;
-    font-size: 10px;
-   
-    width: 25%;
-  }
-}
