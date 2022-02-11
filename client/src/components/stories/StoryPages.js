@@ -13,6 +13,7 @@ function StoryPages(props) {
       <List.Item
         key={page.id}
         className='item'
+        activeClassName='active'
         onClick={(e) => {
           e.preventDefault();
           setSelectedPage(page);
@@ -28,8 +29,15 @@ function StoryPages(props) {
   });
 
   return (
-    <List selection verticalAlign='middle'>
-     {links}
+    <List
+      fluid
+      vertical
+      selection
+      animated
+      list
+      verticalAlign='middle'
+      className='ui bottom attached'>
+      {links}
     </List>
   );
 }
