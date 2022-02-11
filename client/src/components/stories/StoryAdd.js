@@ -98,22 +98,26 @@ function StoryAdd() {
   return (
     <div className='ui container'>
       <Navigation />
-      <div className='ui bottom attached segment pushable'>
-        <StoryPages
-          pages={selectedTemplate.pages}
-          pageSelected={pageSelected}
-        />
-        <div className='pusher'>
-          <div className='ui basic segment'>
+      <Grid stackable columns={2}>
+        <Grid.Column width={4}>
+          <div>
+            <StoryPages
+              pages={selectedTemplate.pages}
+              pageSelected={pageSelected}
+            />
+          </div>
+        </Grid.Column>
+        <Grid.Column width={12}>
+          <div className='ui stackable segment'>
             <Form
-              size='large'
+              size='small'
               onSubmit={(e) => {
                 e.preventDefault();
               }}>
               <div className='ui header'>
                 <label>Title:</label>
               </div>
-              <div className='seven wide field'>
+              <div >
                 <input
                   type='text'
                   ref={function (node) {
@@ -121,28 +125,31 @@ function StoryAdd() {
                   }}
                 />
               </div>
-
-              <StoryInput
-                selectedPage={selectedPage}
-                variablesModel={pageVariablesModel}
-                variablesUpdated={variablesUpdated}
-              />
-              <div>
-                <Button
-                  className='ui button'
-                  type='submit'
-                  id='btnSubmit'
-                  onClick={saveStory}>
-                  Submit
-                </Button>
-                <Link className='ui button' to='/' id='btnCancel'>
-                  Cancel
-                </Link>
-              </div>
+              <Grid stackable columns={1}>
+                <Grid.Column>
+                  <StoryInput
+                    selectedPage={selectedPage}
+                    variablesModel={pageVariablesModel}
+                    variablesUpdated={variablesUpdated}
+                  />
+                  <div>
+                    <Button
+                      className='ui button'
+                      type='submit'
+                      id='btnSubmit'
+                      onClick={saveStory}>
+                      Submit
+                    </Button>
+                    <Link className='ui button' to='/' id='btnCancel'>
+                      Cancel
+                    </Link>
+                  </div>
+                  </Grid.Column>
+              </Grid>
             </Form>
           </div>
-        </div>
-      </div>
+        </Grid.Column>
+      </Grid>
     </div>
   );
 }

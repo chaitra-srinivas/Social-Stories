@@ -30,6 +30,8 @@ function StoryPages(props) {
     );
   });
 
-  return <div className='ui visible left vertical sidebar selection list menu  '>{links}</div>;
-}
+  return <div className='ui selection list'>{links}</div>;
+
+/*   return <div className='ui visible left vertical sidebar selection list menu '>{links}</div>;
+ */}
 export default StoryPages;
