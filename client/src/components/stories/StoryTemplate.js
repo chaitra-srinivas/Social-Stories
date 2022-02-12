@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React from "react";
+import { Link} from "react-router-dom";
 import Navigation from "../pages/Navigation";
 import {Image} from "semantic-ui-react";
 import "../../App.css";

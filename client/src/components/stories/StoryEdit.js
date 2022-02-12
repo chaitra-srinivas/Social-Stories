@@ -3,7 +3,7 @@ import { GET_STORY } from "../../utils/queries";
 import { UPDATE_STORY } from "../../utils/mutations";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
-import { Button, Form } from "semantic-ui-react";
+import { Button, Form, Grid } from "semantic-ui-react";
 
 import Auth from "../../utils/auth";
 
@@ -102,15 +102,19 @@ function StoryEdit(props) {
   }
 
   return (
-    <div className="home ui  container">
+    <div className='ui container'>
       <Navigation />
-      <div className='ui bottom attached segment pushable'>
-        <StoryPages
-          pages={selectedTemplate.pages}
-          pageSelected={pageSelected}
-        />
-        <div className='pusher'>
-          <div className='ui basic segment'>
+      <Grid container stackable columns={2}>
+        <Grid.Column width={4}>
+          <div className='ui container'>
+            <StoryPages
+              pages={selectedTemplate.pages}
+              pageSelected={pageSelected}
+            />
+          </div>
+        </Grid.Column>
+        <Grid.Column width={12}>
+          <div className='ui stackable segment'>
             <Form
               size='large'
               onSubmit={(e) => {
@@ -119,7 +123,7 @@ function StoryEdit(props) {
               <div className='ui header'>
                 <label>Title:</label>
               </div>
-              <div className='seven wide field'>
+              <div>
                 <input
                   type='text'
                   value={title}
@@ -128,34 +132,37 @@ function StoryEdit(props) {
                   }}
                 />
               </div>
-              <StoryInput
-                  selectedPage={selectedPage}
-                  variablesModel={variablesModel}
-                  variablesUpdated={variablesUpdated}
-                />
-              <div>
-              {canEdit ? (
-                    <Button
-                      type='submit'
-                      id='btnSubmit'
-                      className='ui button'
-                      onClick={editStory}>
-                      Update
-                    </Button>
-                  ) : (
-                    <p></p>
-                  )}
-                  <Link
-                    id='btnCancel'
-                    to='/stories'
-                    className='ui  button'>
-                    Cancel
-                  </Link>
-              </div>
+              <Grid container stackable rows={2}>
+                <Grid.Row>
+                  <StoryInput
+                    selectedPage={selectedPage}
+                    variablesModel={variablesModel}
+                    variablesUpdated={variablesUpdated}
+                  />
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column>
+                    {canEdit ? (
+                      <Button
+                        type='submit'
+                        id='btnSubmit'
+                        className='ui button'
+                        onClick={editStory}>
+                        Update
+                      </Button>
+                    ) : (
+                      <p></p>
+                    )}
+                    <Link id='btnCancel' to='/stories' className='ui  button'>
+                      Cancel
+                    </Link>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
             </Form>
           </div>
-        </div>
-      </div>
+        </Grid.Column>
+      </Grid>
     </div>
   );
 }

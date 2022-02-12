@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { CREATE_STORY } from "../../utils/mutations";
-import { GET_STORIES, GET_MY_STORIES } from "../../utils/queries";
+import { GET_STORIES } from "../../utils/queries";
 import StoryPages from "./StoryPages";
 import StoryInput from "./StoryInput";
 import Navigation from "../pages/Navigation";
@@ -98,13 +98,17 @@ function StoryAdd() {
   return (
     <div className='ui container'>
       <Navigation />
-      <div className='ui bottom attached segment pushable'>
-        <StoryPages
-          pages={selectedTemplate.pages}
-          pageSelected={pageSelected}
-        />
-        <div className='pusher'>
-          <div className='ui basic segment'>
+      <Grid container stackable columns={2}>
+        <Grid.Column width={4}>
+          <div className='ui container'>
+            <StoryPages
+              pages={selectedTemplate.pages}
+              pageSelected={pageSelected}
+            />
+          </div>
+        </Grid.Column>
+        <Grid.Column width={12}>
+          <div className='ui stackable segment'>
             <Form
               size='large'
               onSubmit={(e) => {
@@ -113,7 +117,7 @@ function StoryAdd() {
               <div className='ui header'>
                 <label>Title:</label>
               </div>
-              <div className='seven wide field'>
+              <div>
                 <input
                   type='text'
                   ref={function (node) {
@@ -121,28 +125,33 @@ function StoryAdd() {
                   }}
                 />
               </div>
-
-              <StoryInput
-                selectedPage={selectedPage}
-                variablesModel={pageVariablesModel}
-                variablesUpdated={variablesUpdated}
-              />
-              <div>
-                <Button
-                  className='ui button'
-                  type='submit'
-                  id='btnSubmit'
-                  onClick={saveStory}>
-                  Submit
-                </Button>
-                <Link className='ui button' to='/' id='btnCancel'>
-                  Cancel
-                </Link>
-              </div>
+              <Grid container stackable rows={2}>
+                <Grid.Row>
+                  <StoryInput
+                    selectedPage={selectedPage}
+                    variablesModel={pageVariablesModel}
+                    variablesUpdated={variablesUpdated}
+                  />
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column>
+                    <Button
+                      className='ui button'
+                      type='submit'
+                      id='btnSubmit'
+                      onClick={saveStory}>
+                      Submit
+                    </Button>
+                    <Link className='ui button' to='/' id='btnCancel'>
+                      Cancel
+                    </Link>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
             </Form>
           </div>
-        </div>
-      </div>
+        </Grid.Column>
+      </Grid>
     </div>
   );
 }
