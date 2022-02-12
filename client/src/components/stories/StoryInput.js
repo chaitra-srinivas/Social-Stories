@@ -49,8 +49,8 @@ function StoryInput(props) {
 
   let variables = selectedPage.variables.map((variable) => {
     return (
-      <div  key={variable.id} >
-        <label >{variable.description}</label>
+      <div key={variable.id}>
+        <label>{variable.description}</label>
         <input
           type='text'
           value={getVarValue(selectedPage.id, variable.id)}
@@ -66,7 +66,7 @@ function StoryInput(props) {
   });
 
   return (
-    <div id="storyList" className='pusher' >
+    <div id='storyList' className='pusher'>
       <div className='stretched row'>
         <div className='column'>
           <div>
@@ -74,12 +74,11 @@ function StoryInput(props) {
           </div>
         </div>
         <div className='column'>
-          <div  className='ui form'>
+          <div id='pageLink' className='ui form'>
             {variables}
             <div className='ui message '>
               <div className='header'>Preview</div>
-              <div
-                dangerouslySetInnerHTML={{ __html: dynamicContent }}></div>
+              <div dangerouslySetInnerHTML={{ __html: dynamicContent }}></div>
             </div>
           </div>
         </div>

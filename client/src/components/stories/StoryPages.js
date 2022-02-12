@@ -14,6 +14,7 @@ function StoryPages(props) {
         key={page.id}
         className='item'
         activeClassName='active'
+        active={selectedPage.id === page.id}
         onClick={(e) => {
           e.preventDefault();
           setSelectedPage(page);

@@ -98,7 +98,7 @@ function StoryAdd() {
   return (
     <div className='ui container'>
       <Navigation />
-      <Grid container stackable columns={2} >
+      <Grid container stackable columns={2}>
         <Grid.Column width={4}>
           <div className='ui container'>
             <StoryPages
@@ -109,7 +109,8 @@ function StoryAdd() {
         </Grid.Column>
         <Grid.Column width={12}>
           <div className='ui stackable segment'>
-            <Form size="tiny"
+            <Form
+              size='large'
               onSubmit={(e) => {
                 e.preventDefault();
               }}>
@@ -124,14 +125,16 @@ function StoryAdd() {
                   }}
                 />
               </div>
-              <Grid stackable columns={1}>
-                <Grid.Column >
-                  <StoryInput 
+              <Grid container stackable rows={2}>
+                <Grid.Row>
+                  <StoryInput
                     selectedPage={selectedPage}
                     variablesModel={pageVariablesModel}
                     variablesUpdated={variablesUpdated}
                   />
-                  <div>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column>
                     <Button
                       className='ui button'
                       type='submit'
@@ -142,8 +145,8 @@ function StoryAdd() {
                     <Link className='ui button' to='/' id='btnCancel'>
                       Cancel
                     </Link>
-                  </div>
                   </Grid.Column>
+                </Grid.Row>
               </Grid>
             </Form>
           </div>

@@ -31,7 +31,6 @@ function Profile() {
       GET_MY_STORIES,
       { variables: { userId: Auth.getProfile().data._id } },
     ],
- 
   });
 
   const storyList = data?.mystories || [];

@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Stories } = require("../models");
-const {signToken} = require('../utils/auth');
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -14,7 +14,7 @@ const resolvers = {
       const params = username ? { username } : {};
       return await Stories.find(params).sort({ title: -1 });
     },
-    mystories: async (root, {userId}) => {
+    mystories: async (root, { userId }) => {
       const params = userId ? { userId } : {};
       return await Stories.find(params).sort({ title: -1 });
     },
