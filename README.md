@@ -1,7 +1,7 @@
 <div id="top"></div>
 
 <div align="center">
-  <a href="https://github.com/jonmorg-hs/ProjProp">
+  <a href="https://github.com/chaitra-srinivas/Social-Stories">
     <img src="./client/src/components/images/SocialStories.gif" alt="Logo" width="80" height="80">
   </a>
   <h2>Social-Stories</h2>
